@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 
 /**
@@ -41,7 +43,7 @@ const AboutConcept: React.FC = () => {
         <div className="content-body flex flex-col max-w-[90vw]">
           {/* Main Lead Paragraph */}
           <div className="mb-[8vh] lg:max-w-[70vw]">
-            <p className="font-lead text-[#000000]">
+            <p className="font-lead text-[#000000] text-[24px] md:text-[32px] lg:text-[40px] leading-[1.4] font-medium">
               The Shift is a creative collective based in Tokyo. We provide new perspectives and solutions to our users.
             </p>
           </div>
