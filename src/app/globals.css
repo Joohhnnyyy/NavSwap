@@ -1,60 +1,62 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Serif+JP:wght@200..900&family=Noto+Sans+JP:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Cormorant+Garamond:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --color-background: #F0F0F0;
-  --color-foreground: #000000;
+  --color-background: #F2F2F2;
+  --color-foreground: #0D0D0D;
 
-  --color-card: #F0F0F0;
-  --color-card-foreground: #000000;
+  --color-card: #F2F2F2;
+  --color-card-foreground: #0D0D0D;
 
-  --color-popover: #F0F0F0;
-  --color-popover-foreground: #000000;
+  --color-popover: #F2F2F2;
+  --color-popover-foreground: #0D0D0D;
 
-  --color-primary: #000000;
-  --color-primary-foreground: #FFFFFF;
+  --color-primary: #0D0D0D;
+  --color-primary-foreground: #F2F2F2;
 
-  --color-secondary: #141414;
-  --color-secondary-foreground: #FFFFFF;
+  --color-secondary: #E5E5E5;
+  --color-secondary-foreground: #0D0D0D;
 
-  --color-muted: #CCCCCC;
+  --color-muted: #E5E5E5;
   --color-muted-foreground: #737373;
 
-  --color-accent: #0000FF;
-  --color-accent-foreground: #FFFFFF;
+  --color-accent: #0D0D0D;
+  --color-accent-foreground: #F2F2F2;
 
   --color-destructive: #EF4444;
   --color-destructive-foreground: #FAFAFA;
 
-  --color-border: #CCCCCC;
-  --color-input: #CCCCCC;
-  --color-ring: #000000;
+  --color-border: #0D0D0D;
+  --color-input: #0D0D0D;
+  --color-ring: #0D0D0D;
 
-  --color-chart-1: #000000;
-  --color-chart-2: #141414;
-  --color-chart-3: #333333;
-  --color-chart-4: #666666;
-  --color-chart-5: #999999;
+  --color-chart-1: #0D0D0D;
+  --color-chart-2: #262626;
+  --color-chart-3: #404040;
+  --color-chart-4: #525252;
+  --color-chart-5: #737373;
 
-  --color-sidebar: #F7F7F7;
-  --sidebar-foreground: #404040;
-  --sidebar-primary: #1A1A1A;
-  --sidebar-primary-foreground: #FAFAFA;
-  --sidebar-accent: #F0F0F0;
-  --sidebar-accent-foreground: #1A1A1A;
-  --sidebar-border: #D4D4D8;
-  --sidebar-ring: #3B82F6;
+  --color-sidebar: #F2F2F2;
+  --color-sidebar-foreground: #0D0D0D;
+  --color-sidebar-primary: #0D0D0D;
+  --color-sidebar-primary-foreground: #F2F2F2;
+  --color-sidebar-accent: #E5E5E5;
+  --color-sidebar-accent-foreground: #0D0D0D;
+  --color-sidebar-border: #0D0D0D;
+  --color-sidebar-ring: #0D0D0D;
 
-  --font-sans: "Inter", "Noto Sans JP", sans-serif;
-  --font-serif: "Noto Serif JP", serif;
-  --font-display: "Inter", sans-serif;
+  --color-lead-box: rgba(13, 13, 13, 0.05);
 
-  --radius-lg: 0rem;
-  --radius-md: 0rem;
-  --radius-sm: 0rem;
+  --font-sans: "Inter", "Helvetica", sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
+  --font-display: "Cormorant Garamond", serif;
+
+  --radius-lg: 0px;
+  --radius-md: 0px;
+  --radius-sm: 0px;
 
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
@@ -83,52 +85,32 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: #CCCCCC;
+    border-color: #0D0D0D;
   }
 }
 
 @layer base {
   :root {
-    --background: #F0F0F0;
-    --foreground: #000000;
-    --card: #F0F0F0;
-    --card-foreground: #000000;
-    --popover: #F0F0F0;
-    --popover-foreground: #000000;
-    --primary: #000000;
-    --primary-foreground: #FFFFFF;
-    --secondary: #141414;
-    --secondary-foreground: #FFFFFF;
-    --muted: #CCCCCC;
+    --background: #F2F2F2;
+    --foreground: #0D0D0D;
+    --card: #F2F2F2;
+    --card-foreground: #0D0D0D;
+    --popover: #F2F2F2;
+    --popover-foreground: #0D0D0D;
+    --primary: #0D0D0D;
+    --primary-foreground: #F2F2F2;
+    --secondary: #E5E5E5;
+    --secondary-foreground: #0D0D0D;
+    --muted: #E5E5E5;
     --muted-foreground: #737373;
-    --accent: #0000FF;
-    --accent-foreground: #FFFFFF;
+    --accent: #0D0D0D;
+    --accent-foreground: #F2F2F2;
     --destructive: #EF4444;
     --destructive-foreground: #FAFAFA;
-    --border: #CCCCCC;
-    --input: #CCCCCC;
-    --ring: #000000;
-    --radius: 0rem;
-  }
-
-  .dark {
-    --background: #141414;
-    --foreground: #FFFFFF;
-    --card: #141414;
-    --card-foreground: #FFFFFF;
-    --popover: #141414;
-    --popover-foreground: #FFFFFF;
-    --primary: #FFFFFF;
-    --primary-foreground: #141414;
-    --secondary: #262626;
-    --secondary-foreground: #FFFFFF;
-    --muted: #262626;
-    --muted-foreground: #A3A3A3;
-    --accent: #FFFFFF;
-    --accent-foreground: #141414;
-    --border: #333333;
-    --input: #333333;
-    --ring: #D4D4D8;
+    --border: #0D0D0D;
+    --input: #0D0D0D;
+    --ring: #0D0D0D;
+    --radius: 0px;
   }
 }
 
@@ -146,25 +128,35 @@
   body {
     @apply bg-background text-foreground font-sans;
     overflow-x: hidden;
-    line-height: 1.8;
-    letter-spacing: 0.05em;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    text-transform: uppercase;
-    line-height: 0.9;
-    letter-spacing: -0.05em;
+    @apply font-sans font-bold uppercase;
+    letter-spacing: -0.02em;
   }
 
-  .font-display {
-    font-family: var(--font-display);
-    font-weight: 700;
-  }
-
-  .font-serif-display {
+  .font-hero {
     font-family: var(--font-serif);
     font-weight: 400;
-    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 0.85;
+  }
+
+  .font-ui {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  .font-stats {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
   }
 
   .container {
@@ -176,67 +168,37 @@
     margin-right: auto;
   }
 
-  .text-hero {
-    font-size: 14vw;
-    line-height: 0.85;
-    letter-spacing: -0.06em;
+  .editorial-indent {
+    padding-left: 15vw;
   }
 
-  .text-section-title {
-    font-size: 8vw;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    font-weight: 700;
-  }
-
-  .text-ui {
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .text-stats {
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-  }
-
-  .vertical-rhythm {
-    padding-top: 15vh;
-    padding-bottom: 15vh;
-  }
-
-  .border-reveal {
-    position: relative;
+  .hairline-divider {
     width: 100%;
     height: 1px;
     background-color: var(--color-border);
-    transform-origin: left;
-  }
-
-  .btn-circle {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    justify-content: center;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 1px solid currentColor;
-    text-align: center;
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    cursor: pointer;
-    overflow: hidden;
+    justify-content: space-between;
+    position: relative;
   }
 
-  .btn-circle:hover {
-    background-color: var(--foreground);
-    color: var(--background);
+  .hairline-divider span {
+    background-color: var(--color-background);
+    padding: 0 10px;
+    position: relative;
+    top: -1px;
   }
 
-  .mask-pill {
-    border-radius: 9999px 9999px 0 0;
-    overflow: hidden;
+  .lead-box {
+    background-color: var(--color-lead-box);
+    padding: 2rem;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .parallax-element {
+    will-change: transform;
+    transition: transform 0.1s linear;
   }
 
   .parentheses::before {
@@ -249,15 +211,21 @@
 }
 
 @layer utilities {
-  .mix-blend-difference {
-    mix-blend-mode: difference;
-  }
-  
-  .text-vertical {
-    writing-mode: vertical-rl;
+  .text-fluid-hero {
+    font-size: clamp(4rem, 15vw, 20rem);
   }
 
-  .kerning-none {
-    font-kerning: none;
+  .text-fluid-section {
+    font-size: clamp(2rem, 8vw, 6rem);
+  }
+
+  .grid-neo {
+    display: grid;
+    grid-template-columns: repeat(24, 1fr);
+    gap: 1rem;
+  }
+
+  .mix-blend-difference {
+    mix-blend-mode: difference;
   }
 }
