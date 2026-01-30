@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 
 /**
@@ -9,9 +11,9 @@ export default function TerritoryFooter() {
   return (
     <div className="w-full bg-[#141414] text-white">
       {/* OUR TERRITORY AND FIELDS Section */}
-      <section className="container py-[15vh]">
+      <section className="container py-[15vh] px-[4vw]">
         <div className="flex flex-col md:flex-row md:items-start justify-between">
-          <div className="w-full max-w-[50vw]">
+          <div className="w-full md:w-[50vw]">
             <h2 className="text-[8vw] font-bold leading-[1.1] tracking-[-0.02em] font-sans">
               <div className="flex flex-wrap gap-x-[0.3em]">
                 <span>OUR</span>
@@ -23,7 +25,6 @@ export default function TerritoryFooter() {
               </div>
             </h2>
             
-            {/* Border Reveal Effect Reference */}
             <div className="w-full h-[1px] bg-[#CCCCCC]/30 my-12" />
           </div>
 
@@ -58,7 +59,7 @@ export default function TerritoryFooter() {
 
       {/* BASED IN TOKYO WORKING WORLDWIDE Section */}
       <section className="bg-white text-black py-[20vh] overflow-hidden">
-        <div className="container">
+        <div className="container px-[4vw]">
           <div className="flex flex-col items-center text-center">
             <h2 className="text-[10vw] md:text-[8vw] font-bold leading-[0.9] tracking-[-0.05em] uppercase w-full">
               <div className="flex flex-col md:flex-row items-center justify-center gap-x-6">
@@ -70,7 +71,6 @@ export default function TerritoryFooter() {
                 <span>WORKING</span>
                 <span className="relative">
                   WORLDWIDE
-                  {/* Subtle underline detail if needed, but the screenshot shows clean typography */}
                 </span>
               </div>
             </h2>
@@ -79,7 +79,7 @@ export default function TerritoryFooter() {
       </section>
 
       {/* Global Footer Navigation */}
-      <footer className="bg-white text-black pb-12 pt-12 border-t border-[#CCCCCC]">
+      <footer className="bg-white text-black pb-12 pt-12 border-t border-[#CCCCCC] px-[4vw]">
         <div className="container flex flex-col md:flex-row justify-between items-end md:items-center">
           <div className="mb-8 md:mb-0">
             <p className="text-[12px] font-medium tracking-[0.1em] uppercase mb-2">Social</p>
@@ -94,11 +94,11 @@ export default function TerritoryFooter() {
               © {new Date().getFullYear()} THE SHIFT
             </p>
             <div className="mt-2">
-              <a href="/project/" className="text-[12px] tracking-[0.1em] uppercase hover:underline">Projects</a>
+              <a href="/#projects" className="text-[12px] tracking-[0.1em] uppercase hover:underline">Projects</a>
               <span className="mx-2 opacity-30">/</span>
-              <a href="/about/" className="text-[12px] tracking-[0.1em] uppercase hover:underline">About</a>
+              <a href="/about" className="text-[12px] tracking-[0.1em] uppercase hover:underline">About</a>
               <span className="mx-2 opacity-30">/</span>
-              <a href="/contact/" className="text-[12px] tracking-[0.1em] uppercase hover:underline">Contact</a>
+              <a href="mailto:info@theshift.tokyo" className="text-[12px] tracking-[0.1em] uppercase hover:underline">Contact</a>
             </div>
           </div>
         </div>
