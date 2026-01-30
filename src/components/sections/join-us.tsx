@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 
 /**
@@ -21,7 +23,7 @@ const JoinUs: React.FC = () => {
         paddingBottom: '15vh' 
       }}
     >
-      <div className="container" style={{ paddingLeft: '5vw', paddingRight: '5vw' }}>
+      <div className="container mx-auto px-[5vw]">
         
         {/* Section Header */}
         <div className="flex flex-col mb-[2rem]">
