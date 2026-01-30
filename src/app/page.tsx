@@ -1,3 +1,5 @@
+"use client";
+
 import Header from "@/components/sections/header";
 import HeroSection from "@/components/sections/hero";
 import ProjectSlider from "@/components/sections/project-slider";
