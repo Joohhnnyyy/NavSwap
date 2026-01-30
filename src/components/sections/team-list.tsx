@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 
 interface TeamMember {
@@ -55,24 +57,24 @@ const teamMembers: TeamMember[] = [
 
 const TeamList = () => {
   return (
-    <section className="bg-[#F1F1F1] pb-24 lg:pb-40">
-      <div className="container">
+    <section className="bg-[#F1F1F1] pb-24 lg:pb-40 px-[5vw]">
+      <div className="container mx-auto">
         {/* Title Spacing */}
         <div className="h-[15vh]"></div>
 
         {/* Massive Vertical/Large Team Heading */}
         <div className="overflow-hidden mb-12 lg:mb-20">
-          <h2 className="font-hero-sans text-foreground leading-[0.8] tracking-[-0.03em] uppercase transition-transform duration-1000 ease-out">
+          <h2 className="text-[15vw] lg:text-[10vw] font-bold leading-[0.8] tracking-[-0.03em] uppercase">
             <span className="block">TEAM</span>
           </h2>
         </div>
 
         {/* Section Divider with (04) label style as per design patterns */}
         <div className="relative w-full mb-12 lg:mb-20">
-          <div className="h-[1px] w-full bg-black/100"></div>
-          <div className="absolute top-2 right-0 font-ui-label text-[10px] flex items-center">
+          <div className="h-[1px] w-full bg-black"></div>
+          <div className="absolute top-2 right-0 font-sans text-[10px] flex items-center">
             <span className="opacity-40">(</span>
-            <span className="px-0.5">04</span>
+            <span className="px-0.5 font-bold">04</span>
             <span className="opacity-40">)</span>
           </div>
         </div>
@@ -81,11 +83,11 @@ const TeamList = () => {
         <div className="w-full">
           <ul className="flex flex-col">
             {teamMembers.map((member, index) => (
-              <li key={index} className="group border-b border-black/100">
+              <li key={index} className="group border-b border-black">
                 <div className="grid grid-cols-1 lg:grid-cols-12 py-10 lg:py-16 gap-y-6 lg:gap-y-0">
                   {/* Left Column: Name */}
                   <div className="lg:col-span-4">
-                    <h3 className="text-[24px] lg:text-[28px] font-sans font-medium uppercase tracking-tight leading-tight">
+                    <h3 className="text-[24px] lg:text-[28px] font-sans font-bold uppercase tracking-tight leading-tight">
                       {member.name}
                     </h3>
                   </div>
@@ -93,12 +95,12 @@ const TeamList = () => {
                   {/* Right Column: Role and Bio */}
                   <div className="lg:col-span-8 flex flex-col gap-6 lg:gap-8 lg:max-w-2xl lg:ml-auto xl:ml-0">
                     {/* Role */}
-                    <div className="text-[12px] lg:text-[13px] font-sans uppercase font-medium tracking-wide">
+                    <div className="text-[12px] lg:text-[13px] font-sans uppercase font-bold tracking-wide opacity-60">
                       {member.role}
                     </div>
 
                     {/* Bio */}
-                    <div className="text-[15px] lg:text-[16px] font-sans leading-relaxed text-foreground/90 font-normal">
+                    <div className="text-[15px] lg:text-[16px] font-sans leading-relaxed text-black/90 font-normal">
                       <p>
                         {member.bio}
                         {member.website && (
