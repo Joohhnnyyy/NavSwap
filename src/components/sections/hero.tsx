@@ -44,15 +44,15 @@ const HeroSection: React.FC = () => {
 
   return (
     <section 
-      className="section page-header relative min-h-screen w-full bg-[#F0F0F0] pt-[15vh] px-[4vw]"
+      className="section page-header relative min-h-screen w-full bg-[#000000] pt-[15vh] px-[4vw] text-white"
       data-scroll-section
     >
       {/* Language Switcher */}
       <div className="site-lang fixed top-[80px] right-[240px] z-10 hidden lg:block">
         <a href="/en/" className="group">
-          <div className="ui-btn-link px-4 py-1 border border-border rounded-full hover:bg-black hover:text-white transition-colors duration-300">
+          <div className="ui-btn-link px-4 py-1 border border-white rounded-full hover:bg-white hover:text-black transition-colors duration-300">
             <div className="o overflow-hidden h-4">
-              <div className="t text-[10px] font-medium tracking-[0.2em]">EN</div>
+              <div className="t text-[10px] font-medium tracking-[0.2em] text-white group-hover:text-black">JA</div>
             </div>
           </div>
         </a>
@@ -61,7 +61,7 @@ const HeroSection: React.FC = () => {
       <div className="page-title-pivot relative z-[2]">
         <div className="in max-w-full">
           {/* Main Headline */}
-          <h1 className="page-title page-home-title text-[#000000] mb-12">
+          <h1 className="page-title page-home-title text-white mb-12">
             <div className="page-title-body flex flex-col items-start leading-[0.85] tracking-[-0.05em] text-[14vw]">
               {/* Row 1: EXPLORING (Serif) */}
               <div className="l l1 odd overflow-hidden whitespace-nowrap">
@@ -69,10 +69,14 @@ const HeroSection: React.FC = () => {
               </div>
               
               {/* Row 2: THE SHIFT (Sans) */}
-              <div className="l l2 even overflow-hidden whitespace-nowrap flex">
+              <div className="l l2 even overflow-hidden whitespace-nowrap flex relative">
                 <div className="w">{renderSplitText("THE", false)}</div>
                 <div className="s w-[2vw]"></div>
-                <div className="w">{renderSplitText("SHIFT", false)}</div>
+                <div className="w relative">
+                  {renderSplitText("SHIFT", false)}
+                  {/* Red Dot */}
+                  <div className="absolute top-[-1vw] left-[2.5vw] w-[1.5vw] h-[1.5vw] bg-[#FF3B30] rounded-full"></div>
+                </div>
               </div>
 
               {/* Row 3: OF TODAY (Serif) */}
@@ -88,7 +92,7 @@ const HeroSection: React.FC = () => {
           <div className="lead-box relative flex justify-end mt-[-5vw] lg:mt-[-12vw] mb-[5vh] lg:pr-[12vw]">
             <div className="lead-body max-w-[320px] lg:max-w-[380px]">
               <div className="o overflow-hidden">
-                <p className="t text-[12px] lg:text-[14px] leading-[1.6] font-normal uppercase tracking-normal text-black indent-[2em]">
+                <p className="t text-[12px] lg:text-[14px] leading-[1.6] font-normal uppercase tracking-normal text-white indent-[2em]">
                   The Shift creates future-inspired projects for people and businesses desiring a shift.&nbsp;
                   <br />
                   Based in tokyo, working worldwide.
