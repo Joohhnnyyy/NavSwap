@@ -1,151 +1,190 @@
-"use client";
-
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
+
+/**
+ * Header component for THE SHIFT.
+ * Features:
+ * - Minimalist branding "THE SHIFT" (Logo)
+ * - Language switcher (EN/JA)
+ * - Navigation menu with side-drawer effect
+ * - Precise layout matching based on computed styles and design system
+ */
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  // Prevent scroll when menu is open
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => {
-      document.body.style.overflow = "unset";
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
     };
-  }, [isMenuOpen]);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "Project", href: "/project" },
-    { name: "Research", href: "/research" },
-    { name: "About", href: "/about" },
+    { label: "Home", href: "/" },
+    { label: "Project", href: "/project/" },
+    { label: "Research", href: "/research/" },
+    { label: "About", href: "/about/" },
   ];
 
   return (
-    <>
-      <header className="fixed top-0 left-0 w-full z-[100] px-[5vw] pt-20 md:pt-20 pointer-events-none">
-        <div className="flex justify-between items-start w-full pointer-events-auto">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="block text-[17.99px] font-sans tracking-tight leading-none group"
+    <header className="fixed top-0 left-0 w-full z-[100] h-0">
+      {/* Site Logo */}
+      <a
+        href="/"
+        className="absolute top-[-11.6938px] left-0 flex flex-col justify-start items-start z-[9] transition-opacity duration-500 ease-in-out"
+        style={{
+          width: "255.125px",
+          height: "143.375px",
+          padding: "80px 4vw 40px", // 4vw matching side margins
+          color: "rgb(20, 20, 20)",
+          fontSize: "17.9904px",
+          fontFamily: "'Inter', sans-serif",
+          fontWeight: 700,
+          letterSpacing: "0.1em",
+          textTransform: "uppercase",
+        }}
+      >
+        <span className="block overflow-hidden h-[23px] relative">
+          <span className="relative block transform transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-full">
+            <span className="block">THE SHIFT</span>
+            <span className="absolute top-full left-0 block">THE SHIFT</span>
+          </span>
+        </span>
+      </a>
+
+      {/* Language Switcher (Top Right Pillar/Box) */}
+      <div
+        className={`absolute top-[80px] right-[4vw] z-[8] flex items-center transition-opacity duration-500 ${
+          isMenuOpen ? "opacity-0" : "opacity-100"
+        }`}
+      >
+        <div className="flex items-center space-x-4">
+          <a
+            href="/en/"
+            className="flex items-center justify-center border border-border px-3 py-1 text-[12px] font-medium tracking-[0.1em] hover:bg-black hover:text-white transition-all duration-300 rounded-full"
+            style={{ minWidth: "48px", height: "auto" }}
           >
-            <div className="overflow-hidden h-[1.2em]">
-              <div
-                className={cn(
-                  "transition-transform duration-500 ease-out flex flex-col",
-                  isMenuOpen ? "-translate-y-full" : "translate-y-0"
-                )}
-              >
-                <span className="block italic font-serif">THE SHIFT</span>
-                <span className="block italic font-serif opacity-0">THE SHIFT</span>
-              </div>
-            </div>
-          </Link>
+            EN
+          </a>
+        </div>
+      </div>
 
-          {/* Center Language Toggle (Static in Light header) */}
-          {!isMenuOpen && (
-            <div className="absolute left-1/2 -translate-x-1/2 top-20 hidden md:block">
-              <Link
-                href="/en"
-                className="text-[11px] border border-black rounded-full px-4 py-1 hover:bg-black hover:text-white transition-colors duration-300"
-              >
-                EN
-              </Link>
-            </div>
-          )}
-
-          {/* Menu Button / Menu Nav */}
-          <div className="flex flex-col items-end">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-[14px] font-sans font-medium uppercase tracking-[0.1em] mb-4 hover:opacity-60 transition-opacity"
+      {/* Navigation Toggle & Drawer */}
+      <nav className="absolute top-0 right-0 z-[7]" style={{ width: "240px" }}>
+        {/* Menu Button */}
+        <div
+          className="absolute top-[80px] right-[4vw] z-[10] cursor-pointer"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          <div className="text-[12px] font-medium tracking-[0.1em] text-right uppercase overflow-hidden h-[18px]">
+            <div
+              className={`transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                isMenuOpen ? "-translate-y-full" : "translate-y-0"
+              }`}
             >
-              <div className="overflow-hidden h-[1.2em]">
-                <div
-                  className={cn(
-                    "transition-transform duration-500 ease-out flex flex-col",
-                    isMenuOpen ? "-translate-y-full" : "translate-y-0"
-                  )}
-                >
-                  <span>MENU</span>
-                  <span>CLOSE</span>
-                </div>
-              </div>
-            </button>
-
-            {/* In-header nav list (desktop only, hidden when menu open) */}
-            {!isMenuOpen && (
-              <nav className="hidden md:block text-right">
-                <ul className="space-y-0.5">
-                  {navLinks.map((link) => (
-                    <li key={link.name}>
-                      <Link
-                        href={link.href}
-                        className="text-[14px] font-sans font-medium uppercase tracking-[0.1em] hover:opacity-60 transition-opacity inline-block"
-                      >
-                        {link.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            )}
+              <div className="hover:opacity-60">MENU</div>
+              <div className="hover:opacity-60">CLOSE</div>
+            </div>
           </div>
         </div>
-      </header>
 
-      {/* Full-screen Overlay Navigation */}
-      <div
-        className={cn(
-          "fixed inset-0 bg-[#EFEFEF] z-[90] transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] flex flex-col justify-center items-center",
-          isMenuOpen ? "translate-y-0" : "-translate-y-full"
-        )}
-      >
-        <nav className="w-full max-w-[90vw] md:max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-end md:items-center">
-          <ul className="flex flex-col space-y-4 md:space-y-6 text-right">
-            {navLinks.map((link, index) => (
-              <li
-                key={link.name}
-                className={cn(
-                  "overflow-hidden transition-all duration-700 delay-[100ms]",
-                  isMenuOpen ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-                )}
-                style={{ transitionDelay: `${index * 50 + 200}ms` }}
-              >
-                <Link
-                  href={link.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-[8vw] md:text-[6vw] font-sans font-extrabold uppercase leading-[0.9] hover:italic transition-all duration-300"
+        {/* Side Drawer Body */}
+        <div
+          className={`fixed top-0 right-0 h-screen bg-[#F0F0F0] border-l border-border transition-transform duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            isMenuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+          style={{ width: "400px" }}
+        >
+          <div className="flex flex-col h-full pt-[200px] px-[80px]">
+            <ul className="space-y-6">
+              {navLinks.map((link, idx) => (
+                <li key={link.label} className="overflow-hidden">
+                  <a
+                    href={link.href}
+                    className="group relative inline-block text-[32px] font-bold tracking-tight uppercase"
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      letterSpacing: "-0.02em",
+                      transform: isMenuOpen ? "translateY(0)" : "translateY(100%)",
+                      transition: `transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.1}s`,
+                    }}
+                  >
+                    {link.label}
+                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-black group-hover:w-full transition-all duration-500 ease-in-out"></span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            {/* Language Switcher inside menu */}
+            <ul className="mt-[100px] flex space-x-6">
+              <li className="overflow-hidden">
+                <a
+                  href="/en/"
+                  className="text-[12px] font-medium uppercase tracking-[0.2em] opacity-60 hover:opacity-100 transition-opacity"
+                  style={{
+                    transform: isMenuOpen ? "translateY(0)" : "translateY(100%)",
+                    transition: "transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s",
+                    display: "block",
+                  }}
                 >
-                  {link.name}
-                </Link>
+                  EN
+                </a>
               </li>
-            ))}
-          </ul>
-
-          <div
-            className={cn(
-              "mt-20 md:mt-0 flex flex-col items-end space-y-4 transition-all duration-700 delay-500",
-              isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            )}
-          >
-            <div className="flex space-x-4 text-[14px] font-medium tracking-widest">
-              <Link href="/en" className="underline underline-offset-4">EN</Link>
-              <Link href="/" className="opacity-40">JA</Link>
-            </div>
-            <div className="text-right text-[11px] leading-relaxed opacity-60 max-w-[200px]">
-              Exploring the shift of today. Based in Tokyo, working worldwide.
-            </div>
+              <li className="overflow-hidden">
+                <a
+                  href="/"
+                  className="text-[12px] font-medium uppercase tracking-[0.2em] opacity-60 hover:opacity-100 transition-opacity"
+                  style={{
+                    transform: isMenuOpen ? "translateY(0)" : "translateY(100%)",
+                    transition: "transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s",
+                    display: "block",
+                  }}
+                >
+                  JA
+                </a>
+              </li>
+            </ul>
           </div>
-        </nav>
-      </div>
-    </>
+        </div>
+
+        {/* Backdrop for Menu */}
+        {isMenuOpen && (
+          <div
+            className="fixed inset-0 bg-black/5 z-[-1]"
+            onClick={() => setIsMenuOpen(false)}
+          ></div>
+        )}
+      </nav>
+
+      <style jsx global>{`
+        .site-header {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          z-index: 100;
+        }
+        .flip .o {
+          overflow: hidden;
+          position: relative;
+        }
+        .flip .t {
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .flip:hover .t {
+          transform: translateY(-100%);
+        }
+        .flip .t::after {
+          content: attr(data-text);
+          position: absolute;
+          top: 100%;
+          left: 0;
+        }
+      `}</style>
+    </header>
   );
 };
 
