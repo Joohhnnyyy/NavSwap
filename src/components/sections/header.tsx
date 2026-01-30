@@ -1,193 +1,143 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 /**
- * Header component for THE SHIFT.
- * Features:
- * - Minimalist branding "THE SHIFT" (Logo)
- * - Language switcher (EN/JA)
- * - Navigation menu with side-drawer effect
- * - Precise layout matching based on computed styles and design system
+ * Header Component
+ * Clones the site navigation for THE SHIFT.
+ * Featuring a minimalist top bar and a full-screen overlay menu.
  */
-
-const Header = () => {
+export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { label: "Home", href: "/" },
-    { label: "Project", href: "/project/" },
-    { label: "Research", href: "/research/" },
-    { label: "About", href: "/about/" },
-  ];
+  // Prevent scrolling when menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isMenuOpen]);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-[100] h-0">
-      {/* Site Logo */}
-      <a
-        href="/"
-        className="absolute top-[-11.6938px] left-0 flex flex-col justify-start items-start z-[9] transition-opacity duration-500 ease-in-out"
-        style={{
-          width: "255.125px",
-          height: "143.375px",
-          padding: "80px 4vw 40px", // 4vw matching side margins
-          color: "rgb(20, 20, 20)",
-          fontSize: "17.9904px",
-          fontFamily: "'Inter', sans-serif",
-          fontWeight: 700,
-          letterSpacing: "0.1em",
-          textTransform: "uppercase",
-        }}
-      >
-        <span className="block overflow-hidden h-[23px] relative">
-          <span className="relative block transform transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-full">
-            <span className="block">THE SHIFT</span>
-            <span className="absolute top-full left-0 block">THE SHIFT</span>
-          </span>
-        </span>
-      </a>
+    <header className="fixed top-0 left-0 w-full z-[100] mix-blend-difference">
+      {/* Top Bar Navigation */}
+      <div className="flex justify-between items-start pt-[80px] px-[80px] pb-[40px] pointer-events-none">
+        {/* Logo */}
+        <Link 
+          href="/" 
+          className="pointer-events-auto group"
+        >
+          <div className="overflow-hidden h-[24px]">
+            <h1 className="text-[18px] font-sans font-bold tracking-tight text-white transition-transform duration-500 group-hover:-translate-y-full">
+              THE SHIFT
+            </h1>
+            <h1 className="text-[18px] font-sans font-bold tracking-tight text-white transition-transform duration-500 group-hover:-translate-y-full">
+              THE SHIFT
+            </h1>
+          </div>
+        </Link>
 
-      {/* Language Switcher (Top Right Pillar/Box) */}
-      <div
-        className={`absolute top-[80px] right-[4vw] z-[8] flex items-center transition-opacity duration-500 ${
-          isMenuOpen ? "opacity-0" : "opacity-100"
-        }`}
-      >
-        <div className="flex items-center space-x-4">
-          <a
-            href="/en/"
-            className="flex items-center justify-center border border-border px-3 py-1 text-[12px] font-medium tracking-[0.1em] hover:bg-black hover:text-white transition-all duration-300 rounded-full"
-            style={{ minWidth: "48px", height: "auto" }}
+        {/* Menu Trigger */}
+        <div className="flex flex-col items-end pointer-events-auto">
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="group relative h-[24px] overflow-hidden"
           >
-            EN
-          </a>
+            <div className={cn(
+              "text-[10px] font-sans font-medium tracking-[0.1em] text-white uppercase transition-transform duration-500",
+              isMenuOpen ? "-translate-y-full" : "group-hover:-translate-y-full"
+            )}>
+              MENU
+            </div>
+            <div className={cn(
+              "text-[10px] font-sans font-medium tracking-[0.1em] text-white uppercase transition-transform duration-500",
+              isMenuOpen ? "-translate-y-full" : "group-hover:-translate-y-full"
+            )}>
+              {isMenuOpen ? "CLOSE" : "MENU"}
+            </div>
+          </button>
         </div>
       </div>
 
-      {/* Navigation Toggle & Drawer */}
-      <nav className="absolute top-0 right-0 z-[7]" style={{ width: "240px" }}>
-        {/* Menu Button */}
-        <div
-          className="absolute top-[80px] right-[4vw] z-[10] cursor-pointer"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          <div className="text-[12px] font-medium tracking-[0.1em] text-right uppercase overflow-hidden h-[18px]">
-            <div
-              className={`transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                isMenuOpen ? "-translate-y-full" : "translate-y-0"
-              }`}
-            >
-              <div className="hover:opacity-60">MENU</div>
-              <div className="hover:opacity-60">CLOSE</div>
-            </div>
-          </div>
-        </div>
-
-        {/* Side Drawer Body */}
-        <div
-          className={`fixed top-0 right-0 h-screen bg-[#F0F0F0] border-l border-border transition-transform duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            isMenuOpen ? "translate-x-0" : "translate-x-full"
-          }`}
-          style={{ width: "400px" }}
-        >
-          <div className="flex flex-col h-full pt-[200px] px-[80px]">
-            <ul className="space-y-6">
-              {navLinks.map((link, idx) => (
-                <li key={link.label} className="overflow-hidden">
-                  <a
-                    href={link.href}
-                    className="group relative inline-block text-[32px] font-bold tracking-tight uppercase"
-                    style={{
-                      fontFamily: "var(--font-display)",
-                      letterSpacing: "-0.02em",
-                      transform: isMenuOpen ? "translateY(0)" : "translateY(100%)",
-                      transition: `transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.1}s`,
-                    }}
+      {/* Full Screen Menu Overlay */}
+      <div 
+        className={cn(
+          "fixed inset-0 bg-[#F1F1F1] z-[-1] transition-transform duration-700 ease-[cubic-bezier(0.85, 0, 0.15, 1)]",
+          isMenuOpen ? "translate-y-0" : "-translate-y-full"
+        )}
+      >
+        <div className="w-full h-full flex flex-col justify-center items-center px-[5vw]">
+          <nav className="flex flex-col items-center gap-10">
+            {/* Nav Links */}
+            <ul className="flex flex-col items-center gap-4">
+              {["Home", "Project", "Research", "About"].map((item) => (
+                <li key={item} className="overflow-hidden">
+                  <Link 
+                    href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block group"
                   >
-                    {link.label}
-                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-black group-hover:w-full transition-all duration-500 ease-in-out"></span>
-                  </a>
+                    <div className="relative text-[48px] md:text-[80px] font-bold font-sans tracking-tighter leading-none text-black transition-transform duration-500 hover:italic">
+                      {item}
+                    </div>
+                  </Link>
                 </li>
               ))}
             </ul>
 
-            {/* Language Switcher inside menu */}
-            <ul className="mt-[100px] flex space-x-6">
-              <li className="overflow-hidden">
-                <a
-                  href="/en/"
-                  className="text-[12px] font-medium uppercase tracking-[0.2em] opacity-60 hover:opacity-100 transition-opacity"
-                  style={{
-                    transform: isMenuOpen ? "translateY(0)" : "translateY(100%)",
-                    transition: "transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s",
-                    display: "block",
-                  }}
-                >
+            {/* Language Switcher */}
+            <ul className="flex gap-8 mt-10">
+              <li>
+                <button className="text-[12px] font-sans font-bold tracking-widest text-black border-b border-black">
                   EN
-                </a>
+                </button>
               </li>
-              <li className="overflow-hidden">
-                <a
-                  href="/"
-                  className="text-[12px] font-medium uppercase tracking-[0.2em] opacity-60 hover:opacity-100 transition-opacity"
-                  style={{
-                    transform: isMenuOpen ? "translateY(0)" : "translateY(100%)",
-                    transition: "transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s",
-                    display: "block",
-                  }}
-                >
+              <li>
+                <button className="text-[12px] font-sans font-medium tracking-widest text-[#737373] hover:text-black transition-colors">
                   JA
-                </a>
+                </button>
               </li>
             </ul>
-          </div>
+          </nav>
         </div>
 
-        {/* Backdrop for Menu */}
-        {isMenuOpen && (
-          <div
-            className="fixed inset-0 bg-black/5 z-[-1]"
-            onClick={() => setIsMenuOpen(false)}
-          ></div>
-        )}
-      </nav>
+        {/* Dynamic Background Element */}
+        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-black/10 origin-left scale-x-0 transition-transform duration-1000 delay-300 group-data-[state=open]:scale-x-100" />
+      </div>
+
+      {/* Language Indicator (Small circle appearing in original design) */}
+      {!isMenuOpen && (
+        <div className="fixed top-[80px] right-[240px] pointer-events-auto hidden md:block">
+            <Link href="/ja">
+                <div className="w-10 h-10 rounded-full border border-black flex items-center justify-center group overflow-hidden bg-transparent hover:bg-black transition-colors duration-300">
+                    <span className="text-[10px] font-sans font-medium text-black group-hover:text-white transition-colors duration-300">JA</span>
+                </div>
+            </Link>
+        </div>
+      )}
 
       <style jsx global>{`
-        .site-header {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          z-index: 100;
+        .site-navi-bg {
+          transform-origin: top;
+          transform: scaleY(0);
+          transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
         }
-        .flip .o {
-          overflow: hidden;
-          position: relative;
-        }
-        .flip .t {
-          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .flip:hover .t {
-          transform: translateY(-100%);
-        }
-        .flip .t::after {
-          content: attr(data-text);
-          position: absolute;
-          top: 100%;
-          left: 0;
+        .site-navi.active .site-navi-bg {
+          transform: scaleY(1);
         }
       `}</style>
     </header>
   );
-};
-
-export default Header;
+}
