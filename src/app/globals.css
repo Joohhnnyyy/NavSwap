@@ -1,64 +1,60 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Serif+JP:wght@200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Serif+JP:wght@200..900&family=Noto+Sans+JP:wght@100..900&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --color-background: #EFEFEF;
+  --color-background: #F0F0F0;
   --color-foreground: #000000;
 
-  --color-card: #EFEFEF;
+  --color-card: #F0F0F0;
   --color-card-foreground: #000000;
 
-  --color-popover: #EFEFEF;
+  --color-popover: #F0F0F0;
   --color-popover-foreground: #000000;
 
   --color-primary: #000000;
   --color-primary-foreground: #FFFFFF;
 
-  --color-secondary: #FFFFFF;
-  --color-secondary-foreground: #000000;
+  --color-secondary: #141414;
+  --color-secondary-foreground: #FFFFFF;
 
-  --color-muted: #D1D1D1;
-  --color-muted-foreground: #666666;
+  --color-muted: #CCCCCC;
+  --color-muted-foreground: #737373;
 
-  --color-accent: #000000;
+  --color-accent: #0000FF;
   --color-accent-foreground: #FFFFFF;
 
-  --color-destructive: #FF0000;
-  --color-destructive-foreground: #FFFFFF;
+  --color-destructive: #EF4444;
+  --color-destructive-foreground: #FAFAFA;
 
-  --color-border: #000000;
-  --color-input: #000000;
+  --color-border: #CCCCCC;
+  --color-input: #CCCCCC;
   --color-ring: #000000;
 
   --color-chart-1: #000000;
-  --color-chart-2: #333333;
-  --color-chart-3: #666666;
-  --color-chart-4: #999999;
-  --color-chart-5: #CCCCCC;
+  --color-chart-2: #141414;
+  --color-chart-3: #333333;
+  --color-chart-4: #666666;
+  --color-chart-5: #999999;
 
-  --color-sidebar: #EFEFEF;
-  --color-sidebar-foreground: #000000;
-  --color-sidebar-primary: #000000;
-  --color-sidebar-primary-foreground: #FFFFFF;
-  --color-sidebar-accent: #E5E5E5;
-  --color-sidebar-accent-foreground: #000000;
-  --color-sidebar-border: #000000;
-  --color-sidebar-ring: #000000;
+  --color-sidebar: #F7F7F7;
+  --sidebar-foreground: #404040;
+  --sidebar-primary: #1A1A1A;
+  --sidebar-primary-foreground: #FAFAFA;
+  --sidebar-accent: #F0F0F0;
+  --sidebar-accent-foreground: #1A1A1A;
+  --sidebar-border: #D4D4D8;
+  --sidebar-ring: #3B82F6;
 
-  --color-brand-dark: #111111;
-  --color-overlay-blue: rgba(181, 196, 230, 0.5);
-
-  --font-sans: "Inter", sans-serif;
+  --font-sans: "Inter", "Noto Sans JP", sans-serif;
   --font-serif: "Noto Serif JP", serif;
   --font-display: "Inter", sans-serif;
-  --font-body-jp: "YuGothic", "Yu Gothic", "Noto Sans JP", sans-serif;
 
-  --radius-lg: 0px;
-  --radius-md: 0px;
-  --radius-sm: 0px;
+  --radius-lg: 0rem;
+  --radius-md: 0rem;
+  --radius-sm: 0rem;
 
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
@@ -87,52 +83,52 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-border);
+    border-color: #CCCCCC;
   }
+}
 
+@layer base {
   :root {
-    --background: #EFEFEF;
+    --background: #F0F0F0;
     --foreground: #000000;
-    --card: #EFEFEF;
+    --card: #F0F0F0;
     --card-foreground: #000000;
-    --popover: #EFEFEF;
+    --popover: #F0F0F0;
     --popover-foreground: #000000;
     --primary: #000000;
     --primary-foreground: #FFFFFF;
-    --secondary: #FFFFFF;
-    --secondary-foreground: #000000;
-    --muted: #D1D1D1;
-    --muted-foreground: #666666;
-    --accent: #000000;
+    --secondary: #141414;
+    --secondary-foreground: #FFFFFF;
+    --muted: #CCCCCC;
+    --muted-foreground: #737373;
+    --accent: #0000FF;
     --accent-foreground: #FFFFFF;
-    --destructive: #FF0000;
-    --destructive-foreground: #FFFFFF;
-    --border: #000000;
-    --input: #000000;
+    --destructive: #EF4444;
+    --destructive-foreground: #FAFAFA;
+    --border: #CCCCCC;
+    --input: #CCCCCC;
     --ring: #000000;
-    --radius: 0px;
+    --radius: 0rem;
   }
 
   .dark {
-    --background: #111111;
+    --background: #141414;
     --foreground: #FFFFFF;
-    --card: #111111;
+    --card: #141414;
     --card-foreground: #FFFFFF;
-    --popover: #111111;
+    --popover: #141414;
     --popover-foreground: #FFFFFF;
     --primary: #FFFFFF;
-    --primary-foreground: #111111;
-    --secondary: #222222;
+    --primary-foreground: #141414;
+    --secondary: #262626;
     --secondary-foreground: #FFFFFF;
-    --muted: #333333;
-    --muted-foreground: #AAAAAA;
+    --muted: #262626;
+    --muted-foreground: #A3A3A3;
     --accent: #FFFFFF;
-    --accent-foreground: #111111;
-    --destructive: #7f1d1d;
-    --destructive-foreground: #FFFFFF;
-    --border: #FFFFFF;
-    --input: #FFFFFF;
-    --ring: #FFFFFF;
+    --accent-foreground: #141414;
+    --border: #333333;
+    --input: #333333;
+    --ring: #D4D4D8;
   }
 }
 
@@ -144,85 +140,124 @@
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
     @apply bg-background text-foreground font-sans;
     overflow-x: hidden;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: 800;
-    letter-spacing: -0.05em;
-    line-height: 0.9;
-    text-transform: uppercase;
-  }
-
-  .font-editorial {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    text-transform: none;
-    letter-spacing: -0.02em;
-  }
-
-  .container {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 5vw;
-    padding-right: 5vw;
-  }
-
-  .text-hero {
-    font-size: 12vw;
-    line-height: 0.85;
-  }
-
-  .text-jp-body {
-    font-family: var(--font-body-jp);
     line-height: 1.8;
     letter-spacing: 0.05em;
   }
 
-  .vertical-divider {
-    width: 1px;
-    height: 100%;
-    background-color: currentColor;
+  h1, h2, h3, h4, h5, h6 {
+    text-transform: uppercase;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
   }
 
-  .horizontal-divider {
+  .font-display {
+    font-family: var(--font-display);
+    font-weight: 700;
+  }
+
+  .font-serif-display {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 4vw;
+    padding-right: 4vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .text-hero {
+    font-size: 14vw;
+    line-height: 0.85;
+    letter-spacing: -0.06em;
+  }
+
+  .text-section-title {
+    font-size: 8vw;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+
+  .text-ui {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .text-stats {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+  }
+
+  .vertical-rhythm {
+    padding-top: 15vh;
+    padding-bottom: 15vh;
+  }
+
+  .border-reveal {
+    position: relative;
     width: 100%;
     height: 1px;
-    background-color: currentColor;
+    background-color: var(--color-border);
+    transform-origin: left;
   }
 
-  .capsule-mask {
+  .btn-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 1px solid currentColor;
+    text-align: center;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  .btn-circle:hover {
+    background-color: var(--foreground);
+    color: var(--background);
+  }
+
+  .mask-pill {
     border-radius: 9999px 9999px 0 0;
     overflow: hidden;
   }
 
-  .btn-circle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid currentColor;
-    border-radius: 50%;
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  .parentheses::before {
+    content: "(";
   }
 
-  .btn-circle:hover {
-    background-color: currentColor;
-    color: var(--background);
+  .parentheses::after {
+    content: ")";
   }
 }
 
 @layer utilities {
-  .text-reveal {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-  }
-  
   .mix-blend-difference {
     mix-blend-mode: difference;
+  }
+  
+  .text-vertical {
+    writing-mode: vertical-rl;
+  }
+
+  .kerning-none {
+    font-kerning: none;
   }
 }
