@@ -13,7 +13,7 @@ import React from 'react';
 const ResearchHero: React.FC = () => {
   return (
     <section 
-      className="page-header section relative w-full flex flex-col items-center justify-center pt-[15vh] pb-[10vh] overflow-hidden bg-background"
+      className="page-header section relative w-full flex flex-col items-center justify-center pt-[15vh] pb-[10vh] overflow-hidden bg-background text-foreground"
       style={{ minHeight: '100vh' }}
     >
       {/* Centered JA Language Toggle (Matches Structure) */}

@@ -14,8 +14,7 @@ import React from 'react';
 const AboutHero: React.FC = () => {
   return (
     <div 
-      className="page-header subpage-header section min-h-screen flex flex-col items-center justify-center relative px-[5vw] bg-[#F1F1F1]" 
-      data-theme="light"
+      className="page-header subpage-header section min-h-screen flex flex-col items-center justify-center relative px-[5vw] bg-background text-foreground" 
     >
       {/* Language Switcher - Positioned top-right relative to page layout */}
       <div className="absolute top-10 right-[5vw] z-10">

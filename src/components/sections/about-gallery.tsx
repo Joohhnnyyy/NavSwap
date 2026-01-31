@@ -34,11 +34,11 @@ const AboutGallery = () => {
   ];
 
   return (
-    <section className="section section-gallery py-[15vh]" data-scroll-section>
+    <section className="section section-gallery py-[15vh] bg-secondary text-secondary-foreground" data-scroll-section>
       <div className="container">
         {/* Section Header */}
         <div className="mb-12">
-          <div className="flex justify-between items-end border-b border-black pb-4">
+          <div className="flex justify-between items-end border-b border-foreground pb-4">
             <h2 className="text-[1.5rem] font-bold tracking-[0.1em] uppercase font-sans">
               GALLERY
             </h2>
@@ -77,7 +77,7 @@ const AboutGallery = () => {
         {/* Additional Grid Context - As per the "About" structure observed in other clones */}
         <div className="mt-20 grid grid-cols-12 gap-8 items-start">
           <div className="col-span-12 md:col-span-4">
-            <div className="h-[1px] w-full bg-black mb-8" />
+            <div className="h-[1px] w-full bg-foreground mb-8" />
             <p className="text-[10px] uppercase tracking-widest font-medium opacity-60">
               Creative Collective Portfolio
             </p>
@@ -90,18 +90,6 @@ const AboutGallery = () => {
           </div>
         </div>
       </div>
-
-      <style jsx global>{`
-        .section-gallery {
-          background-color: #F1F1F1;
-        }
-        
-        @media (max-width: 768px) {
-          .section-gallery {
-            padding: 80px 0;
-          }
-        }
-      `}</style>
     </section>
   );
 };

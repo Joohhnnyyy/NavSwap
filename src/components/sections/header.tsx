@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import Logo3D from "@/components/ui/logo-3d";
+import { useThemeToggle } from "@/hooks/use-theme-transition";
 
 /**
  * Header Component
@@ -12,15 +14,11 @@ import { motion } from "framer-motion";
  */
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const { toggleTheme } = useThemeToggle({
+    variant: "circle-blur",
+    start: "top-left",
+    blur: true,
+  });
 
   // Prevent scrolling when menu is open
   useEffect(() => {
@@ -33,46 +31,39 @@ export default function Header() {
 
   const menuItems = [
     { label: "Home", href: "/" },
-    { label: "Project", href: "/#projects" },
-    { label: "Research", href: "/research" },
-    { label: "About", href: "/about" },
+    { label: "Platform", href: "/#projects" },
+    { label: "Solutions", href: "/research" },
+    { label: "Contact", href: "/about" },
   ];
 
   return (
     <header className="fixed top-0 left-0 w-full z-[100]">
       {/* Top Bar Navigation */}
-      <div className="flex justify-between items-start pt-[40px] md:pt-[80px] px-[20px] md:px-[80px] pb-[40px] pointer-events-none mix-blend-difference">
+      <div className="flex justify-between items-start pt-[40px] md:pt-[80px] px-[20px] md:px-[80px] pb-[40px] pointer-events-none">
         {/* Logo */}
-        <Link 
-          href="/" 
-          className="pointer-events-auto group"
-        >
-          <div className="overflow-hidden h-[24px]">
-            <div className="transition-transform duration-500 group-hover:-translate-y-full">
-              <h1 className="text-[18px] font-sans font tracking-tight text-white h-[24px]">
-                NAVSWAP
-              </h1>
-              <h1 className="text-[18px] font-sans font tracking-tight text-white h-[24px]">
-                NAVSWAP
-              </h1>
-            </div>
+        <div className="pointer-events-auto group cursor-pointer">
+          <div className="w-[100px] h-[100px] -mt-[38px] -ml-[20px] relative z-50">
+            <Logo3D className="w-full h-full" onClick={toggleTheme} />
           </div>
-        </Link>
+        </div>
 
         {/* Menu Trigger */}
-        <div className="flex flex-col items-end pointer-events-auto">
+        <div className="flex items-center gap-4 pointer-events-auto">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="group relative h-[24px] overflow-hidden"
           >
             <div className={cn(
               "flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.85, 0, 0.15, 1)]",
-              isMenuOpen ? "-translate-y-1/2" : "group-hover:-translate-y-1/2"
+              isMenuOpen ? "-translate-y-1/2" : ""
             )}>
-              <div className="h-[24px] text-[10px] font-custom font-medium tracking-[0.1em] text-white uppercase flex items-center justify-end">
+              <div className="h-[24px] text-[12px] font-custom font-bold tracking-[0.2em] text-foreground uppercase flex items-center justify-end">
                 MENU
               </div>
-              <div className="h-[24px] text-[10px] font-custom font-medium tracking-[0.1em] text-white uppercase flex items-center justify-end">
+              <div className={cn(
+                "h-[24px] text-[12px] font-custom font-bold tracking-[0.2em] uppercase flex items-center justify-end transition-colors duration-300",
+                isMenuOpen ? "text-background" : "text-foreground"
+              )}>
                 {isMenuOpen ? "CLOSE" : "MENU"}
               </div>
             </div>
@@ -90,31 +81,31 @@ export default function Header() {
         {/* Background Curtain */}
         <div 
           className={cn(
-            "absolute inset-0 bg-white transition-transform duration-1000 ease-[cubic-bezier(0.85,0,0.15,1)] will-change-transform",
+            "absolute inset-0 bg-foreground transition-transform duration-1000 ease-[cubic-bezier(0.85,0,0.15,1)] will-change-transform",
             isMenuOpen ? "origin-right scale-x-100" : "origin-left scale-x-0"
           )}
         />
 
         {/* Content Container */}
         <div className={cn(
-          "relative w-full h-full flex flex-col md:flex-row text-black transition-opacity duration-700",
+          "relative w-full h-full flex flex-col md:flex-row text-background transition-opacity duration-700",
           isMenuOpen ? "opacity-100 delay-300" : "opacity-0 delay-0"
         )}>
           {/* Left Column: Branding */}
-          <div className="w-full md:w-1/2 h-full border-r border-black/20 p-8 md:p-12 flex flex-col justify-between">
+          <div className="w-full md:w-1/2 h-full border-r border-background/20 p-8 md:p-12 flex flex-col justify-between">
             {/* Top Left Branding */}
             <div className="text-[14px] font-sans font-medium opacity-50">
               The Shift®
             </div>
 
             {/* Center Large Text */}
-            <div className="text-[12vw] leading-[0.8] font-custom tracking-tighter">
-              THE<br />SHIFT
+            <div className="text-[11vw] leading-[1] font-custom border tracking-tighter">
+              NAVSWAP
             </div>
 
             {/* Bottom Left Description */}
             <div className="max-w-md text-[12px] md:text-[14px] leading-relaxed opacity-70 font-sans">
-              The Shift is a global creative collective specialized in design, motion, and digital experiences for future-forward brands.
+              NavSwap is an Agentic AI Operations Copilot for battery swap stations. It watches live station signals, predicts failures and congestion, and recommends concrete actions.
             </div>
           </div>
 
@@ -126,7 +117,7 @@ export default function Header() {
             {/* Menu Items */}
             <nav className="flex flex-col w-full">
               {menuItems.map((item, index) => (
-                <div key={item.label} className="group border-t border-black/20 hover:bg-black/5 transition-colors duration-300">
+                <div key={item.label} className="group border-t border-background/20 hover:bg-background/10 transition-colors duration-300">
                   <Link 
                     href={item.href}
                     onClick={() => setIsMenuOpen(false)}
@@ -147,7 +138,7 @@ export default function Header() {
                 </div>
               ))}
               {/* Bottom Border for last item */}
-              <div className="border-t border-black/20"></div>
+              <div className="border-t border-neutral-200"></div>
             </nav>
 
             {/* Footer Socials */}

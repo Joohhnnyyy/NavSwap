@@ -37,7 +37,7 @@ const DynamicLogoSection = () => {
     <div className="section section-logo w-full px-[5vw] py-[15vh] lg:py-[20vh] bg-background">
       <div className="body thin max-w-[1200px] mx-auto">
         {/* Fragmented Logo Container */}
-        <div className="relative w-full aspect-[1200/537] mb-12 lg:mb-20 overflow-hidden bg-[#F1F1F1]">
+        <div className="relative w-full aspect-[1200/537] mb-12 lg:mb-20 overflow-hidden bg-secondary">
           <div className="absolute inset-0 z-0">
              <Image 
                 src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6bc7a0c9-6ab9-43bc-bc40-41f533897bdc-theshift-tokyo/assets/images/logo-1200x537_png-5.webp"
@@ -51,9 +51,9 @@ const DynamicLogoSection = () => {
           {/* Fragment Overlay Grid */}
           <div className="absolute inset-0 grid grid-cols-4 md:grid-cols-6 grid-rows-2 gap-0 z-10">
             {logoGridNumbers.map((num, idx) => (
-              <div key={idx} className="relative border-[0.5px] border-black/10 flex items-center justify-center overflow-hidden group">
+              <div key={idx} className="relative border-[0.5px] border-foreground/10 flex items-center justify-center overflow-hidden group">
                  {/* Visual glitch/fragment effect simulation */}
-                 <div className="text-[10px] font-sans opacity-20 absolute top-2 right-2">( {num} )</div>
+                 <div className="text-[10px] font-sans opacity-20 absolute top-2 right-2 text-foreground">( {num} )</div>
                  <div 
                     className="w-full h-full bg-no-repeat grayscale"
                     style={{
@@ -70,7 +70,7 @@ const DynamicLogoSection = () => {
           {/* Time indicator overlay */}
           <div className="absolute bottom-4 right-4 z-20 flex space-x-1">
             {logoGridNumbers.slice(0, 12).map((n, i) => (
-                <div key={i} className="text-[10px] font-mono leading-none border-x border-black/20 px-1 overflow-hidden h-[12px]">
+                <div key={i} className="text-[10px] font-mono leading-none border-x border-foreground/20 px-1 overflow-hidden h-[12px] text-foreground">
                     <div className="flex flex-col transition-transform duration-500" style={{ transform: `translateY(-${n * 12}px)` }}>
                         {[0,1,2,3,4,5,6,7,8,9].map(num => <div key={num} className="h-[12px]">{num}</div>)}
                     </div>

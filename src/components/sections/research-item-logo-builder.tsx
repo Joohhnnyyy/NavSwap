@@ -19,11 +19,11 @@ const ResearchItemLogoBuilder = () => {
             <h2 className="text-[32px] font-bold uppercase tracking-tight mb-4">
               LOGO BUILDER
             </h2>
-            <div className="hairline-divider h-[1px] bg-[#0D0D0D] w-full flex items-center justify-between relative overflow-visible">
-              <div className="absolute left-0 bg-[#F2F2F2] px-2 -top-[6px] text-[10px] font-medium tracking-[0.1em] uppercase">
+            <div className="hairline-divider h-[1px] bg-foreground w-full flex items-center justify-between relative overflow-visible">
+              <div className="absolute left-0 bg-secondary px-2 -top-[6px] text-[10px] font-medium tracking-[0.1em] uppercase">
                 2023
               </div>
-              <div className="absolute right-0 bg-[#F2F2F2] px-2 -top-[6px] text-[10px] font-medium tracking-[0.1em] uppercase">
+              <div className="absolute right-0 bg-secondary px-2 -top-[6px] text-[10px] font-medium tracking-[0.1em] uppercase">
                 (02)
               </div>
             </div>
@@ -74,7 +74,7 @@ const ResearchItemLogoBuilder = () => {
 
             {/* Central Floating Title - Parallax Effect simulated with positioning */}
             <div className="grid-title absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10 w-full text-center">
-              <h2 className="font-serif text-[clamp(4rem,10vw,12rem)] leading-[0.85] uppercase tracking-tighter opacity-90 mix-blend-difference text-white">
+              <h2 className="font-serif text-[clamp(4rem,10vw,12rem)] leading-[0.85] uppercase tracking-tighter opacity-90 mix-blend-difference text-background dark:text-foreground">
                 <a href="/en/research/logo-builder/" className="pointer-events-auto">
                   LOGO BUILDER
                 </a>
@@ -113,7 +113,7 @@ const ResearchItemLogoBuilder = () => {
                 <div className="ui-btn-r self-end">
                   <a 
                     href="/en/research/logo-builder/" 
-                    className="group flex items-center justify-center w-12 h-12 border border-[#0D0D0D] transition-all hover:bg-[#0D0D0D] hover:text-[#F2F2F2]"
+                    className="group flex items-center justify-center w-12 h-12 border border-foreground transition-all hover:bg-foreground hover:text-background"
                   >
                     <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                   </a>

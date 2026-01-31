@@ -143,27 +143,27 @@ const HeroSection: React.FC = () => {
 
   return (
     <section 
-      className="section page-header relative h-screen w-full bg-[#000000] text-white z-10 pb-[25vh]"
+      className="section page-header relative h-screen w-full bg-background text-foreground z-10 pb-[25vh]"
       data-scroll-section
     >
       {/* 2. CENTER STAGE (The Hero) */}
       <div className="absolute inset-0 flex items-center justify-center z-10">
         <div className="relative w-full text-center">
           {/* Main Headline */}
-          <h1 className="page-title text-white flex flex-col items-center leading-[1] tracking-[-0.02em] text-[10vw] lg:text-[12vw] px-[10vw]">
-             {/* Row 1: EXPLORING (Serif) */}
+          <h1 className="page-title text-foreground flex flex-col items-center leading-[1] tracking-[-0.02em] text-[10vw] lg:text-[12vw] px-[10vw]">
+             {/* Row 1: DEFINING (Serif) */}
              <div className="l l1 overflow-hidden whitespace-nowrap">
-                <div className="w">{renderSplitText("EXPLORING")}</div>
+                <div className="w">{renderSplitText("DEFINING")}</div>
               </div>
               
-              {/* Row 2: THE SHIFT (Sans) */}
+              {/* Row 2: THE FLOW (Sans) */}
               <div className="l l2 overflow-hidden whitespace-nowrap -mt-[3vw] text-[0.85em] -translate-x-[10vw]">
-                <div className="w">{renderSplitText("THE SHIFT", "var(--font-secondary)")}</div>
+                <div className="w">{renderSplitText("THE FLOW", "var(--font-secondary)")}</div>
               </div>
 
-              {/* Row 3: OF TODAY (Serif) */}
+              {/* Row 3: OF ENERGY (Serif) */}
               <div className="l l3 overflow-hidden whitespace-nowrap -mt-[1.5vw]">
-                <div className="w">{renderSplitText("OF TODAY")}</div>
+                <div className="w">{renderSplitText("OF ENERGY")}</div>
               </div>
           </h1>
         </div>
@@ -171,10 +171,8 @@ const HeroSection: React.FC = () => {
         {/* Middle-Right Overlay */}
         <div className="absolute top-1/2.5 left-[70%] -translate-y-1/2 w-[200px] lg:w-[280px] text-left hidden md:block pointer-events-none">
           <div className="relative">
-            <p className="text-[10px] lg:text-[12px] leading-[1.6] font-sans font-normal uppercase tracking-wide text-white/80">
-              The Shift creates future-inspired projects for people and businesses desiring a shift.
-              <br />
-              Based in Tokyo, working worldwide.
+            <p className="text-[10px] lg:text-[12px] leading-[1.3] font-sans font-normal uppercase tracking-wide text-muted-foreground">
+              NavSwap is an Agentic AI Copilot that continuously monitors swap station signals and recommends operational actions to prevent congestion, downtime, and stockouts.
             </p>
           </div>
         </div>
@@ -200,7 +198,7 @@ const HeroSection: React.FC = () => {
         <div className="pointer-events-auto relative flex flex-col items-end">
              <div className="relative group">
                 {/* Label */}
-                <div className="absolute right-0 top-20 text-[10px] tracking-[0.2em] uppercase text-white/80 z-40 transition-transform duration-700 ease-out translate-y-[60%] group-hover:translate-y-[40%]">
+                <div className="absolute right-0 top-20 text-[10px] tracking-[0.2em] uppercase text-muted-foreground z-40 transition-transform duration-700 ease-out translate-y-[60%] group-hover:translate-y-[40%]">
                     PROJECTS
                 </div>
 
@@ -224,7 +222,7 @@ const HeroSection: React.FC = () => {
 
                 {/* Large Arched Window */}
                 <div 
-                    className="w-[220px] h-[300px] md:w-[270px] md:h-[360px] bg-zinc-800 rounded-full overflow-hidden relative translate-y-[60%] border border-white/10 group-hover:translate-y-[40%] transition-transform duration-700 ease-out cursor-pointer z-30"
+                    className="w-[220px] h-[300px] md:w-[270px] md:h-[360px] bg-card rounded-full overflow-hidden relative translate-y-[60%] border border-border group-hover:translate-y-[40%] transition-transform duration-700 ease-out cursor-pointer z-30"
                     onClick={nextSlide}
                 >
                     {/* Videos with Crossfade */}
@@ -251,7 +249,7 @@ const HeroSection: React.FC = () => {
 
                 {/* White Arrow Button - Overlapping with Progress Ring */}
                 <div 
-                    className="absolute bottom-12 -right-6 w-16 h-16 bg-white rounded-full flex items-center justify-center text-black z-40 cursor-pointer hover:scale-110 transition-transform duration-300"
+                    className="absolute bottom-12 -right-6 w-16 h-16 bg-foreground rounded-full flex items-center justify-center text-background z-40 cursor-pointer hover:scale-110 transition-transform duration-300"
                     onClick={(e) => {
                         e.stopPropagation();
                         nextSlide();
@@ -262,21 +260,22 @@ const HeroSection: React.FC = () => {
                             cx="32"
                             cy="32"
                             r={heroRadius}
-                            stroke="#E5E5E5"
+                            stroke="currentColor"
                             strokeWidth="2"
                             fill="none"
+                            className="text-muted"
                         />
                         <circle
                             cx="32"
                             cy="32"
                             r={heroRadius}
-                            stroke="#000000"
+                            stroke="currentColor"
                             strokeWidth="2"
                             fill="none"
                             strokeDasharray={heroCircumference}
                             strokeDashoffset={heroOffset}
                             strokeLinecap="round"
-                            className="transition-[stroke-dashoffset] duration-75 linear"
+                            className="transition-[stroke-dashoffset] duration-75 linear text-background"
                         />
                     </svg>
                     <ArrowRight size={20} strokeWidth={1.5} />
@@ -299,9 +298,6 @@ const HeroSection: React.FC = () => {
             transform: translateY(0);
           }
         }
-        .l1 .c { animation-delay: 0.1s; }
-        .l2 .c { animation-delay: 0.4s; }
-        .l3 .c { animation-delay: 0.7s; }
       `}</style>
     </section>
   );

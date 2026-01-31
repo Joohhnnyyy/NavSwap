@@ -27,10 +27,10 @@ export default function ResearchItem3DMix() {
                 <div className="w-full h-[1px] bg-border"></div>
               </div>
               <div className="relative flex justify-between w-full">
-                <div className="bg-background pr-4 font-stats text-[10px]">
+                <div className="bg-secondary pr-4 font-stats text-[10px]">
                   2025
                 </div>
-                <div className="bg-background pl-4 font-stats text-[10px]">
+                <div className="bg-secondary pl-4 font-stats text-[10px]">
                   <span className="parentheses">01</span>
                 </div>
               </div>

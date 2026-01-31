@@ -9,21 +9,21 @@ import React from 'react';
  */
 export default function Footer() {
   return (
-    <footer className="w-full text-[#F1F1F1] bg-[#000000] px-[5vw] pt-[15vh] pb-[5vh]">
+    <footer className="w-full text-foreground bg-background px-[5vw] pt-[15vh] pb-[5vh]">
       {/* Territory & Fields Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-[40px] mb-[10vh]">
         <div className="flex flex-col">
-          <div className="w-full h-[1px] bg-black mb-8 opacity-20" />
+          <div className="w-full h-[1px] bg-border mb-8 opacity-20" />
           <h2 className="font-sans font-bold text-[clamp(2rem,5vw,4rem)] leading-[1.0] tracking-tight uppercase">
-            OUR TERRITORY<br />
-            AND FIELDS
+            CORE INFRA<br />
+            AND NETWORK
           </h2>
         </div>
-        <div className="flex flex-col">
-          <div className="w-full h-[1px] bg-black mb-8 opacity-20" />
-          <h2 className="font-sans font-bold text-[clamp(2rem,5vw,4rem)] leading-[1.0] tracking-tight uppercase">
-            BASED IN TOKYO<br />
-            WORKING WORLDWIDE
+        <div className="flex flex-col justify-center">
+          <div className="w-full h-[1px] bg-border mb-8 opacity-20" />
+          <h2 className="font-sans font-bold text-[clamp(2rem,5vw,4rem)] leading-[1.0] tracking-tight uppercase justify-center">
+            BUILT FOR CITIES<br />
+            POWERING THE WORLD
           </h2>
         </div>
       </div>
@@ -64,7 +64,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Copyright bar */}
-      <div className="w-full pt-10 border-t border-black/10 flex flex-col md:row justify-between items-start md:items-center space-y-4 md:space-y-0">
+      <div className="w-full pt-10 border-t border-foreground/10 flex flex-col md:row justify-between items-start md:items-center space-y-4 md:space-y-0">
         <div className="text-[10px] font-medium tracking-[0.1em] uppercase">
           © THE SHIFT ALL RIGHTS RESERVED.
         </div>

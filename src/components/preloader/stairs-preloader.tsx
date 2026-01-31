@@ -25,7 +25,7 @@ export default function StairsPreloader() {
           {/* Text Container */}
           <motion.div
             key="preloader-text"
-            className="fixed inset-0 z-[50001] flex items-center justify-center text-black pointer-events-none bg-white"
+            className="fixed inset-0 z-[50001] flex items-center justify-center text-foreground pointer-events-none bg-background"
             initial={{ opacity: 1 }}
             exit={{ 
               opacity: 0, 
@@ -34,7 +34,7 @@ export default function StairsPreloader() {
             }}
           >
             <div className="flex flex-col items-center gap-2">
-              <h1 className="text-4xl md:text-6xl font-bold tracking-tighter font-custom">
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tighter ">
                 Navswap
               </h1>
               <p className="text-sm md:text-base font-light tracking-widest opacity-80 uppercase">

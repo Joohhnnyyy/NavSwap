@@ -33,10 +33,10 @@ const ResearchItem: React.FC<ResearchItemProps> = ({
         <div className="section-title mb-12">
           <h2 className="font-ui text-[12px] mb-4 tracking-[0.15em]">{title}</h2>
           <div className="hairline-divider">
-            <span className="font-stats text-[10px] left-0 absolute ml-[-10px] bg-[#F2F2F2] px-[10px]">
+            <span className="font-stats text-[10px] left-0 absolute ml-[-10px] bg-secondary px-[10px]">
               {year}
             </span>
-            <span className="font-stats text-[10px] right-0 absolute mr-[-10px] bg-[#F2F2F2] px-[10px] parentheses">
+            <span className="font-stats text-[10px] right-0 absolute mr-[-10px] bg-secondary px-[10px] parentheses">
               <span className="n">{index}</span>
             </span>
           </div>
@@ -85,7 +85,7 @@ const ResearchItem: React.FC<ResearchItemProps> = ({
             {/* Editorial Lead Box (Optional) */}
             {description && (
               <div className="col-start-16 col-span-5 self-end mt-20">
-                <div className="lead-box bg-[rgba(13,13,13,0.05)] p-8">
+                <div className="lead-box bg-foreground/5 p-8">
                   <p className="font-sans text-[16px] leading-[1.6] editorial-indent">
                     {description}
                   </p>
@@ -184,7 +184,7 @@ export default function ResearchArchive() {
   ];
 
   return (
-    <div className="bg-[#F2F2F2] pt-[10vh]">
+    <div className="bg-secondary pt-[10vh]">
       {items.map((item, idx) => (
         <ResearchItem key={idx} {...item} />
       ))}

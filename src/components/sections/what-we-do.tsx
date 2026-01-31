@@ -11,7 +11,7 @@ import React from 'react';
 const WhatWeDo: React.FC = () => {
   return (
     <section 
-      className="section section-what-we-do bg-[#000000] text-white relative z-0"
+      className="section section-what-we-do bg-[#FAFAFA] dark:bg-[#080808] text-secondary-foreground relative z-0"
       style={{
         paddingTop: '40vh',
         paddingBottom: '15vh',
@@ -30,8 +30,8 @@ const WhatWeDo: React.FC = () => {
               </h2>
               
               {/* Border Reveal */}
-              <div className="w-full h-[1px] bg-[#333333] mt-8 relative">
-                <div className="absolute top-0 left-0 h-full w-full bg-white origin-left transition-transform duration-1000 ease-out" />
+              <div className="w-full h-[1px] bg-border mt-8 relative">
+                <div className="absolute top-0 left-0 h-full w-full bg-secondary-foreground origin-left transition-transform duration-1000 ease-out" />
               </div>
             </div>
           </div>
@@ -41,19 +41,12 @@ const WhatWeDo: React.FC = () => {
             {/* The Shift Description */}
             <div className="section-lead mb-[12vh]">
               <p className="text-[20px] md:text-[24px] lg:text-[28px] leading-[1.8] font-light tracking-tight text-center">
-                The Shiftis
-a
-creative
-collective
-based
-in
-Tokyo。<br className="hidden md:block" />
-                We
-provide
-new
-perspectives
-and
-solutions.。
+                <span className="block mb-6 text-muted-foreground text-xs tracking-[0.2em] uppercase">The Gap</span>
+                Looking at the past.<br />
+                Guessing the future.<br /><br />
+                <span className="block mb-6 text-muted-foreground text-xs tracking-[0.2em] uppercase">The Fix</span>
+                From Static Data.<br />
+                To Active Intelligence.
               </p>
             </div>
 
@@ -61,13 +54,13 @@ solutions.。
             <div className="section-footer flex justify-center">
               <a 
                 href="/about/" 
-                className="group relative flex items-center justify-center w-[160px] h-[160px] md:w-[180px] md:h-[180px] rounded-full border border-white/30 hover:bg-white hover:text-[#141414] transition-all duration-700 ease-in-out overflow-hidden"
+                className="group relative flex items-center justify-center w-[160px] h-[160px] md:w-[180px] md:h-[180px] rounded-full border border-secondary-foreground/30 hover:bg-secondary-foreground hover:text-secondary transition-all duration-700 ease-in-out overflow-hidden"
               >
                 <div className="z-10 text-center flex flex-col items-center justify-center">
                   <span className="text-[14px] font-sans font-medium uppercase tracking-[0.2em] relative">
                     About us
                     {/* Hover Underline Reveal */}
-                    <span className="absolute left-0 -bottom-1 w-0 h-[1px] bg-[#141414] transition-all duration-500 group-hover:w-full" />
+                    <span className="absolute left-0 -bottom-1 w-0 h-[1px] bg-secondary-foreground transition-all duration-500 group-hover:w-full" />
                   </span>
                 </div>
                 

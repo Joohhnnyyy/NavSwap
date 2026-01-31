@@ -8,7 +8,7 @@ import TerritoryFooter from "@/components/sections/territory-footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#F0F0F0]">
+    <div className="min-h-screen bg-background">
       <Header />
       <main>
         <HeroSection />

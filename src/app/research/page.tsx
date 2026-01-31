@@ -10,7 +10,7 @@ import Footer from "@/components/sections/footer";
 
 export default function ResearchPage() {
   return (
-    <main className="bg-[#F2F2F2] min-h-screen">
+    <main className="bg-secondary min-h-screen">
       <Header />
       <ResearchHero />
       <ResearchItem3DMix />

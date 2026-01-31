@@ -21,15 +21,15 @@ const ShiftTicker: React.FC = () => {
   ];
 
   return (
-    <div className="section-ticker py-[5vh] lg:py-[8vh] bg-[#F1F1F1] border-y border-black/10 overflow-hidden">
+    <div className="section-ticker py-[5vh] lg:py-[8vh] bg-secondary border-y border-foreground/10 overflow-hidden">
       <Marquee speed={100} gradient={false}>
         <div className="flex items-center">
           {tickerItems.map((item, index) => (
             <div key={index} className="flex items-center">
-              <span className="text-[10vw] lg:text-[6vw] font-bold font-sans tracking-tight text-black px-8">
+              <span className="text-[10vw] lg:text-[6vw] font-bold font-sans tracking-tight text-foreground px-8">
                 {item}
               </span>
-              <div className="w-[1.5vw] h-[1.5vw] bg-[#FF3B30] rounded-full mx-4" />
+              <div className="w-[1.5vw] h-[1.5vw] bg-red-500 rounded-full mx-4" />
             </div>
           ))}
         </div>
@@ -40,10 +40,10 @@ const ShiftTicker: React.FC = () => {
         <div className="flex items-center">
           {tickerItems.slice().reverse().map((item, index) => (
             <div key={index} className="flex items-center">
-              <span className="text-[10vw] lg:text-[6vw] font-serif italic font-normal tracking-tight text-black px-8">
+              <span className="text-[10vw] lg:text-[6vw] font-serif italic font-normal tracking-tight text-foreground px-8">
                 {item}
               </span>
-              <div className="w-[1.5vw] h-[1.5vw] bg-black rounded-full mx-4" />
+              <div className="w-[1.5vw] h-[1.5vw] bg-foreground rounded-full mx-4" />
             </div>
           ))}
         </div>

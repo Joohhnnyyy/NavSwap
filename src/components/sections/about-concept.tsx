@@ -15,7 +15,7 @@ import React from 'react';
 const AboutConcept: React.FC = () => {
   return (
     <section 
-      className="section section-concept bg-[#F1F1F1] text-[#000000] py-[15vh] px-[5vw]" 
+      className="section section-concept bg-secondary text-secondary-foreground py-[15vh] px-[5vw]" 
       data-scroll-section
     >
       <div className="container mx-auto p-0 max-w-none">
@@ -27,9 +27,9 @@ const AboutConcept: React.FC = () => {
             </h2>
           </div>
           
-          <div className="relative w-full h-[1px] bg-[#000000] flex items-center justify-between mt-4">
-            <div className="bg-[#F1F1F1] pr-4 h-[1px]"></div>
-            <div className="num-marker flex items-center bg-[#F1F1F1] pl-4 font-sans text-[12px] font-medium tracking-tight">
+          <div className="relative w-full h-[1px] bg-foreground flex items-center justify-between mt-4">
+            <div className="bg-secondary pr-4 h-[1px]"></div>
+            <div className="num-marker flex items-center bg-secondary pl-4 font-sans text-[12px] font-medium tracking-tight">
               <span className="opacity-100 flex items-center">
                 <span className="mr-[2px]">(</span>
                 <span>01</span>
@@ -43,7 +43,7 @@ const AboutConcept: React.FC = () => {
         <div className="content-body flex flex-col max-w-[90vw]">
           {/* Main Lead Paragraph */}
           <div className="mb-[8vh] lg:max-w-[70vw]">
-            <p className="font-lead text-[#000000] text-[24px] md:text-[32px] lg:text-[40px] leading-[1.4] font-medium">
+            <p className="font-lead text-secondary-foreground text-[24px] md:text-[32px] lg:text-[40px] leading-[1.4] font-medium">
               The Shift is a creative collective based in Tokyo. We provide new perspectives and solutions to our users.
             </p>
           </div>
@@ -55,7 +55,7 @@ const AboutConcept: React.FC = () => {
             
             {/* Right detailed column */}
             <div className="description-text">
-              <p className="font-sans text-[1rem] leading-[1.8] tracking-[0.02em] text-[#000000]">
+              <p className="font-sans text-[1rem] leading-[1.8] tracking-[0.02em] text-secondary-foreground">
                 We are a creative collective that connects creators and artists with various specialties in Japan and abroad, and we are engaged in projects that transcend the boundaries of technology, design, science, and creativity to &quot;shift&quot; things. We will continue to work on projects and research to &quot;shift&quot; different things around the world.
               </p>
             </div>

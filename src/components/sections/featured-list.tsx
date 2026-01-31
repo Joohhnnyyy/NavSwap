@@ -6,47 +6,48 @@ const FeaturedList = () => {
   const projects = [
     {
       id: "01",
-      title: ["FOCUS", "ON"],
-      subtitle: ["STRETCH", "PLEATS"],
-      href: "/project/focus-on-stretch-pleats/"
+      title: ["SIGNAL", "WATCH"],
+      subtitle: ["LIVE", "FEED"],
+      href: "#"
     },
     {
       id: "02",
-      title: ["LEVEL", "OF"],
-      subtitle: ["DISTANCE"],
-      href: "/project/level-of-distance/"
+      title: ["ACTION", "TRIG"],
+      subtitle: ["AUTO", "FIX"],
+      href: "#"
     },
     {
       id: "03",
-      title: ["IPSA", "AQUA"],
-      subtitle: ["PLAY", "ART"],
-      href: "/project/ipsa_aqua_play_art/"
+      title: ["FAULT", "GUARD"],
+      subtitle: ["ZERO", "DOWN"],
+      href: "#"
     },
     {
       id: "04",
-      title: ["ATELIER", "WEN"],
-      href: "/project/atelier-wen/"
+      title: ["CLEAR", "LOGIC"],
+      subtitle: ["WHY", "NOW"],
+      href: "#"
     },
     {
       id: "05",
-      title: ["3D:MIX"],
-      href: "/research/3dmix/"
+      title: ["OPS", "SYNC"],
+      subtitle: ["WORK", "FLOW"],
+      href: "#"
     }
   ];
 
   return (
-    <section className="section text-[#F0F0F0] bg-[#000000]">
+    <section className="section text-foreground bg-background">
       <div className="px-[4vw] pt-[15vh]">
         {/* Section Header */}
         <div className="mb-[10vh]">
           <h2 className="text-[1vw] font leading-[1.1] tracking-[-0.02em] uppercase mb-8">
             <div className="flex flex-wrap justify-center gap-x-[0.5em]">
-              <span>FEATURED</span>
-              <span>PROJECT</span>
+              <span>CORE</span>
+              <span>PLATFORM</span>
             </div>
             <div className="flex flex-wrap justify-center gap-x-[0.5em]">
-              <span>AND</span>
-              <span>RESEARCH</span>
+              <span>CAPABILITIES</span>
             </div>
           </h2>
           
@@ -59,21 +60,21 @@ const FeaturedList = () => {
                 <span className="pb-1 transition-transform duration-500 group-hover:-translate-y-full">View all project</span>
                 <span className="absolute top-full pb-1 transition-transform duration-500 group-hover:-translate-y-full">View all project</span>
               </div>
-              <div className="h-[1px] w-full bg-[#000000] origin-left scale-x-100 transition-transform duration-500 group-hover:scale-x-0"></div>
-              <div className="h-[1px] w-full bg-[#0000FF] origin-right scale-x-0 transition-transform duration-500 group-hover:scale-x-100 absolute bottom-0"></div>
+              <div className="h-[1px] w-full bg-foreground origin-left scale-x-100 transition-transform duration-500 group-hover:scale-x-0"></div>
+              <div className="h-[1px] w-full bg-blue-600 dark:bg-blue-500 origin-right scale-x-0 transition-transform duration-500 group-hover:scale-x-100 absolute bottom-0"></div>
             </a>
           </div>
 
-          <div className="w-full h-[1px] bg-[#CCCCCC]"></div>
+          <div className="w-full h-[1px] bg-border"></div>
         </div>
 
         {/* List Items */}
-        <div className="flex flex-col">
+        <div className="flex flex-col group/list">
           {projects.map((project) => (
             <a
               key={project.id}
               href={project.href}
-              className="group relative block w-full outline-none transition-colors"
+              className="group relative block w-full outline-none transition-all duration-500 group-hover/list:blur-sm hover:!blur-none"
             >
               <div className="flex items-start py-[4vw] md:py-[3vw] gap-[2vw]">
                 {/* Numbered Index */}
@@ -109,10 +110,10 @@ const FeaturedList = () => {
               </div>
 
               {/* Horizontal Divider Line */}
-              <div className="absolute bottom-0 left-0 w-full h-[1px] bg-[#CCCCCC]"></div>
+              <div className="absolute bottom-0 left-0 w-full h-[1px] bg-border"></div>
               
               {/* Animating Hover Divider */}
-              <div className="absolute bottom-0 left-0 w-full h-[1px] bg-[#000000] scale-x-0 origin-left transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100"></div>
+              <div className="absolute bottom-0 left-0 w-full h-[1px] bg-foreground scale-x-0 origin-left transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100"></div>
             </a>
           ))}
         </div>

@@ -57,7 +57,7 @@ const teamMembers: TeamMember[] = [
 
 const TeamList = () => {
   return (
-    <section className="bg-[#F1F1F1] pb-24 lg:pb-40 px-[5vw]">
+    <section className="bg-secondary text-secondary-foreground pb-24 lg:pb-40 px-[5vw]">
       <div className="container mx-auto">
         {/* Title Spacing */}
         <div className="h-[15vh]"></div>
@@ -71,7 +71,7 @@ const TeamList = () => {
 
         {/* Section Divider with (04) label style as per design patterns */}
         <div className="relative w-full mb-12 lg:mb-20">
-          <div className="h-[1px] w-full bg-black"></div>
+          <div className="h-[1px] w-full bg-foreground"></div>
           <div className="absolute top-2 right-0 font-sans text-[10px] flex items-center">
             <span className="opacity-40">(</span>
             <span className="px-0.5 font-bold">04</span>
@@ -83,7 +83,7 @@ const TeamList = () => {
         <div className="w-full">
           <ul className="flex flex-col">
             {teamMembers.map((member, index) => (
-              <li key={index} className="group border-b border-black">
+              <li key={index} className="group border-b border-foreground">
                 <div className="grid grid-cols-1 lg:grid-cols-12 py-10 lg:py-16 gap-y-6 lg:gap-y-0">
                   {/* Left Column: Name */}
                   <div className="lg:col-span-4">
