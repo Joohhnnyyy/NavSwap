@@ -32,7 +32,7 @@ export default function TerritoryFooter() {
             <h2 className="text-[12px] font-medium leading-[1.4] tracking-[0.1em] uppercase font-sans">
               <div className="flex flex-wrap justify-center gap-x-[0.3em]">
                 <span>CORE</span>
-                <span className="font-serif italic font-normal text-[13px]">DYNAMICS</span>
+                <span className="font-serif font-normal text-[13px]">DYNAMICS</span>
               </div>
             </h2>
             

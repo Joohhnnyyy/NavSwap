@@ -14,6 +14,7 @@ import { useThemeToggle } from "@/hooks/use-theme-transition";
  */
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isPortalOpen, setIsPortalOpen] = useState(false);
   const { toggleTheme } = useThemeToggle({
     variant: "circle-blur",
     start: "top-left",
@@ -22,12 +23,12 @@ export default function Header() {
 
   // Prevent scrolling when menu is open
   useEffect(() => {
-    if (isMenuOpen) {
+    if (isMenuOpen || isPortalOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
     }
-  }, [isMenuOpen]);
+  }, [isMenuOpen, isPortalOpen]);
 
   const menuItems = [
     { label: "Home", href: "/" },
@@ -50,24 +51,64 @@ export default function Header() {
         {/* Menu Trigger */}
         <div className="flex items-center gap-4 pointer-events-auto">
           <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={() => {
+              if (isPortalOpen) {
+                setIsPortalOpen(false);
+              } else {
+                setIsMenuOpen(!isMenuOpen);
+              }
+            }}
             className="group relative h-[24px] overflow-hidden"
           >
             <div className={cn(
               "flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.85, 0, 0.15, 1)]",
-              isMenuOpen ? "-translate-y-1/2" : ""
+              (isMenuOpen || isPortalOpen) ? "-translate-y-1/2" : ""
             )}>
               <div className="h-[24px] text-[12px] font-custom font-bold tracking-[0.2em] text-foreground uppercase flex items-center justify-end">
                 MENU
               </div>
               <div className={cn(
                 "h-[24px] text-[12px] font-custom font-bold tracking-[0.2em] uppercase flex items-center justify-end transition-colors duration-300",
-                isMenuOpen ? "text-background" : "text-foreground"
+                isMenuOpen ? "text-background" : "text-foreground",
+                isPortalOpen ? "text-white" : ""
               )}>
-                {isMenuOpen ? "CLOSE" : "MENU"}
+                {isPortalOpen ? "BACK" : (isMenuOpen ? "CLOSE" : "MENU")}
               </div>
             </div>
           </button>
+        </div>
+      </div>
+
+      {/* NavSwap Operations Portal Overlay */}
+      <div 
+        className={cn(
+          "fixed inset-0 z-[101] bg-black/80 backdrop-blur-xl text-white flex flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.85,0,0.15,1)]",
+          isPortalOpen ? "opacity-100 pointer-events-auto clip-path-full" : "opacity-0 pointer-events-none clip-path-circle"
+        )}
+        style={{
+          clipPath: isPortalOpen ? "circle(150% at 50% 50%)" : "circle(0% at 50% 50%)"
+        }}
+      >
+        <div className="text-center space-y-12 md:space-y-16 opacity-0 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300 fill-mode-forwards px-4" style={{ animationPlayState: isPortalOpen ? 'running' : 'paused' }}>
+          <h2 className="text-[24px] md:text-[40px] lg:text-[3vw] font-custom tracking-tighter uppercase leading-none max-w-[90vw] mx-auto">
+            NavSwap Operations Portal
+          </h2>
+          
+          <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-center justify-center w-full max-w-4xl mx-auto">
+            <a href="#" className="group relative w-full md:w-auto min-w-[280px] px-8 py-5 border border-white/20 hover:border-white/100 transition-colors duration-300 overflow-hidden bg-black/20 backdrop-blur-sm">
+              <span className="relative z-10 flex items-center justify-center text-[11px] md:text-[12px] tracking-[0.2em] uppercase font-bold group-hover:text-black transition-colors duration-300 text-center w-full">
+                [ Sign in to Admin Portal ]
+              </span>
+              <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+            </a>
+            
+            <a href="#" className="group relative w-full md:w-auto min-w-[280px] px-8 py-5 border border-white/20 hover:border-white/100 transition-colors duration-300 overflow-hidden bg-black/20 backdrop-blur-sm">
+              <span className="relative z-10 flex items-center justify-center text-[11px] md:text-[12px] tracking-[0.2em] uppercase font-bold group-hover:text-black transition-colors duration-300 text-center w-full">
+                [ Apply for Station Registration ]
+              </span>
+              <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+            </a>
+          </div>
         </div>
       </div>
 
@@ -95,7 +136,6 @@ export default function Header() {
           <div className="w-full md:w-1/2 h-full border-r border-background/20 p-8 md:p-12 flex flex-col justify-between">
             {/* Top Left Branding */}
             <div className="text-[14px] font-sans font-medium opacity-50">
-              The Shift®
             </div>
 
             {/* Center Large Text */}
@@ -120,7 +160,14 @@ export default function Header() {
                 <div key={item.label} className="group border-t border-background/20 hover:bg-background/10 transition-colors duration-300">
                   <Link 
                     href={item.href}
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={(e) => {
+                      if (item.label === "Platform") {
+                        e.preventDefault();
+                        setIsPortalOpen(true);
+                      } else {
+                        setIsMenuOpen(false);
+                      }
+                    }}
                     className="flex items-center justify-between py-6 md:py-8 w-full"
                   >
                     {/* Plus Icon */}

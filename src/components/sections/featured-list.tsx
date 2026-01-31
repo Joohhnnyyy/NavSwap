@@ -57,8 +57,8 @@ const FeaturedList = () => {
               className="group inline-flex flex-col text-[12px] font-medium tracking-[0.1em] uppercase overflow-hidden"
             >
               <div className="flex flex-col relative">
-                <span className="pb-1 transition-transform duration-500 group-hover:-translate-y-full">View all project</span>
-                <span className="absolute top-full pb-1 transition-transform duration-500 group-hover:-translate-y-full">View all project</span>
+                <span className="pb-1 transition-transform duration-500 group-hover:-translate-y-full">View all services</span>
+                <span className="absolute top-full pb-1 transition-transform duration-500 group-hover:-translate-y-full">View all services</span>
               </div>
               <div className="h-[1px] w-full bg-foreground origin-left scale-x-100 transition-transform duration-500 group-hover:scale-x-0"></div>
               <div className="h-[1px] w-full bg-blue-600 dark:bg-blue-500 origin-right scale-x-0 transition-transform duration-500 group-hover:scale-x-100 absolute bottom-0"></div>
