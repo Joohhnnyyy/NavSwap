@@ -6,6 +6,9 @@ import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import Logo3D from "@/components/ui/logo-3d";
 import { useThemeToggle } from "@/hooks/use-theme-transition";
+import { ArrowLeft } from "lucide-react";
+import Image from "next/image";
+import { LiquidMetal } from "@/components/ui/liquid-metal";
 
 /**
  * Header Component
@@ -25,9 +28,17 @@ export default function Header() {
   useEffect(() => {
     if (isMenuOpen || isPortalOpen) {
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     }
+    
+    // Cleanup function to restore scrolling when component unmounts
+    return () => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    };
   }, [isMenuOpen, isPortalOpen]);
 
   const menuItems = [
@@ -70,7 +81,7 @@ export default function Header() {
               <div className={cn(
                 "h-[24px] text-[12px] font-custom font-bold tracking-[0.2em] uppercase flex items-center justify-end transition-colors duration-300",
                 isMenuOpen ? "text-background" : "text-foreground",
-                isPortalOpen ? "text-white" : ""
+                isPortalOpen ? "text-background" : ""
               )}>
                 {isPortalOpen ? "BACK" : (isMenuOpen ? "CLOSE" : "MENU")}
               </div>
@@ -82,32 +93,118 @@ export default function Header() {
       {/* NavSwap Operations Portal Overlay */}
       <div 
         className={cn(
-          "fixed inset-0 z-[101] bg-black/80 backdrop-blur-xl text-white flex flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.85,0,0.15,1)]",
-          isPortalOpen ? "opacity-100 pointer-events-auto clip-path-full" : "opacity-0 pointer-events-none clip-path-circle"
+          "fixed inset-0 z-[101]",
+          isPortalOpen ? "pointer-events-auto" : "pointer-events-none"
         )}
-        style={{
-          clipPath: isPortalOpen ? "circle(150% at 50% 50%)" : "circle(0% at 50% 50%)"
-        }}
       >
-        <div className="text-center space-y-12 md:space-y-16 opacity-0 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300 fill-mode-forwards px-4" style={{ animationPlayState: isPortalOpen ? 'running' : 'paused' }}>
-          <h2 className="text-[24px] md:text-[40px] lg:text-[3vw] font-custom tracking-tighter uppercase leading-none max-w-[90vw] mx-auto">
-            NavSwap Operations Portal
-          </h2>
-          
-          <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-center justify-center w-full max-w-4xl mx-auto">
-            <a href="#" className="group relative w-full md:w-auto min-w-[280px] px-8 py-5 border border-white/20 hover:border-white/100 transition-colors duration-300 overflow-hidden bg-black/20 backdrop-blur-sm">
-              <span className="relative z-10 flex items-center justify-center text-[11px] md:text-[12px] tracking-[0.2em] uppercase font-bold group-hover:text-black transition-colors duration-300 text-center w-full">
-                [ Sign in to Admin Portal ]
-              </span>
-              <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-            </a>
+        {/* Background Curtain - Matches Menu Animation */}
+        <div 
+          className={cn(
+            "absolute inset-0 bg-foreground transition-transform duration-1000 ease-[cubic-bezier(0.85,0,0.15,1)] will-change-transform",
+            isPortalOpen ? "origin-right scale-x-100" : "origin-left scale-x-0"
+          )}
+        />
+
+        <button
+          onClick={() => setIsPortalOpen(false)}
+          className={cn(
+            "absolute top-[40px] left-[20px] md:top-[80px] md:left-[80px] p-2 text-background/50 hover:text-background transition-colors duration-300 z-50",
+            isPortalOpen ? "pointer-events-auto opacity-100 delay-300" : "pointer-events-none opacity-0 delay-0"
+          )}
+        >
+          <ArrowLeft size={32} strokeWidth={1.5} />
+        </button>
+
+        {/* Decorative Horizontal Line - Behind Content */}
+        <div 
+          className={cn(
+            "absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-background/20 to-transparent pointer-events-none z-0 transition-opacity duration-700 ease-out",
+            isPortalOpen ? "opacity-100 delay-300" : "opacity-0 delay-0"
+          )} 
+        />
+
+        <div 
+          className={cn(
+            "relative z-10 w-full h-full flex flex-col items-center justify-center transition-opacity duration-700 ease-out",
+            isPortalOpen ? "opacity-100 delay-300" : "opacity-0 delay-0"
+          )}
+        >
+          {/* Glass Card Container */}
+          <div className="relative w-full max-w-[480px] mx-4 p-8 md:p-12 bg-gradient-to-br from-background/10 via-background/5 to-transparent backdrop-blur-2xl border-t border-l border-background/20 border-b border-r border-background/10 shadow-2xl flex flex-col items-center text-background overflow-hidden">
             
-            <a href="#" className="group relative w-full md:w-auto min-w-[280px] px-8 py-5 border border-white/20 hover:border-white/100 transition-colors duration-300 overflow-hidden bg-black/20 backdrop-blur-sm">
-              <span className="relative z-10 flex items-center justify-center text-[11px] md:text-[12px] tracking-[0.2em] uppercase font-bold group-hover:text-black transition-colors duration-300 text-center w-full">
-                [ Apply for Station Registration ]
-              </span>
-              <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-            </a>
+            {/* Decorative Corner Brackets */}
+            <div className="absolute top-6 left-6 w-3 h-3 border-t border-l border-background/30 z-10" />
+            <div className="absolute top-6 right-6 w-3 h-3 border-t border-r border-background/30 z-10" />
+            <div className="absolute bottom-6 left-6 w-3 h-3 border-b border-l border-background/30 z-10" />
+            <div className="absolute bottom-6 right-6 w-3 h-3 border-b border-r border-background/30 z-10" />
+
+            {/* Logo Container */}
+            <div className="mb-8 relative w-[70px] h-[70px] md:w-[80px] md:h-[80px] z-10 rounded-full overflow-hidden group">
+              {/* Default State: Chrome */}
+              <LiquidMetal 
+                colorBack="#aaaaac" 
+                colorTint="#ffffff" 
+                speed={0.5} 
+                repetition={4} 
+                distortion={0.1} 
+                scale={1}
+                shiftRed={0.3}
+                shiftBlue={-0.3} 
+                className="absolute inset-0 z-0 opacity-100 group-hover:opacity-0 transition-opacity duration-500"
+              />
+
+              {/* Hover State: Prism */}
+              <LiquidMetal 
+                colorBack="#000000" 
+                colorTint="#ffffff" 
+                speed={0.8} 
+                repetition={5} 
+                distortion={0.4} 
+                scale={1.2}
+                shiftRed={1.5}
+                shiftBlue={-1.5}
+                className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              />
+              
+              {/* Logo - Black on Chrome, White on Prism */}
+              <div className="absolute inset-0 z-10 transition-all duration-500 group-hover:invert">
+                <Image 
+                  src="/black_logo.png" 
+                  alt="NavSwap Logo" 
+                  fill
+                  className="object-contain p-2"
+                  priority
+                />
+              </div>
+            </div>
+
+            <h2 className="relative z-10 text-[20px] md:text-[24px] font-regular tracking-tighter uppercase leading-none text-center mb-10">
+              NavSwap Operations Portal
+            </h2>
+            
+            <div className="relative z-10 flex flex-col gap-4 w-full">
+              <Link 
+                href="/admin-registration" 
+                onClick={() => setIsPortalOpen(false)}
+                className="group relative w-full py-4 border border-background/20 hover:border-background transition-colors duration-300 overflow-hidden  bg-background/5"
+              >
+                <span className="relative z-10 flex items-center justify-center text-[11px] md:text-[12px] tracking-[0.2em] uppercase font-bold group-hover:text-foreground transition-colors duration-300 text-center w-full">
+                   Sign in to Admin Portal 
+                </span>
+                <div className="absolute inset-0 bg-background transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+              </Link>
+              
+              <Link 
+                href="/station-registration" 
+                onClick={() => setIsPortalOpen(false)}
+                className="group relative w-full py-4 border border-background/20 hover:border-background transition-colors duration-300 overflow-hidden  bg-background/5"
+              >
+                <span className="relative z-10 flex items-center justify-center text-[11px] md:text-[12px] tracking-[0.2em] uppercase font-bold group-hover:text-foreground transition-colors duration-300 text-center w-full">
+                   Apply for Station Registration 
+                </span>
+                <div className="absolute inset-0 bg-background transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -163,6 +260,7 @@ export default function Header() {
                     onClick={(e) => {
                       if (item.label === "Platform") {
                         e.preventDefault();
+                        setIsMenuOpen(false); // Close menu first
                         setIsPortalOpen(true);
                       } else {
                         setIsMenuOpen(false);
