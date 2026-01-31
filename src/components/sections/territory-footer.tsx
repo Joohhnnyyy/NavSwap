@@ -9,13 +9,13 @@ import React from 'react';
  */
 export default function TerritoryFooter() {
   return (
-    <div className="w-full bg-[#141414] text-white">
+    <div className="w-full bg-[#000000] text-white">
       {/* OUR TERRITORY AND FIELDS Section */}
       <section className="container py-[15vh] px-[4vw]">
         <div className="flex flex-col md:flex-row md:items-start justify-between">
           <div className="w-full md:w-[50vw]">
             <h2 className="text-[8vw] font-bold leading-[1.1] tracking-[-0.02em] font-sans">
-              <div className="flex flex-wrap gap-x-[0.3em]">
+              <div className="flex flex-wrap justify-center gap-x-[0.3em]">
                 <span>OUR</span>
                 <span>TERRITORY</span>
               </div>
@@ -58,7 +58,7 @@ export default function TerritoryFooter() {
       </section>
 
       {/* BASED IN TOKYO WORKING WORLDWIDE Section */}
-      <section className="bg-white text-black py-[20vh] overflow-hidden">
+      <section className="text-[#FFFFFF] bg-[#000000] py-[20vh] overflow-hidden">
         <div className="container px-[4vw]">
           <div className="flex flex-col items-center text-center">
             <h2 className="text-[10vw] md:text-[8vw] font-bold leading-[0.9] tracking-[-0.05em] uppercase w-full">
@@ -79,7 +79,7 @@ export default function TerritoryFooter() {
       </section>
 
       {/* Global Footer Navigation */}
-      <footer className="bg-white text-black pb-12 pt-12 border-t border-[#CCCCCC] px-[4vw]">
+      <footer className="text-[#FFFFFF] bg-[#000000] pb-12 pt-12 border-t border-[#CCCCCC] px-[4vw]">
         <div className="container flex flex-col md:flex-row justify-between items-end md:items-center">
           <div className="mb-8 md:mb-0">
             <p className="text-[12px] font-medium tracking-[0.1em] uppercase mb-2">Social</p>

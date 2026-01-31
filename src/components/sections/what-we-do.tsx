@@ -11,9 +11,9 @@ import React from 'react';
 const WhatWeDo: React.FC = () => {
   return (
     <section 
-      className="section section-what-we-do bg-[#141414] text-white overflow-hidden relative"
+      className="section section-what-we-do bg-[#000000] text-white relative z-0"
       style={{
-        paddingTop: '15vh',
+        paddingTop: '40vh',
         paddingBottom: '15vh',
       }}
     >
@@ -22,16 +22,10 @@ const WhatWeDo: React.FC = () => {
           
           {/* Section Title */}
           <div className="w-full mb-[10vh]">
-            <div className="section-title text-center lg:text-left">
-              <h2 className="text-section-title font-sans font-bold flex flex-wrap justify-center lg:justify-start gap-x-[2vw] mb-4">
+            <div className="section-title text-center">
+              <h2 className="flex flex-wrap justify-center gap-x-[2vw] mb-4">
                 <span className="inline-block relative overflow-hidden group">
-                  <span className="inline-block">WHAT</span>
-                </span>
-                <span className="inline-block relative overflow-hidden group">
-                  <span className="inline-block">WE</span>
-                </span>
-                <span className="inline-block relative overflow-hidden group">
-                  <span className="inline-block">DO</span>
+                  <span className="inline-block flex justify-center text-[12px] font-sans font-medium tracking-[0.2em] uppercase">WHAT WE DO</span>
                 </span>
               </h2>
               
@@ -46,9 +40,20 @@ const WhatWeDo: React.FC = () => {
           <div className="w-full max-w-[900px] text-center lg:text-left mx-auto">
             {/* The Shift Description */}
             <div className="section-lead mb-[12vh]">
-              <p className="text-[20px] md:text-[24px] lg:text-[28px] leading-[1.8] font-sans tracking-tight text-center">
-                The Shiftは東京を拠点としたクリエイティブコレクティブです。<br className="hidden md:block" />
-                新しい視点やデザイン、課題解決を提供します。
+              <p className="text-[20px] md:text-[24px] lg:text-[28px] leading-[1.8] font-light tracking-tight text-center">
+                The Shiftis
+a
+creative
+collective
+based
+in
+Tokyo。<br className="hidden md:block" />
+                We
+provide
+new
+perspectives
+and
+solutions.。
               </p>
             </div>
 

@@ -2,7 +2,6 @@
 
 import Header from "@/components/sections/header";
 import HeroSection from "@/components/sections/hero";
-import ProjectSlider from "@/components/sections/project-slider";
 import WhatWeDo from "@/components/sections/what-we-do";
 import FeaturedList from "@/components/sections/featured-list";
 import TerritoryFooter from "@/components/sections/territory-footer";
@@ -13,7 +12,6 @@ export default function Home() {
       <Header />
       <main>
         <HeroSection />
-        <ProjectSlider />
         <WhatWeDo />
         <FeaturedList />
         <TerritoryFooter />

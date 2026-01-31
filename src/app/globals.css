@@ -50,6 +50,9 @@
 
   --font-sans: "Inter", "Helvetica", sans-serif;
   --font-serif: "Playfair Display", serif;
+  --font-custom: var(--font-custom);
+  --font-secondary: var(--font-secondary);
+  --font-light: var(--font-light);
   --font-display: "Playfair Display", serif;
 
   --radius-lg: 0px;

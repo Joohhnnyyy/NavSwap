@@ -35,16 +35,16 @@ const FeaturedList = () => {
   ];
 
   return (
-    <section className="section bg-[#F0F0F0] text-[#000000]">
+    <section className="section text-[#F0F0F0] bg-[#000000]">
       <div className="px-[4vw] pt-[15vh]">
         {/* Section Header */}
         <div className="mb-[10vh]">
-          <h2 className="text-[8vw] font-bold leading-[1.1] tracking-[-0.02em] uppercase mb-8">
-            <div className="flex flex-wrap gap-x-[0.5em]">
+          <h2 className="text-[1vw] font leading-[1.1] tracking-[-0.02em] uppercase mb-8">
+            <div className="flex flex-wrap justify-center gap-x-[0.5em]">
               <span>FEATURED</span>
               <span>PROJECT</span>
             </div>
-            <div className="flex flex-wrap gap-x-[0.5em]">
+            <div className="flex flex-wrap justify-center gap-x-[0.5em]">
               <span>AND</span>
               <span>RESEARCH</span>
             </div>
@@ -85,7 +85,7 @@ const FeaturedList = () => {
 
                 {/* Typography Container */}
                 <div className="flex-1">
-                  <div className="font-serif-display text-[8vw] md:text-[7vw] leading-[0.9] tracking-[-0.03em] uppercase flex flex-col transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[2vw]">
+                  <div className="font-custom text-[8vw] md:text-[7vw] leading-[0.9] tracking-[-0.03em] uppercase flex flex-col transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[2vw]">
                     {/* First Line */}
                     <div className="flex flex-wrap gap-x-[0.3em] overflow-hidden">
                       {project.title.map((word, i) => (

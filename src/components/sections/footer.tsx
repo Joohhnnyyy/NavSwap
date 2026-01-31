@@ -9,7 +9,7 @@ import React from 'react';
  */
 export default function Footer() {
   return (
-    <footer className="w-full bg-[#F1F1F1] text-[#000000] px-[5vw] pt-[15vh] pb-[5vh]">
+    <footer className="w-full text-[#F1F1F1] bg-[#000000] px-[5vw] pt-[15vh] pb-[5vh]">
       {/* Territory & Fields Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-[40px] mb-[10vh]">
         <div className="flex flex-col">

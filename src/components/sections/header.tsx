@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 /**
  * Header Component
@@ -38,9 +39,9 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 w-full z-[100] mix-blend-difference">
+    <header className="fixed top-0 left-0 w-full z-[100]">
       {/* Top Bar Navigation */}
-      <div className="flex justify-between items-start pt-[40px] md:pt-[80px] px-[20px] md:px-[80px] pb-[40px] pointer-events-none">
+      <div className="flex justify-between items-start pt-[40px] md:pt-[80px] px-[20px] md:px-[80px] pb-[40px] pointer-events-none mix-blend-difference">
         {/* Logo */}
         <Link 
           href="/" 
@@ -48,11 +49,11 @@ export default function Header() {
         >
           <div className="overflow-hidden h-[24px]">
             <div className="transition-transform duration-500 group-hover:-translate-y-full">
-              <h1 className="text-[18px] font-sans font-bold tracking-tight text-white h-[24px]">
-                THE SHIFT
+              <h1 className="text-[18px] font-sans font tracking-tight text-white h-[24px]">
+                NAVSWAP
               </h1>
-              <h1 className="text-[18px] font-sans font-bold tracking-tight text-white h-[24px]">
-                THE SHIFT
+              <h1 className="text-[18px] font-sans font tracking-tight text-white h-[24px]">
+                NAVSWAP
               </h1>
             </div>
           </div>
@@ -68,10 +69,10 @@ export default function Header() {
               "flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.85, 0, 0.15, 1)]",
               isMenuOpen ? "-translate-y-1/2" : "group-hover:-translate-y-1/2"
             )}>
-              <div className="h-[24px] text-[10px] font-sans font-medium tracking-[0.1em] text-white uppercase flex items-center justify-end">
+              <div className="h-[24px] text-[10px] font-custom font-medium tracking-[0.1em] text-white uppercase flex items-center justify-end">
                 MENU
               </div>
-              <div className="h-[24px] text-[10px] font-sans font-medium tracking-[0.1em] text-white uppercase flex items-center justify-end">
+              <div className="h-[24px] text-[10px] font-custom font-medium tracking-[0.1em] text-white uppercase flex items-center justify-end">
                 {isMenuOpen ? "CLOSE" : "MENU"}
               </div>
             </div>
@@ -82,54 +83,87 @@ export default function Header() {
       {/* Full Screen Menu Overlay */}
       <div 
         className={cn(
-          "fixed inset-0 bg-[#F1F1F1] z-[-1] transition-transform duration-700 ease-[cubic-bezier(0.85, 0, 0.15, 1)] origin-top",
-          isMenuOpen ? "scale-y-100" : "scale-y-0"
+          "fixed inset-0 z-[-1]",
+          isMenuOpen ? "pointer-events-auto" : "pointer-events-none"
         )}
       >
-        <div className="w-full h-full flex flex-col justify-center items-center px-[5vw]">
-          <nav className="flex flex-col items-center gap-10">
-            {/* Nav Links */}
-            <ul className="flex flex-col items-center gap-4">
-              {menuItems.map((item) => (
-                <li key={item.label} className="overflow-hidden">
+        {/* Background Curtain */}
+        <div 
+          className={cn(
+            "absolute inset-0 bg-white transition-transform duration-1000 ease-[cubic-bezier(0.85,0,0.15,1)] will-change-transform",
+            isMenuOpen ? "origin-right scale-x-100" : "origin-left scale-x-0"
+          )}
+        />
+
+        {/* Content Container */}
+        <div className={cn(
+          "relative w-full h-full flex flex-col md:flex-row text-black transition-opacity duration-700",
+          isMenuOpen ? "opacity-100 delay-300" : "opacity-0 delay-0"
+        )}>
+          {/* Left Column: Branding */}
+          <div className="w-full md:w-1/2 h-full border-r border-black/20 p-8 md:p-12 flex flex-col justify-between">
+            {/* Top Left Branding */}
+            <div className="text-[14px] font-sans font-medium opacity-50">
+              The Shift®
+            </div>
+
+            {/* Center Large Text */}
+            <div className="text-[12vw] leading-[0.8] font-custom tracking-tighter">
+              THE<br />SHIFT
+            </div>
+
+            {/* Bottom Left Description */}
+            <div className="max-w-md text-[12px] md:text-[14px] leading-relaxed opacity-70 font-sans">
+              The Shift is a global creative collective specialized in design, motion, and digital experiences for future-forward brands.
+            </div>
+          </div>
+
+          {/* Right Column: Navigation */}
+          <div className="w-full md:w-1/2 h-full flex flex-col justify-between p-8 md:p-12">
+            {/* Spacer for top alignment */}
+            <div className="hidden md:block h-[100px]"></div>
+
+            {/* Menu Items */}
+            <nav className="flex flex-col w-full">
+              {menuItems.map((item, index) => (
+                <div key={item.label} className="group border-t border-black/20 hover:bg-black/5 transition-colors duration-300">
                   <Link 
                     href={item.href}
                     onClick={() => setIsMenuOpen(false)}
-                    className="block group"
+                    className="flex items-center justify-between py-6 md:py-8 w-full"
                   >
-                    <div className="relative text-[48px] md:text-[80px] font-bold font-sans tracking-tighter leading-none text-black transition-transform duration-500 hover:italic">
+                    {/* Plus Icon */}
+                    <span className="text-xl font-light opacity-50 group-hover:opacity-100 transition-opacity duration-300">+</span>
+                    
+                    {/* Label */}
+                    <TextRoll 
+                      className="text-[40px] md:text-[60px] lg:text-[80px] font-bold font-custom tracking-tighter leading-none uppercase"
+                      active={isMenuOpen}
+                      baseDelay={0.4 + (index * 0.1)}
+                    >
                       {item.label}
-                    </div>
+                    </TextRoll>
                   </Link>
-                </li>
+                </div>
               ))}
-            </ul>
+              {/* Bottom Border for last item */}
+              <div className="border-t border-black/20"></div>
+            </nav>
 
-            {/* Language Switcher */}
-            <ul className="flex gap-8 mt-10">
-              <li>
-                <button className="text-[12px] font-sans font-bold tracking-widest text-black border-b border-black">
-                  EN
-                </button>
-              </li>
-              <li>
-                <button className="text-[12px] font-sans font-medium tracking-widest text-[#737373] hover:text-black transition-colors">
-                  JA
-                </button>
-              </li>
-            </ul>
-          </nav>
+            {/* Footer Socials */}
+            <div className="flex flex-wrap justify-end gap-6 md:gap-8 text-[12px] md:text-[14px] uppercase tracking-wide pt-8">
+              {["Instagram", "Behance", "X", "Savee", "LinkedIn"].map((social) => (
+                <a key={social} href="#" className="hover:opacity-50 transition-opacity duration-300">
+                  {social}
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
-
-        {/* Dynamic Background Element */}
-        <div className={cn(
-          "absolute bottom-0 left-0 w-full h-[1px] bg-black/10 origin-left transition-transform duration-1000 delay-300",
-          isMenuOpen ? "scale-x-100" : "scale-x-0"
-        )} />
       </div>
 
-      {/* Language Indicator */}
-      {!isMenuOpen && (
+      {/* Language Indicator - Removed as it's now in the main nav area */}
+      {/* {!isMenuOpen && (
         <div className="fixed top-[40px] md:top-[80px] right-[160px] md:right-[240px] pointer-events-auto hidden sm:block">
             <Link href="#">
                 <div className="w-10 h-10 rounded-full border border-white flex items-center justify-center group overflow-hidden bg-transparent hover:bg-white transition-colors duration-300">
@@ -137,7 +171,85 @@ export default function Header() {
                 </div>
             </Link>
         </div>
-      )}
+      )} */}
     </header>
   );
 }
+
+const STAGGER = 0.035;
+
+const TextRoll: React.FC<{
+  children: string;
+  className?: string;
+  center?: boolean;
+  active?: boolean;
+  baseDelay?: number;
+}> = ({ children, className, center = false, active = false, baseDelay = 0 }) => {
+  return (
+    <motion.span
+      initial="initial"
+      animate={active ? "hovered" : "initial"}
+      className={cn("relative block overflow-hidden", className)}
+      style={{
+        lineHeight: 0.75,
+      }}
+    >
+      <div>
+        {children.split("").map((l, i) => {
+          const delay = center
+            ? STAGGER * Math.abs(i - (children.length - 1) / 2)
+            : STAGGER * i;
+
+          return (
+            <motion.span
+              variants={{
+                initial: {
+                  y: 0,
+                },
+                hovered: {
+                  y: "-100%",
+                },
+              }}
+              transition={{
+                ease: "easeInOut",
+                delay: baseDelay + delay,
+              }}
+              className="inline-block"
+              key={i}
+            >
+              {l === " " ? "\u00A0" : l}
+            </motion.span>
+          );
+        })}
+      </div>
+      <div className="absolute inset-0">
+        {children.split("").map((l, i) => {
+          const delay = center
+            ? STAGGER * Math.abs(i - (children.length - 1) / 2)
+            : STAGGER * i;
+
+          return (
+            <motion.span
+              variants={{
+                initial: {
+                  y: "100%",
+                },
+                hovered: {
+                  y: 0,
+                },
+              }}
+              transition={{
+                ease: "easeInOut",
+                delay: baseDelay + delay,
+              }}
+              className="inline-block"
+              key={i}
+            >
+              {l === " " ? "\u00A0" : l}
+            </motion.span>
+          );
+        })}
+      </div>
+    </motion.span>
+  );
+};
