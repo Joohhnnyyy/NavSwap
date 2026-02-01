@@ -85,8 +85,14 @@ export default function Dashboard() {
         if (stationsRes.data && Array.isArray(stationsRes.data)) setStations(stationsRes.data);
         if (recsRes.data && Array.isArray(recsRes.data)) setRecommendations(recsRes.data);
         if (metricsRes.data && Array.isArray(metricsRes.data)) {
-           // @ts-ignore - metrics data shape compatibility
-           setMetrics(metricsRes.data);
+           // Map API data to chart format
+           const mappedMetrics = metricsRes.data.map((m: any) => ({
+             time: m.timestamp || m.time,
+             swaps: m.totalSwaps || m.swaps,
+             demand: m.energyConsumption ? Math.round(m.energyConsumption / 5) : (m.demand || 0),
+             efficiency: m.efficiency || 95
+           }));
+           setMetrics(mappedMetrics);
         }
         if (eventsRes.data && Array.isArray(eventsRes.data)) setAiActions(eventsRes.data);
         if (deliveriesRes.data && Array.isArray(deliveriesRes.data)) setDeliveries(deliveriesRes.data);
