@@ -27,7 +27,10 @@ export const metadata: Metadata = {
   title: "NavSwap",
   description: "The Operating System for Battery Swapping",
   icons: {
-    icon: "/white_logo.png",
+    icon: [
+      { url: "/black_logo.png", media: "(prefers-color-scheme: light)" },
+      { url: "/white_logo.png", media: "(prefers-color-scheme: dark)" },
+    ],
   },
 };
 

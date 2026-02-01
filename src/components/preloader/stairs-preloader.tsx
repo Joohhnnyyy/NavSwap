@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 export default function StairsPreloader() {
   const [loading, setLoading] = useState(true);
@@ -33,13 +34,21 @@ export default function StairsPreloader() {
               transition: { duration: 0.5, ease: "easeInOut" } 
             }}
           >
-            <div className="flex flex-col items-center gap-2">
-              <h1 className="text-4xl md:text-6xl font-bold tracking-tighter ">
-                Navswap
-              </h1>
-              <p className="text-sm md:text-base font-light tracking-widest opacity-80 uppercase">
-                Loading Experience
-              </p>
+            <div className="relative w-100 h-50">
+              <Image 
+                src="/black_logo.png" 
+                alt="NavSwap" 
+                fill
+                className="object-contain dark:hidden"
+                priority
+              />
+              <Image 
+                src="/white_logo.png" 
+                alt="NavSwap" 
+                fill
+                className="object-contain hidden dark:block"
+                priority
+              />
             </div>
           </motion.div>
 

@@ -1,0 +1,382 @@
+"use client";
+
+import React from 'react';
+import { motion } from 'framer-motion';
+import { 
+  Activity, Zap, AlertTriangle, ArrowUpRight, ArrowDownRight, 
+  Users, Calendar, BarChart3, Clock, CheckCircle2,
+  ExternalLink, Ticket, Shuffle,
+  Bot, ShieldCheck, ArrowRight, Info
+} from 'lucide-react';
+import { 
+  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer,
+  BarChart, Bar
+} from 'recharts';
+import { AI_ACTIONS, RECOMMENDATIONS, NETWORK_KPIS, STATIONS } from '@/lib/data';
+import { cn } from '@/lib/utils';
+import { AlertsFeed } from './AlertsFeed';
+
+// Reuse data for chart
+const DATA = [
+  { time: '00:00', swaps: 40, demand: 24, efficiency: 98 },
+  { time: '04:00', swaps: 20, demand: 18, efficiency: 99 },
+  { time: '08:00', swaps: 85, demand: 90, efficiency: 92 },
+  { time: '12:00', swaps: 110, demand: 115, efficiency: 88 },
+  { time: '16:00', swaps: 95, demand: 98, efficiency: 94 },
+  { time: '20:00', swaps: 70, demand: 75, efficiency: 96 },
+  { time: '23:59', swaps: 45, demand: 42, efficiency: 98 },
+];
+
+const ClientClock = () => {
+  const [time, setTime] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    setTime(new Date().toLocaleTimeString());
+    const interval = setInterval(() => {
+      setTime(new Date().toLocaleTimeString());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return <>{time}</>;
+};
+
+export default function Dashboard() {
+  const kpis = [
+    { label: "Active Chargers", value: "8/12", icon: Zap, color: "text-emerald-500" },
+    { label: "Queue Size", value: "4", icon: Users, color: "text-blue-500" },
+    { label: "Wait Time", value: "12m", icon: Clock, color: "text-amber-500" },
+    { label: "Efficiency", value: "94%", icon: Activity, color: "text-purple-500" },
+  ];
+
+  const subsections = [
+    { label: "Power Output", value: "450 kW", icon: Zap, color: "text-yellow-500" },
+    { label: "Grid Status", value: "Stable", icon: Activity, color: "text-emerald-500" },
+    { label: "Daily Swaps", value: "124", icon: ArrowUpRight, color: "text-blue-500" },
+    { label: "Maintenance", value: "None", icon: AlertTriangle, color: "text-zinc-500" },
+  ];
+
+  return (
+    <div className="space-y-8 p-6 min-h-screen bg-black/20">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-3xl font-bold text-white tracking-tight">Command Center</h1>
+          <p className="text-zinc-500 text-sm mt-1">Real-time network overview and AI operational status.</p>
+        </div>
+        
+        <div className="flex items-center gap-3">
+          <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl px-4 py-2 flex items-center gap-3">
+            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-xs font-bold text-zinc-300 uppercase">System Online</span>
+          </div>
+          <div className="text-sm text-zinc-500 font-mono min-w-[100px] text-right">
+            <ClientClock />
+          </div>
+        </div>
+      </div>
+
+      {/* KPI Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <KPICard 
+          label="Active Stations" 
+          value={`${STATIONS.filter(s => s.status === 'healthy').length}/${STATIONS.length}`} 
+          trend="+2 New" 
+          icon={Zap} 
+          trendUp={true}
+        />
+        <KPICard 
+          label="Avg Queue Time" 
+          value={NETWORK_KPIS.avgQueueTime} 
+          trend="-0.5m" 
+          icon={Clock} 
+          trendUp={true}
+        />
+        <KPICard 
+          label="Prevented Incidents" 
+          value={NETWORK_KPIS.preventedIncidents.toString()} 
+          trend="+3 Today" 
+          icon={AlertTriangle} 
+          trendUp={true}
+          color="text-amber-500"
+        />
+        <KPICard 
+          label="AI Success Rate" 
+          value="98.4%" 
+          trend="+0.2%" 
+          icon={Activity} 
+          trendUp={true}
+          color="text-blue-500"
+        />
+      </div>
+
+      {/* Station Detail & AI Copilot Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+        {/* Station Detail Section */}
+        <div className="lg:col-span-2 bg-zinc-900/40 border border-zinc-800/50 rounded-3xl p-8 h-full relative overflow-hidden"> 
+          <div className="flex justify-between items-center mb-10"> 
+            <div> 
+              <h2 className="text-2xl font-bold text-white tracking-tight mb-1">Station: NavSwap – Sector 12</h2> 
+              <p className="text-zinc-500 text-sm font-medium uppercase tracking-widest">Active Station Detail</p> 
+            </div> 
+            <div className="flex gap-2"> 
+              <button className="flex items-center gap-2 px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-sm font-semibold rounded-xl transition-all border border-zinc-700/50 group"> 
+                <ExternalLink className="w-4 h-4 group-hover:scale-110 transition-transform" /> 
+                View Station 
+              </button> 
+              <button className="flex items-center gap-2 px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-sm font-semibold rounded-xl transition-all border border-zinc-700/50 group"> 
+                <Ticket className="w-4 h-4 group-hover:scale-110 transition-transform" /> 
+                Raise Ticket 
+              </button> 
+              <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold rounded-xl transition-all shadow-lg shadow-blue-600/20 group"> 
+                <Shuffle className="w-4 h-4 group-hover:rotate-12 transition-transform" /> 
+                Reroute Drivers 
+              </button> 
+            </div> 
+          </div> 
+
+          <div className="grid grid-cols-4 gap-8 mb-12"> 
+            {kpis.map((kpi, i) => ( 
+              <motion.div 
+                key={i} 
+                initial={{ opacity: 0, y: 20 }} 
+                animate={{ opacity: 1, y: 0 }} 
+                transition={{ delay: i * 0.1 }} 
+                className="p-4 rounded-2xl bg-zinc-800/20 border border-zinc-800/50" 
+              > 
+                <div className="flex items-center gap-3 mb-2"> 
+                  <kpi.icon className={`w-4 h-4 ${kpi.color}`} /> 
+                  <p className="text-[10px] font-bold uppercase text-zinc-500 tracking-widest">{kpi.label}</p> 
+                </div> 
+                <p className="text-3xl font-bold text-zinc-100">{kpi.value}</p> 
+              </motion.div> 
+            ))} 
+          </div> 
+
+          <div className="grid grid-cols-2 gap-x-12 gap-y-6"> 
+            {subsections.map((sub, i) => ( 
+              <div key={i} className="flex items-center justify-between py-3 border-b border-zinc-800/50 last:border-0"> 
+                <div className="flex items-center gap-3"> 
+                  <div className="p-2 bg-zinc-800/50 rounded-lg"> 
+                    <sub.icon className={`w-4 h-4 ${sub.color}`} /> 
+                  </div> 
+                  <span className="text-sm font-medium text-zinc-400">{sub.label}</span> 
+                </div> 
+                <span className={`text-sm font-bold ${sub.color}`}>{sub.value}</span> 
+              </div> 
+            ))} 
+          </div> 
+        </div>
+
+        {/* AI Copilot Section */}
+        <div className="bg-gradient-to-br from-indigo-500/10 via-purple-500/5 to-zinc-900/40 border border-indigo-500/20 rounded-3xl p-6 h-full min-h-[600px] relative overflow-hidden group">
+          <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+            <Bot className="w-32 h-32 text-indigo-500" />
+          </div>
+          
+          <div className="relative z-10 h-full flex flex-col">
+            <div className="mb-6">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="p-2 bg-indigo-500/20 rounded-lg">
+                  <Bot className="w-6 h-6 text-indigo-400" />
+                </div>
+                <h2 className="text-xl font-bold text-white tracking-tight">NavSwap AI Copilot</h2>
+              </div>
+              <p className="text-zinc-400 text-sm">Real-time optimization engine active. Analyzing network patterns.</p>
+            </div>
+
+            <div className="space-y-4 flex-1">
+              <div className="p-4 rounded-2xl bg-indigo-500/5 border border-indigo-500/10">
+                <div className="flex items-start gap-3">
+                  <ShieldCheck className="w-5 h-5 text-emerald-500 mt-0.5" />
+                  <div>
+                    <p className="text-sm font-bold text-zinc-200 mb-1">System Optimization</p>
+                    <p className="text-xs text-zinc-400">Rerouted 12 vehicles to Sector 7 to prevent congestion.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-indigo-500/5 border border-indigo-500/10">
+                 <div className="flex items-start gap-3">
+                  <Info className="w-5 h-5 text-blue-500 mt-0.5" />
+                  <div>
+                    <p className="text-sm font-bold text-zinc-200 mb-1">Predictive Maintenance</p>
+                    <p className="text-xs text-zinc-400">Station 4 charger B2 showing early signs of voltage fluctuation.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button className="mt-6 w-full flex items-center justify-center gap-2 px-4 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl transition-all shadow-lg shadow-indigo-600/20 group">
+              <span>View Full Analysis</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        {/* Main Chart Section */}
+        <section className="lg:col-span-2 bg-zinc-900/30 border border-zinc-800/50 rounded-3xl p-8">
+          <div className="flex items-center justify-between mb-8">
+            <h3 className="text-sm font-bold text-white uppercase tracking-widest">Network Load</h3>
+            <div className="flex gap-4">
+               <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-blue-500" />
+                <span className="text-[10px] font-bold text-zinc-500 uppercase">Swaps</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-purple-500" />
+                <span className="text-[10px] font-bold text-zinc-500 uppercase">Demand</span>
+              </div>
+            </div>
+          </div>
+          <div className="h-[350px] w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={DATA}>
+                <defs>
+                  <linearGradient id="colorSwaps" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
+                  </linearGradient>
+                  <linearGradient id="colorDemand" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#a855f7" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#a855f7" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="#18181b" vertical={false} />
+                <XAxis dataKey="time" axisLine={false} tickLine={false} tick={{fill: '#71717a', fontSize: 10}} />
+                <YAxis axisLine={false} tickLine={false} tick={{fill: '#71717a', fontSize: 10}} />
+                <RechartsTooltip 
+                  contentStyle={{ backgroundColor: '#09090b', border: '1px solid #27272a', borderRadius: '12px' }}
+                />
+                <Area type="monotone" dataKey="swaps" stroke="#3b82f6" strokeWidth={2} fillOpacity={1} fill="url(#colorSwaps)" />
+                <Area type="monotone" dataKey="demand" stroke="#a855f7" strokeWidth={2} fillOpacity={1} fill="url(#colorDemand)" />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+        </section>
+
+        {/* Side Panel: Recent Actions */}
+        <section className="space-y-6">
+          <div className="bg-zinc-900/30 border border-zinc-800/50 rounded-3xl p-6 h-full">
+             <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">
+              <Zap className="w-4 h-4 text-yellow-500" />
+              Live AI Actions
+            </h3>
+            <div className="space-y-4">
+              {AI_ACTIONS.map((action) => (
+                <div key={action.id} className="flex gap-4 items-start p-3 rounded-xl bg-zinc-800/20 border border-zinc-800/50">
+                  <div className="mt-1">
+                    <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-zinc-200 font-medium leading-tight">{action.type}</p>
+                    <div className="flex items-center gap-2 mt-2">
+                      <span className="text-[10px] text-zinc-500 uppercase font-bold">{action.timestamp}</span>
+                      <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-500 uppercase font-bold">{action.status}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 pt-6 border-t border-zinc-800">
+              <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-4 flex items-center gap-2">
+                <AlertTriangle className="w-4 h-4 text-red-500" />
+                Critical Alerts
+              </h3>
+               <div className="space-y-3">
+                {RECOMMENDATIONS.slice(0, 2).map((rec) => (
+                  <div key={rec.id} className="p-3 rounded-xl bg-red-500/5 border border-red-500/20">
+                    <p className="text-xs font-bold text-red-400 uppercase mb-1">{rec.issue}</p>
+                    <p className="text-xs text-zinc-400">{rec.action}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {/* AI Recommendation Feed */}
+      <section className="mb-8">
+        <AlertsFeed recommendations={RECOMMENDATIONS} />
+      </section>
+
+      {/* Station Status Grid */}
+      <section>
+        <h3 className="text-lg font-bold text-white mb-4">Station Status</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {STATIONS.map((station) => (
+            <div key={station.id} className="bg-zinc-900/30 border border-zinc-800/50 rounded-2xl p-5 hover:border-zinc-700 transition-colors">
+              <div className="flex justify-between items-start mb-4">
+                <div>
+                  <h4 className="font-bold text-white">{station.name}</h4>
+                  <p className="text-xs text-zinc-500">{station.location}</p>
+                </div>
+                <StatusBadge status={station.status} />
+              </div>
+              <div className="space-y-3">
+                <div className="flex justify-between text-sm">
+                  <span className="text-zinc-500">Uptime</span>
+                  <span className="text-zinc-200 font-mono">{station.uptime}%</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-zinc-500">Queue</span>
+                  <span className="text-zinc-200 font-mono">{station.queueLength} vehicles</span>
+                </div>
+                <div className="w-full bg-zinc-800 h-1 rounded-full overflow-hidden">
+                  <div 
+                    className={cn("h-full rounded-full", station.status === 'healthy' ? 'bg-emerald-500' : 'bg-amber-500')} 
+                    style={{ width: `${station.uptime}%` }} 
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function KPICard({ label, value, trend, icon: Icon, trendUp, color = "text-white" }: any) {
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="bg-zinc-900/40 border border-zinc-800/50 p-6 rounded-3xl hover:bg-zinc-900/60 transition-colors"
+    >
+      <div className="flex justify-between items-start mb-4">
+        <div className={cn("p-3 rounded-2xl bg-zinc-800/50", color)}>
+          <Icon className="w-5 h-5" />
+        </div>
+        <div className={cn("flex items-center gap-1 text-xs font-bold px-2 py-1 rounded-lg bg-zinc-800/50", trendUp ? 'text-emerald-400' : 'text-red-400')}>
+          {trendUp ? <ArrowUpRight className="w-3 h-3" /> : <ArrowDownRight className="w-3 h-3" />}
+          {trend}
+        </div>
+      </div>
+      <div>
+        <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-1">{label}</p>
+        <p className="text-3xl font-bold text-white tracking-tighter">{value}</p>
+      </div>
+    </motion.div>
+  );
+}
+
+function StatusBadge({ status }: { status: string }) {
+  const styles = {
+    healthy: "bg-emerald-500/10 text-emerald-500 border-emerald-500/20",
+    "at-risk": "bg-amber-500/10 text-amber-500 border-amber-500/20",
+    critical: "bg-red-500/10 text-red-500 border-red-500/20",
+  };
+  
+  return (
+    <span className={cn("px-2 py-1 rounded-lg text-[10px] font-bold uppercase border", styles[status as keyof typeof styles])}>
+      {status}
+    </span>
+  );
+}
