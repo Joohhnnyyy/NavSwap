@@ -96,6 +96,9 @@ const steps = [
   },
 ];
 
+import TerritoryFooter from "@/components/sections/territory-footer";
+import { FadeInSection } from "@/components/ui/fade-in-section";
+
 export default function StationRegistrationPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -170,11 +173,15 @@ export default function StationRegistrationPage() {
       </header>
 
       {/* Main Content */}
-      <div className="flex-1 flex items-center justify-center p-4 pt-24">
+      <div className="flex-1 flex items-center justify-center p-4 pt-24 pb-24">
         <Form {...form}>
           <StationStepper form={form} onSubmit={onSubmit} />
         </Form>
       </div>
+
+      <FadeInSection>
+        <TerritoryFooter />
+      </FadeInSection>
     </div>
   );
 }

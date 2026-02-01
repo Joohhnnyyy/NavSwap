@@ -3,20 +3,21 @@
 import React from "react";
 import Header from "@/components/sections/header";
 import ResearchHero from "@/components/sections/research-hero";
-import ResearchItem3DMix from "@/components/sections/research-item-3dmix";
-import ResearchItemLogoBuilder from "@/components/sections/research-item-logo-builder";
-import ResearchArchive from "@/components/sections/research-item-low-poly";
-import Footer from "@/components/sections/footer";
+import ResearchSolutions from "@/components/sections/research-solutions";
+import TerritoryFooter from "@/components/sections/territory-footer";
+import { FadeInSection } from "@/components/ui/fade-in-section";
 
 export default function ResearchPage() {
   return (
     <main className="bg-secondary min-h-screen">
       <Header />
       <ResearchHero />
-      <ResearchItem3DMix />
-      <ResearchItemLogoBuilder />
-      <ResearchArchive />
-      <Footer />
+      <FadeInSection>
+        <ResearchSolutions />
+      </FadeInSection>
+      <FadeInSection>
+        <TerritoryFooter />
+      </FadeInSection>
     </main>
   );
 }

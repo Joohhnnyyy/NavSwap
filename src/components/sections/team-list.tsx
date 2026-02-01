@@ -13,29 +13,29 @@ const teamMembers: TeamMember[] = [
   {
     name: "Toshiyuki Hashimoto",
     role: "Creative Producer / Director",
-    bio: "Founder of the creative studio \"aircord\". Launched \"The Shift\" in 2020, blurring the boundaries between technology, design, science, and creativity. Has won numerous awards, including Cannes Lions, iF Design, D&AD, and One Show. Has worked on a range of projects, such as opening event of Japan’s New National Stadium ”ONE RACE”, Nissan's concept car, the \"NISSAN IMx Demonstrator Experience\", the NYC MoMA \"Talk to Me\". Lives in Tokyo."
+    bio: "Founder of the creative studio \"aircord\". Launched \"NavSwap\" in 2020, blurring the boundaries between technology, design, science, and creativity. Has won numerous awards, including Cannes Lions, iF Design, D&AD, and One Show. Has worked on a range of projects, such as opening event of Japan’s New National Stadium ”ONE RACE”, Nissan's concept car, the \"NISSAN IMx Demonstrator Experience\", the NYC MoMA \"Talk to Me\". Lives in Tokyo."
   },
   {
     name: "Jiyu Park",
     role: "Creative Junior / Art Director",
-    bio: "Joined The Shift in 2020 and studied Lifestyle Transformation Design at Willem de Kooning Academy in the Netherlands. Focuses on creating concepts of projects as well as translating the concept into a visualization through various mediums. Has participated in exhibitions in Natuurhistorisch Museum Rotterdam and Het Nieuwe Instituut as well as designing The Shift Book for The Shift. Lives in Busan, Korea."
+    bio: "Joined NavSwap in 2020 and studied Lifestyle Transformation Design at Willem de Kooning Academy in the Netherlands. Focuses on creating concepts of projects as well as translating the concept into a visualization through various mediums. Has participated in exhibitions in Natuurhistorisch Museum Rotterdam and Het Nieuwe Instituut as well as designing NavSwap Branding. Lives in Busan, Korea."
   },
   {
     name: "Mika Hirata",
     role: "Junior Designer",
-    bio: "Joined The Shift in 2021 and is a graduate of OCAD University in Toronto. Primarily focuses in the research and 3D modeling/animation. Constantly trying to evolve visual design skills and integrate them with technical methods of problem solving and understanding. Has worked with Maple Leafs Sports and Entertainment as a Jr.Designer and C(group as a graphic design intern. Lives in Toronto.",
+    bio: "Joined NavSwap in 2021 and is a graduate of OCAD University in Toronto. Primarily focuses in the research and 3D modeling/animation. Constantly trying to evolve visual design skills and integrate them with technical methods of problem solving and understanding. Has worked with Maple Leafs Sports and Entertainment as a Jr.Designer and C(group as a graphic design intern. Lives in Toronto.",
     website: "https://www.mikahirata.com/"
   },
   {
     name: "YIFAN ZHUANG",
     role: "Interaction Designer / Researcher",
-    bio: "Joined the Shift in 2022. Received her Master’s degree in Human-Computer Interaction(HCI) at the Graduate School of Media Design, Keio University. With intense curiosity about Existentialism and digital physics, she started her journey of exploring the boundaries between what is Real and Virtual as an interaction designer and HCI researcher. Her wearable emotive device — Emolleia was accepted by the international conference TEI 2022. Lives in Tokyo.",
+    bio: "Joined NavSwap in 2022. Received her Master’s degree in Human-Computer Interaction(HCI) at the Graduate School of Media Design, Keio University. With intense curiosity about Existentialism and digital physics, she started her journey of exploring the boundaries between what is Real and Virtual as an interaction designer and HCI researcher. Her wearable emotive device — Emolleia was accepted by the international conference TEI 2022. Lives in Tokyo.",
     website: "https://yifanzhuang.com/"
   },
   {
     name: "Shoya Dozono",
     role: "Interaction Designer / Researcher",
-    bio: "Joined The Shift in 2022. IAMAS Graduate. Working in cross-disciplinary design and research using data, algorithms, and machine learning. Recent projects include video design for Ms. Lauryn Hill concerts, a project with Hiromasa Fukaji called 4D DRAWING, and Quasicrystal, an R&D project with Kyoto-based textile company HOSOO. Recipient of numerous awards including those from Ars Electronica and the Japan Media Arts Festival. Lives in Tokyo.",
+    bio: "Joined NavSwap in 2022. IAMAS Graduate. Working in cross-disciplinary design and research using data, algorithms, and machine learning. Recent projects include video design for Ms. Lauryn Hill concerts, a project with Hiromasa Fukaji called 4D DRAWING, and Quasicrystal, an R&D project with Kyoto-based textile company HOSOO. Recipient of numerous awards including those from Ars Electronica and the Japan Media Arts Festival. Lives in Tokyo.",
     website: "https://shoyadozono.com/"
   },
   {
@@ -46,12 +46,12 @@ const teamMembers: TeamMember[] = [
   {
     name: "Kai Couts",
     role: "Intern",
-    bio: "Studied design at Chiba University. Joined The Shift in 2023 as an intern. Assisting in various creative research and production tasks while exploring the intersection of traditional craftsmanship and digital workflows."
+    bio: "Studied design at Chiba University. Joined NavSwap in 2023 as an intern. Assisting in various creative research and production tasks while exploring the intersection of traditional craftsmanship and digital workflows."
   },
   {
     name: "Giulia Principe",
     role: "Interaction Designer",
-    bio: "Giulia Principe, born in Naples, lived in the UK to study Filmmaking, then moved to Amsterdam where she graduated Game Design at SAE Institute. Currently working as a VFX and post production lecturer at United POP Academy, as a freelance designer and VR Operator at EYE Filmmuseum. Giulia’s work explores the relationship between analog and digital graphics, from photography to interactive animation, coding and 3D printing. Co-founder of Xposed Lab Studio at NDSM Treehouse. Collaborated with The Shift in BorderLESS"
+    bio: "Giulia Principe, born in Naples, lived in the UK to study Filmmaking, then moved to Amsterdam where she graduated Game Design at SAE Institute. Currently working as a VFX and post production lecturer at United POP Academy, as a freelance designer and VR Operator at EYE Filmmuseum. Giulia’s work explores the relationship between analog and digital graphics, from photography to interactive animation, coding and 3D printing. Co-founder of Xposed Lab Studio at NDSM Treehouse. Collaborated with NavSwap in BorderLESS"
   }
 ];
 

@@ -1,110 +1,87 @@
+"use client";
+
 import React from 'react';
 
 /**
  * ResearchHero Component
  * 
- * Clones the research page hero section with:
- * - Extremely large "ALWAYS EXPLORING" typography (serif)
- * - Support text "WHAT IS SHIFTING AND WHAT CAN BE SHIFTED" (sans-serif)
- * - (SCROLL) progress indicator
+ * Clones the "About" page hero section style but for "NAV SWAP".
  * 
- * Themes: Light
+ * Primary Guidance: "NAV SWAP" with supporting sub-text 
+ * "THE OPERATING SYSTEM FOR BATTERY SWAPPING".
  */
 const ResearchHero: React.FC = () => {
   return (
-    <section 
-      className="page-header section relative w-full flex flex-col items-center justify-center pt-[15vh] pb-[10vh] overflow-hidden bg-background text-foreground"
-      style={{ minHeight: '100vh' }}
+    <div 
+      className="page-header subpage-header section min-h-screen flex flex-col items-center justify-center relative px-[5vw] bg-background text-foreground" 
     >
-      {/* Centered JA Language Toggle (Matches Structure) */}
-      <div className="absolute top-20 right-[4vw] z-10 md:hidden">
-        <a href="/research/" className="text-[12px] font-sans font-medium uppercase tracking-[0.15em] border-b border-primary">
-          JA
-        </a>
-      </div>
-
-      <div className="subpage-title-wrap flex flex-col items-center text-center w-full px-[4vw]">
-        <div className="subpage-title w-full max-w-[1440px]">
-          {/* Main Hero Headline */}
-          <h1 className="flex flex-col items-center mb-8">
-            <div className="page-title-body leading-none">
-              {/* ALWAYS (First Line) */}
-              <div 
-                className="font-hero text-fluid-hero block overflow-hidden"
-                style={{ height: '0.85em' }}
-              >
-                <div className="flex justify-center flex-wrap">
-                  {["A", "L", "W", "A", "Y", "S"].map((char, i) => (
-                    <span 
-                      key={`always-${i}`} 
-                      className="inline-block"
-                      style={{ 
-                        fontFamily: 'var(--font-serif)',
-                        fontSize: 'clamp(4rem, 15vw, 20rem)',
-                        letterSpacing: '-0.02em',
-                        lineHeight: '0.85'
-                      }}
-                    >
-                      {char}
-                    </span>
-                  ))}
+      {/* Language Switcher - Positioned top-right relative to page layout */}
+      <div className="absolute top-10 right-[5vw] z-10">
+        <div className="ui-lang-a">
+          <a href="/research/" className="block">
+            <div className="ui-btn-link text-[10px] font-medium tracking-[0.1em] uppercase">
+              <div className="overflow-hidden h-[1.2em]">
+                <div className="transition-transform duration-500 hover:-translate-y-full">
+                  <div className="h-[1.2em]">JA</div>
+                  <div className="h-[1.2em]">JA</div>
                 </div>
               </div>
-              
-              {/* EXPLORING (Second Line) */}
-              <div 
-                className="font-hero text-fluid-hero block overflow-hidden mt-2"
-                style={{ height: '0.85em' }}
-              >
-                <div className="flex justify-center flex-wrap">
-                  {["E", "X", "P", "L", "O", "R", "I", "N", "G"].map((char, i) => (
-                    <span 
-                      key={`exploring-${i}`} 
-                      className="inline-block"
-                      style={{ 
-                        fontFamily: 'var(--font-serif)',
-                        fontSize: 'clamp(4rem, 15vw, 20rem)',
-                        letterSpacing: '-0.02em',
-                        lineHeight: '0.85'
-                      }}
-                    >
-                      {char}
-                    </span>
-                  ))}
-                </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      {/* Main Hero Content */}
+      <div className="subpage-title-wrap w-full flex flex-col items-center text-center">
+        <div className="subpage-title relative mb-8 lg:mb-12">
+          <h1 className="page-title leading-[0.9] tracking-[-0.05em] flex flex-col items-center">
+            {/* "NAV" - Serif Typography */}
+            <div className="font-serif text-[clamp(4rem,12vw,200px)] font-normal flex">
+              <div className="flex overflow-hidden">
+                <span className="block animate-in slide-in-from-bottom duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[0ms]">N</span>
+                <span className="block animate-in slide-in-from-bottom duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[50ms]">A</span>
+                <span className="block animate-in slide-in-from-bottom duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[100ms]">V</span>
+              </div>
+            </div>
+
+            {/* "SWAP" - Sans-Serif Typography (Matching About Hero's second line style) */}
+            <div className="font-sans font-bold text-[clamp(3rem,10vw,140px)] leading-[1.0] tracking-[-0.02em] whitespace-nowrap flex overflow-hidden">
+              <div className="flex">
+                <span className="block animate-in slide-in-from-bottom duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[200ms]">S</span>
+                <span className="block animate-in slide-in-from-bottom duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[250ms]">W</span>
+                <span className="block animate-in slide-in-from-bottom duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[300ms]">A</span>
+                <span className="block animate-in slide-in-from-bottom duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[350ms]">P</span>
               </div>
             </div>
           </h1>
 
-          {/* Support Text */}
-          <div 
-            className="page-title-support font-ui text-[12px] md:text-[14px] font-medium tracking-[0.2em] leading-[1.8] max-w-[400px] mx-auto opacity-100"
-            style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-primary)' }}
-          >
-            <div className="flex flex-col items-center">
-              <span className="block">WHAT IS SHIFTING AND</span>
-              <span className="block">WHAT CAN BE SHIFTED</span>
+          {/* Supporting Sub-text */}
+          <div className="page-title-support font-sans text-[10px] sm:text-[12px] font-medium tracking-[0.05em] uppercase text-center mt-6 flex flex-col gap-1 items-center overflow-hidden">
+            <div className="overflow-hidden flex gap-x-2 flex-wrap justify-center">
+              <span className="block animate-in slide-in-from-bottom duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[500ms]">THE</span>
+              <span className="block animate-in slide-in-from-bottom duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[550ms]">OPERATING</span>
+              <span className="block animate-in slide-in-from-bottom duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[600ms]">SYSTEM</span>
+            </div>
+            <div className="overflow-hidden flex gap-x-2 flex-wrap justify-center">
+              <span className="block animate-in slide-in-from-bottom duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[700ms]">FOR</span>
+              <span className="block animate-in slide-in-from-bottom duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[750ms]">BATTERY</span>
+              <span className="block animate-in slide-in-from-bottom duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[800ms]">SWAPPING</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-[8vh] left-0 w-full flex justify-center">
-        <div className="js-delay-n js-clip overflow-hidden">
-          <div className="parts parts-b3 font-stats text-[9px] md:text-[10px] tracking-[0.15em] opacity-80">
-            <div className="parentheses flex items-center gap-[2px]">
-              <span className="s font-sans">(</span>
-              <span className="n slide-scroll-progress font-sans uppercase">SCROLL</span>
-              <span className="s font-sans">)</span>
-            </div>
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 overflow-hidden py-1">
+        <div className="animate-in slide-in-from-bottom duration-1000 delay-[1000ms] ease-out">
+          <div className="flex items-center text-[10px] font-medium tracking-[0.1em] text-foreground uppercase">
+            <span className="mr-0.5">(</span>
+            <span className="relative">SCROLL</span>
+            <span className="ml-0.5">)</span>
           </div>
         </div>
       </div>
-
-      {/* Decorative spacing element matching page structure */}
-      <div className="spr h-[200px]" data-n="1"></div>
-    </section>
+    </div>
   );
 };
 

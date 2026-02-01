@@ -54,7 +54,7 @@ const JoinUs: React.FC = () => {
             <p 
               className="font-sans text-[1rem] leading-[1.8] tracking-[0.02em] text-secondary-foreground"
             >
-              The Shift would like to create new projects with people all over the world. 
+              NavSwap is expanding its global engineering team. 
               You can work remotely from anywhere in the world. 
               We are happy to discuss about your hours and salaries based on your skills and experiences. 
               If you are interested in our works, please send a portfolio and CV from below.
@@ -64,11 +64,11 @@ const JoinUs: React.FC = () => {
           {/* Right link/contact column */}
           <div className="lg:col-span-4 flex flex-col items-start lg:items-end">
             <a 
-              href="mailto:info@the-shift.jp"
+              href="mailto:careers@navswap.ai"
               className="group relative inline-flex items-center font-sans font-bold text-[14px] tracking-[0.1em] uppercase border-b border-foreground pb-2 overflow-hidden text-secondary-foreground"
             >
               <span className="relative z-10 flex items-center gap-2">
-                info@the-shift.jp
+                careers@navswap.ai
                 <svg 
                   width="12" 
                   height="12" 

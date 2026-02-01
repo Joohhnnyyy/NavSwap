@@ -18,11 +18,6 @@ import { LiquidMetal } from "@/components/ui/liquid-metal";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isPortalOpen, setIsPortalOpen] = useState(false);
-  const { toggleTheme } = useThemeToggle({
-    variant: "circle-blur",
-    start: "top-left",
-    blur: true,
-  });
 
   // Prevent scrolling when menu is open
   useEffect(() => {
@@ -41,6 +36,11 @@ export default function Header() {
     };
   }, [isMenuOpen, isPortalOpen]);
 
+  const { toggleTheme } = useThemeToggle({ 
+    start: "top-left",
+    variant: "circle-blur" 
+  });
+
   const menuItems = [
     { label: "Home", href: "/" },
     { label: "Platform", href: "/#projects" },
@@ -53,9 +53,9 @@ export default function Header() {
       {/* Top Bar Navigation */}
       <div className="flex justify-between items-start pt-[40px] md:pt-[80px] px-[20px] md:px-[80px] pb-[40px] pointer-events-none">
         {/* Logo */}
-        <div className="pointer-events-auto group cursor-pointer">
+        <div className="pointer-events-auto group cursor-pointer" onClick={toggleTheme}>
           <div className="w-[100px] h-[100px] -mt-[38px] -ml-[20px] relative z-50">
-            <Logo3D className="w-full h-full" onClick={toggleTheme} />
+            <Logo3D className="w-full h-full" />
           </div>
         </div>
 

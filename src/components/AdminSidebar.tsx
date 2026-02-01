@@ -13,7 +13,8 @@ import {
   BarChart3,
   BrainCircuit,
   Lightbulb,
-  MapPin
+  MapPin,
+  Home
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
@@ -104,6 +105,13 @@ export const AdminSidebar = ({ currentView, onViewChange }: SidebarProps) => {
       </nav>
 
       <div className="p-4 border-t border-sidebar-border">
+        <Link
+          href="/"
+          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sidebar-foreground/60 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-all"
+        >
+          <Home className="w-5 h-5" />
+          <span className="font-medium">Back to Home</span>
+        </Link>
         <Link
           href="/admin/ai-settings"
           className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sidebar-foreground/60 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-all"

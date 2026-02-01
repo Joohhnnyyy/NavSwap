@@ -1,19 +1,34 @@
 "use client";
 
-import React, { useRef, Suspense } from "react";
+import React, { useRef, Suspense, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF, Float, Environment } from "@react-three/drei";
 import * as THREE from "three";
+import { useTheme } from "next-themes";
 
 function Model(props: any) {
   // Load the GLB file. Ensure NavSwap.glb is in the public folder.
   const { scene } = useGLTF("/NavSwap.glb");
   const meshRef = useRef<THREE.Group>(null);
+  const { theme } = useTheme();
+  const lastTheme = useRef(theme);
+  const spinVelocity = useRef(0);
 
-  // Add slow continuous rotation
+  useEffect(() => {
+    if (theme !== lastTheme.current) {
+      spinVelocity.current = 20; // High initial velocity for quick spin
+      lastTheme.current = theme;
+    }
+  }, [theme]);
+
+  // Add slow continuous rotation + fast spin on theme change
   useFrame((state, delta) => {
     if (meshRef.current) {
-      meshRef.current.rotation.y += delta * 0.5;
+      // Decay the spin velocity
+      spinVelocity.current = THREE.MathUtils.lerp(spinVelocity.current, 0, delta * 2);
+      
+      // Base speed (0.5) + spin velocity
+      meshRef.current.rotation.y += delta * (0.5 + spinVelocity.current);
     }
   });
 

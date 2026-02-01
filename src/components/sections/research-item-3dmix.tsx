@@ -82,8 +82,8 @@ export default function ResearchItem3DMix() {
             <div className="grid-title relative z-20 pointer-events-none my-10 md:my-0">
               <div className="flex justify-center items-center h-[20vw] md:h-[15vw]">
                 <h2 className="font-hero text-fluid-hero text-center leading-none tracking-tighter">
-                  <a href="/en/research/3dmix/" className="pointer-events-auto block transition-opacity hover:opacity-70">
-                    3D:MIX
+                  <a href="#" className="pointer-events-auto block transition-opacity hover:opacity-70">
+                    DIGITAL TWIN
                   </a>
                 </h2>
               </div>

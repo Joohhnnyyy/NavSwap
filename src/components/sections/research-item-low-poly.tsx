@@ -116,14 +116,14 @@ const ResearchItem: React.FC<ResearchItemProps> = ({
 export default function ResearchArchive() {
   const items = [
     {
-      year: "2023",
+      year: "2025",
       index: "03",
-      title: "DIGITAL\nBIOTOPIA",
-      description: "Exploring the intersection of biological systems and digital architecture through high-fidelity simulations.",
+      title: "SMART\nROUTING",
+      description: "Predictive algorithms that eliminate range anxiety by syncing vehicle routes with battery availability.",
       images: [
         {
           src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6bc7a0c9-6ab9-43bc-bc40-41f533897bdc-theshift-tokyo/assets/images/1-5x3_jpg-7.webp",
-          alt: "Digital Biotopia Study 1",
+          alt: "Smart Routing Simulation 1",
           x: 10,
           y: 0,
           w: 7,
@@ -133,7 +133,7 @@ export default function ResearchArchive() {
         },
         {
           src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6bc7a0c9-6ab9-43bc-bc40-41f533897bdc-theshift-tokyo/assets/images/1-5x3_jpg-8.webp",
-          alt: "Digital Biotopia Study 2",
+          alt: "Smart Routing Simulation 2",
           x: 16,
           y: 2,
           w: 4,
@@ -143,7 +143,7 @@ export default function ResearchArchive() {
         },
         {
           src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6bc7a0c9-6ab9-43bc-bc40-41f533897bdc-theshift-tokyo/assets/images/1-5x3_jpg-9.webp",
-          alt: "Digital Biotopia Study 3",
+          alt: "Smart Routing Simulation 3",
           x: 5,
           y: 3,
           w: 8,
@@ -154,13 +154,13 @@ export default function ResearchArchive() {
       ]
     },
     {
-      year: "2023",
+      year: "2025",
       index: "04",
-      title: "REMIX:\nMICRO & MACRO",
+      title: "DATA\nCONTEXT",
       images: [
         {
           src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6bc7a0c9-6ab9-43bc-bc40-41f533897bdc-theshift-tokyo/assets/images/1-5x3_jpg-9.webp",
-          alt: "Remix Lab 1",
+          alt: "Data Context Visualization 1",
           x: 4,
           y: 0,
           w: 9,
@@ -170,7 +170,7 @@ export default function ResearchArchive() {
         },
         {
           src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6bc7a0c9-6ab9-43bc-bc40-41f533897bdc-theshift-tokyo/assets/images/1-5x3_jpg-7.webp",
-          alt: "Remix Lab 2",
+          alt: "Data Context Visualization 2",
           x: 14,
           y: 6,
           w: 6,
@@ -179,7 +179,7 @@ export default function ResearchArchive() {
           position: "right" as const
         }
       ],
-      description: "A series of visual experiments decomposing everyday textures into abstract landscapes."
+      description: "Visualizing complex energy datasets to empower actionable insights for operators."
     }
   ];
 

@@ -143,7 +143,7 @@ export default function TerritoryFooter() {
             <span>|</span>
             <span>Terms of Service</span>
             <span>|</span>
-            <span>Coded by Nexora</span>
+            <span>NavSwap Inc.</span>
           </div>
         </div>
       </div>

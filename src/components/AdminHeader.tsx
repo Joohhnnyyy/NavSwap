@@ -1,26 +1,14 @@
 "use client"; 
  
- import React from 'react'; 
- import { Search, Bell, Settings, User, Sun, Moon } from 'lucide-react'; 
- import { motion } from 'framer-motion'; 
- import { useTheme } from 'next-themes'; 
- import { useEffect, useState } from 'react'; 
+ import React from 'react';
+import { Search, Bell, Settings, User } from 'lucide-react'; 
  
  interface HeaderProps { 
    role: 'Station Ops' | 'Control Center Admin'; 
  } 
  
  export const AdminHeader = ({ role }: HeaderProps) => { 
-     const { theme, setTheme } = useTheme(); 
-     const [mounted, setMounted] = useState(false); 
- 
-     useEffect(() => { 
-       setMounted(true); 
-     }, []); 
- 
-     if (!mounted) return null; 
- 
-     return ( 
+    return ( 
        <header className="h-20 bg-background/80 backdrop-blur-md border-b border-border flex items-center justify-between px-8 sticky top-0 z-50"> 
            <div className="flex items-center gap-6 flex-1"> 
              <div className="relative w-96 group"> 
@@ -34,22 +22,7 @@
            </div> 
  
            <div className="flex items-center gap-6"> 
-             <div className="flex items-center gap-3 mr-2"> 
-               <button 
-                 onClick={() => setTheme('light')} 
-                 className={`p-2 rounded-xl border transition-all ${theme === 'light' ? 'bg-primary text-primary-foreground border-primary' : 'bg-muted/50 text-muted-foreground border-border hover:border-primary/50'}`} 
-                 title="Bright Mode" 
-               > 
-                 <Sun className="w-4 h-4" /> 
-               </button> 
-               <button 
-                 onClick={() => setTheme('dark')} 
-                 className={`p-2 rounded-xl border transition-all ${theme === 'dark' ? 'bg-primary text-primary-foreground border-primary' : 'bg-muted/50 text-muted-foreground border-border hover:border-primary/50'}`} 
-                 title="Dark Mode" 
-               > 
-                 <Moon className="w-4 h-4" /> 
-               </button> 
-             </div> 
+
  
              <div className="flex items-center gap-2 px-3 py-1.5 bg-muted/50 border border-border rounded-full"> 
                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" /> 

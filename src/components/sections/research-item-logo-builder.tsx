@@ -75,8 +75,8 @@ const ResearchItemLogoBuilder = () => {
             {/* Central Floating Title - Parallax Effect simulated with positioning */}
             <div className="grid-title absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10 w-full text-center">
               <h2 className="font-serif text-[clamp(4rem,10vw,12rem)] leading-[0.85] uppercase tracking-tighter opacity-90 mix-blend-difference text-background dark:text-foreground">
-                <a href="/en/research/logo-builder/" className="pointer-events-auto">
-                  LOGO BUILDER
+                <a href="#" className="pointer-events-auto">
+                  DECISION ENGINE
                 </a>
               </h2>
             </div>

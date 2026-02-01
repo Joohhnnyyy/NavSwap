@@ -15,15 +15,15 @@ export default function Footer() {
         <div className="flex flex-col">
           <div className="w-full h-[1px] bg-border mb-8 opacity-20" />
           <h2 className="font-sans font-bold text-[clamp(2rem,5vw,4rem)] leading-[1.0] tracking-tight uppercase">
-            CORE INFRA<br />
-            AND NETWORK
+            DIGITAL TWIN<br />
+            & AI ENGINE
           </h2>
         </div>
         <div className="flex flex-col justify-center">
           <div className="w-full h-[1px] bg-border mb-8 opacity-20" />
           <h2 className="font-sans font-bold text-[clamp(2rem,5vw,4rem)] leading-[1.0] tracking-tight uppercase justify-center">
-            BUILT FOR CITIES<br />
-            POWERING THE WORLD
+            SMART ENERGY<br />
+            INFRASTRUCTURE
           </h2>
         </div>
       </div>
@@ -33,7 +33,7 @@ export default function Footer() {
         <div className="flex flex-col space-y-4">
           <div className="text-[10px] font-medium tracking-[0.1em] uppercase opacity-50">Profile</div>
           <div className="text-[14px] leading-relaxed">
-            <p>※We are based in Tokyo and work remotely around the world.</p>
+            <p>NavSwap is the operating system for battery swapping.</p>
             <p className="mt-4">
               9-1-7-10F Akasaka, Minato-ku, Tokyo<br />
               107-0052 Japan
@@ -42,14 +42,14 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col space-y-4">
-          <div className="text-[10px] font-medium tracking-[0.1em] uppercase opacity-50">Awards</div>
+          <div className="text-[10px] font-medium tracking-[0.1em] uppercase opacity-50">Platform</div>
           <ul className="text-[14px] leading-relaxed space-y-1">
-            <li>CANNES LIONS</li>
-            <li>D&AD</li>
-            <li>ONE SHOW</li>
-            <li>IF DESIGN AWARD</li>
-            <li>ACC TOKYO CREATIVITY AWARDS</li>
-            <li>JAPAN MEDIA ARTS FESTIVAL</li>
+            <li>DECISION ENGINE</li>
+            <li>SMART ROUTING</li>
+            <li>DEMAND PREDICTION</li>
+            <li>GRID SYNC</li>
+            <li>ZERO DOWN</li>
+            <li>URBAN PULSE</li>
           </ul>
         </div>
 
@@ -66,7 +66,7 @@ export default function Footer() {
       {/* Bottom Copyright bar */}
       <div className="w-full pt-10 border-t border-foreground/10 flex flex-col md:row justify-between items-start md:items-center space-y-4 md:space-y-0">
         <div className="text-[10px] font-medium tracking-[0.1em] uppercase">
-          © THE SHIFT ALL RIGHTS RESERVED.
+          © NAV SWAP ALL RIGHTS RESERVED.
         </div>
         
         <div className="flex items-center space-x-6">

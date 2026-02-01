@@ -99,7 +99,7 @@ export function StationCard({ station }: StationCardProps) {
   const statusBorder = isHealthy ? "border-emerald-500/20" : isAtRisk ? "border-amber-500/20" : "border-red-500/20";
 
   return (
-    <div className="group relative bg-zinc-950 border border-zinc-800/60 rounded-3xl p-6 transition-all duration-300 hover:border-zinc-700/80 shadow-sm hover:shadow-md h-full flex flex-col">
+    <div className="group relative bg-zinc-950 border border-zinc-800/60 rounded-3xl p-5 transition-all duration-300 hover:border-zinc-700/80 shadow-sm hover:shadow-md h-full flex flex-col">
       {/* Header Section */}
       <div className="flex justify-between items-start mb-6">
         <div>
@@ -162,9 +162,9 @@ export function StationCard({ station }: StationCardProps) {
 
       {/* Footer Prediction & Score & Actions */}
       <div className="mt-auto flex flex-col gap-3">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <div className={cn(
-            "flex-1 rounded-2xl p-4 flex items-center gap-3 border transition-colors",
+            "flex-1 min-w-0 rounded-2xl p-3 flex items-center gap-3 border transition-colors",
             "bg-zinc-900/50 border-zinc-800/50"
           )}>
             <div className={cn("w-2 h-2 rounded-full shrink-0", isHealthy ? "bg-emerald-500" : "bg-amber-500")} />
@@ -174,7 +174,7 @@ export function StationCard({ station }: StationCardProps) {
           </div>
           
           {scoreValue && (
-            <div className="rounded-2xl p-4 border bg-zinc-900/50 border-zinc-800/50 flex flex-col items-center justify-center min-w-[80px]">
+            <div className="rounded-2xl p-3 border bg-zinc-900/50 border-zinc-800/50 flex flex-col items-center justify-center min-w-[70px]">
                <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Score</span>
                <div className="flex items-baseline gap-1">
                  <span className="text-lg font-bold text-white">{scoreValue}</span>

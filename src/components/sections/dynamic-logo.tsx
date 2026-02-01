@@ -37,15 +37,12 @@ const DynamicLogoSection = () => {
     <div className="section section-logo w-full px-[5vw] py-[15vh] lg:py-[20vh] bg-background">
       <div className="body thin max-w-[1200px] mx-auto">
         {/* Fragmented Logo Container */}
-        <div className="relative w-full aspect-[1200/537] mb-12 lg:mb-20 overflow-hidden bg-secondary">
-          <div className="absolute inset-0 z-0">
-             <Image 
-                src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6bc7a0c9-6ab9-43bc-bc40-41f533897bdc-theshift-tokyo/assets/images/logo-1200x537_png-5.webp"
-                alt="THE SHIFT LOGO"
-                fill
-                className="object-contain opacity-30 grayscale"
-                priority
-             />
+        <div className="relative w-full aspect-[1200/537] mb-12 lg:mb-20 overflow-hidden bg-secondary flex items-center justify-center">
+          <div className="absolute inset-0 z-0 flex items-center justify-center">
+             {/* Text Logo Replacement */}
+             <div className="font-sans font-bold text-[15vw] leading-none tracking-tighter opacity-10 text-foreground select-none">
+               NAVSWAP
+             </div>
           </div>
           
           {/* Fragment Overlay Grid */}
@@ -55,14 +52,29 @@ const DynamicLogoSection = () => {
                  {/* Visual glitch/fragment effect simulation */}
                  <div className="text-[10px] font-sans opacity-20 absolute top-2 right-2 text-foreground">( {num} )</div>
                  <div 
-                    className="w-full h-full bg-no-repeat grayscale"
+                    className="w-full h-full bg-no-repeat flex items-center justify-center overflow-hidden"
                     style={{
-                        backgroundImage: `url('https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6bc7a0c9-6ab9-43bc-bc40-41f533897bdc-theshift-tokyo/assets/images/logo-1200x537_png-5.webp')`,
-                        backgroundSize: '1200px 537px',
-                        backgroundPosition: `${(idx % 6) * -200}px ${Math.floor(idx / 6) * -268}px`,
                         filter: `contrast(${100 + num * 5}%) brightness(${90 + num}%)`
                     }}
-                 />
+                 >
+                    {/* Fragmented Text Part */}
+                    <div 
+                      className="font-sans font-bold text-[15vw] leading-none tracking-tighter text-foreground whitespace-nowrap"
+                      style={{
+                        transform: `translate(${(idx % 6) * -16.66}%, ${(Math.floor(idx / 6) * -50)}%) scale(1.0)`,
+                        width: '600%', // 6 columns
+                        height: '200%', // 2 rows
+                        position: 'absolute',
+                        left: 0,
+                        top: 0,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      }}
+                    >
+                      NAVSWAP
+                    </div>
+                 </div>
               </div>
             ))}
           </div>
@@ -70,11 +82,11 @@ const DynamicLogoSection = () => {
           {/* Time indicator overlay */}
           <div className="absolute bottom-4 right-4 z-20 flex space-x-1">
             {logoGridNumbers.slice(0, 12).map((n, i) => (
-                <div key={i} className="text-[10px] font-mono leading-none border-x border-foreground/20 px-1 overflow-hidden h-[12px] text-foreground">
-                    <div className="flex flex-col transition-transform duration-500" style={{ transform: `translateY(-${n * 12}px)` }}>
-                        {[0,1,2,3,4,5,6,7,8,9].map(num => <div key={num} className="h-[12px]">{num}</div>)}
-                    </div>
-                </div>
+              <div key={i} className="text-[10px] font-mono leading-none border-x border-foreground/20 px-1 overflow-hidden h-[12px] text-foreground">
+                  <div className="flex flex-col transition-transform duration-500" style={{ transform: `translateY(-${n * 12}px)` }}>
+                      {[0,1,2,3,4,5,6,7,8,9].map(num => <div key={num} className="h-[12px]">{num}</div>)}
+                  </div>
+              </div>
             ))}
           </div>
         </div>
@@ -90,7 +102,7 @@ const DynamicLogoSection = () => {
               <div className="reveal-item active">
                 <div className="clock flex flex-col items-start">
                   <div className="clock-th font-sans text-[10px] uppercase tracking-[0.1em] font-medium mb-1">
-                    NEXT SHIFT
+                    NEXT SWAP
                   </div>
                   <div className="clock-tb font-sans text-[24px] font-bold tabular-nums tracking-wider flex items-center">
                     <span className="h">{timeLeft.h}</span>

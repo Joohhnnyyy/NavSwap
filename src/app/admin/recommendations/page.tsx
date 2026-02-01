@@ -322,11 +322,11 @@ export default function RecommendationsPage() {
                        <div className="mt-4 grid grid-cols-2 gap-4">
                          <div className="p-4 rounded-xl bg-zinc-800/30 border border-zinc-800/50">
                             <p className="text-xs text-zinc-500 uppercase font-bold mb-1">Confidence Score</p>
-                            <p className="text-2xl font-bold text-white">94.2%</p>
+                            <p className="text-2xl font-custom text-white">94.2%</p>
                          </div>
                          <div className="p-4 rounded-xl bg-zinc-800/30 border border-zinc-800/50">
                             <p className="text-xs text-zinc-500 uppercase font-bold mb-1">Data Points</p>
-                            <p className="text-2xl font-bold text-white">12.5k</p>
+                            <p className="text-2xl font-custom text-white">12.5k</p>
                          </div>
                        </div>
                     </motion.div>

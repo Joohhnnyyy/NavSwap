@@ -15,61 +15,72 @@ interface Project {
 const projects: Project[] = [
   {
     id: "01",
-    title: "IPSA AQUA PLAY ART",
-    videoSrc: "http://ec2-52-89-235-59.us-west-2.compute.amazonaws.com:8004/stream/video1.mp4",
-    posterSrc: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6bc7a0c9-6ab9-43bc-bc40-41f533897bdc-theshift-tokyo/assets/images/ipsa_aqua_play_art-home-slider-3x5_jpg-1.webp",
-    url: "/project/ipsa_aqua_play_art/",
+    title: "NavSwap Infrastructure",
+    videoSrc: "https://d17292ff19wl6v.cloudfront.net/v2/wp/wp-content/uploads/2024/02/19164149/BBF-Instagram-post-4_1.mp4",
+    posterSrc: "",
+    url: "/project/navswap-infra",
   },
   {
     id: "02",
-    title: "BBF Gate System Video",
-    videoSrc: "http://ec2-52-89-235-59.us-west-2.compute.amazonaws.com:8004/stream/video2.mp4",
-    posterSrc: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6bc7a0c9-6ab9-43bc-bc40-41f533897bdc-theshift-tokyo/assets/images/BBF-gate-design-5x3_jpg-2.webp",
-    url: "/project/bbf-gate-system-vid/",
+    title: "Battery Swapping Tech",
+    videoSrc: "https://d17292ff19wl6v.cloudfront.net/v2/wp/wp-content/uploads/2022/05/19141516/Untitled.mp4",
+    posterSrc: "",
+    url: "/project/battery-tech",
   },
   {
     id: "03",
-    title: "Level of Distance",
-    videoSrc: "http://ec2-52-89-235-59.us-west-2.compute.amazonaws.com:8004/stream/video3.mp4",
-    posterSrc: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6bc7a0c9-6ab9-43bc-bc40-41f533897bdc-theshift-tokyo/assets/images/level-of-distance-home-slider-5x3_jpg-3.webp",
-    url: "/project/level-of-distance/",
+    title: "Urban Energy Pulse",
+    videoSrc: "https://d17292ff19wl6v.cloudfront.net/v2/wp/wp-content/uploads/2023/02/09190304/Vid-1.mp4",
+    posterSrc: "",
+    url: "/project/urban-energy",
   },
   {
     id: "04",
-    title: "SHIFT LINK",
-    videoSrc: "http://ec2-52-89-235-59.us-west-2.compute.amazonaws.com:8004/stream/video4.mp4",
-    posterSrc: "", 
-    url: "/project/shift_link/",
-  },
-  {
-    id: "05",
-    title: "kolor PARIS Collection",
-    videoSrc: "http://ec2-52-89-235-59.us-west-2.compute.amazonaws.com:8004/stream/video5.mp4",
+    title: "Smart Grid Visualization",
+    videoSrc: "https://d17292ff19wl6v.cloudfront.net/v2/wp/wp-content/uploads/2022/07/23125244/rainbow-2.mp4",
     posterSrc: "",
-    url: "/project/kolor-paris-collection/",
-  },
-  {
-    id: "06",
-    title: "Coca-Cola coke vision",
-    videoSrc: "http://ec2-52-89-235-59.us-west-2.compute.amazonaws.com:8004/stream/video6.mp4",
-    posterSrc: "",
-    url: "/project/co-ca-cola-coke-vision/",
-  },
-  {
-    id: "07",
-    title: "Project 7",
-    videoSrc: "http://ec2-52-89-235-59.us-west-2.compute.amazonaws.com:8004/stream/video7.mp4",
-    posterSrc: "",
-    url: "/project/project-7/",
-  },
-  {
-    id: "08",
-    title: "Project 8",
-    videoSrc: "http://ec2-52-89-235-59.us-west-2.compute.amazonaws.com:8004/stream/video8.mov",
-    posterSrc: "",
-    url: "/project/project-8/",
+    url: "/project/smart-grid",
   },
 ];
+
+const VideoSlide = ({ project, isActive }: { project: Project; isActive: boolean }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isActive) {
+      video.currentTime = 0;
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          console.error("Video play failed:", error);
+        });
+      }
+    } else {
+      video.pause();
+    }
+  }, [isActive]);
+
+  return (
+    <div
+      className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+        isActive ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+      }`}
+    >
+      <video
+        ref={videoRef}
+        src={project.videoSrc}
+        muted
+        loop
+        playsInline
+        preload="auto"
+        className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-[2s] opacity-80 group-hover:opacity-100"
+      />
+    </div>
+  );
+};
 
 const HeroSection: React.FC = () => {
   const [time, setTime] = useState({ h: "00", m: "00", s: "00" });
@@ -215,7 +226,7 @@ const HeroSection: React.FC = () => {
              <div className="relative group">
                 {/* Label */}
                 <div className="absolute right-0 top-20 text-[10px] tracking-[0.2em] uppercase text-muted-foreground z-40 transition-transform duration-700 ease-out translate-y-[60%] group-hover:translate-y-[40%]">
-                    PROJECTS
+                    INNOVATION 
                 </div>
 
                 {/* Pagination - Left of window */}
@@ -244,22 +255,11 @@ const HeroSection: React.FC = () => {
                     {/* Videos with Crossfade */}
                     <div className="absolute inset-0 bg-black">
                         {projects.map((project, index) => (
-                            <div
-                                key={project.id}
-                                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                                    index === currentIndex ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-                                }`}
-                            >
-                                <video
-                                    src={project.videoSrc}
-                                    autoPlay
-                                    muted
-                                    loop
-                                    playsInline
-                                    crossOrigin="anonymous"
-                                    className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-[2s] opacity-80 group-hover:opacity-100"
-                                />
-                            </div>
+                            <VideoSlide 
+                                key={project.id} 
+                                project={project} 
+                                isActive={index === currentIndex} 
+                            />
                         ))}
                     </div>
                 </div>
@@ -307,7 +307,7 @@ const HeroSection: React.FC = () => {
         }
         .c .t {
           display: inline-block;
-          animation: slideUpChar 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          animation: slideUpChar 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
           transform: translateY(110%);
         }
         @keyframes slideUpChar {

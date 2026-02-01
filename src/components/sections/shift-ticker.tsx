@@ -11,13 +11,13 @@ import Marquee from "react-fast-marquee";
  */
 const ShiftTicker: React.FC = () => {
   const tickerItems = [
-    "SHIFT THE WORLD",
-    "SHIFT THE DESIGN",
-    "SHIFT THE TECHNOLOGY",
-    "SHIFT THE PERSPECTIVE",
-    "SHIFT THE CREATIVE",
-    "SHIFT THE CULTURE",
-    "SHIFT THE FUTURE"
+    "NAVIGATE THE FUTURE",
+    "SWAP THE BATTERY",
+    "OPTIMIZE THE ENERGY",
+    "POWER THE GRID",
+    "DRIVE THE CHANGE",
+    "SMART INFRASTRUCTURE",
+    "AI DECISION ENGINE"
   ];
 
   return (

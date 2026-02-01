@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -29,6 +30,9 @@ const steps = [
   },
 ];
 
+import TerritoryFooter from "@/components/sections/territory-footer";
+import { FadeInSection } from "@/components/ui/fade-in-section";
+
 export default function AdminRegistrationPage() {
   return (
     <div className="min-h-screen w-full bg-background text-foreground flex flex-col">
@@ -44,24 +48,41 @@ export default function AdminRegistrationPage() {
       </header>
 
       {/* Main Content */}
-      <div className="flex-1 flex items-center justify-center p-4 pt-24">
+      <main className="flex-1 flex items-center justify-center p-4 pt-24 pb-24">
         <AdminStepper />
-      </div>
+      </main>
+      
+      <FadeInSection>
+        <TerritoryFooter />
+      </FadeInSection>
     </div>
   );
 }
 
 function AdminStepper() {
+  const router = useRouter();
   const [activeStep, setActiveStep] = useState(0);
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
   const [form, setForm] = useState<any>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (activeStep < steps.length - 1) {
       setActiveStep(activeStep + 1);
     } else {
         // Handle submit
+        if (isSubmitting) return;
+        setIsSubmitting(true);
         console.log("Form submitted:", form);
+        
+        // Small delay to allow state updates to settle before navigation
+        setTimeout(() => {
+          try {
+             window.location.href = "/admin";
+          } catch (e) {
+             console.error("Navigation error:", e);
+          }
+        }, 100);
     }
   };
 
@@ -116,7 +137,7 @@ function AdminStepper() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="absolute inset-0 flex items-center justify-center z-10 overflow-hidden"
+                className="absolute inset-0 flex items-center font-custom justify-center z-10 overflow-hidden"
               >
                 <TextRoll
                   active={hoveredStep === index}
@@ -164,15 +185,21 @@ function AdminStepper() {
                     </div>
 
                     <button
+                      type="button"
+                      disabled={isSubmitting}
                       onClick={(e) => {
+                        e.preventDefault();
                         e.stopPropagation();
                         handleNext();
                       }}
-                      className="mt-4 w-full rounded-xl bg-primary px-4 py-3 text-sm font-medium text-primary-foreground transition hover:opacity-90 uppercase tracking-widest"
+                      className={cn(
+                        "mt-4 w-full rounded-xl bg-primary px-4 py-3 text-sm font-medium text-primary-foreground transition hover:opacity-90 uppercase tracking-widest",
+                        isSubmitting && "opacity-50 cursor-not-allowed"
+                      )}
                     >
-                      {index === steps.length - 1
+                      {isSubmitting ? "Processing..." : (index === steps.length - 1
                         ? "Submit Application"
-                        : "Continue"}
+                        : "Continue")}
                     </button>
                   </motion.div>
                 )}

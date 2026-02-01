@@ -44,7 +44,7 @@ const AboutConcept: React.FC = () => {
           {/* Main Lead Paragraph */}
           <div className="mb-[8vh] lg:max-w-[70vw]">
             <p className="font-lead text-secondary-foreground text-[24px] md:text-[32px] lg:text-[40px] leading-[1.4] font-medium">
-              The Shift is a creative collective based in Tokyo. We provide new perspectives and solutions to our users.
+              NavSwap is the operating system for battery swapping infrastructure. We provide the digital backbone for sustainable urban mobility.
             </p>
           </div>
 
@@ -56,7 +56,7 @@ const AboutConcept: React.FC = () => {
             {/* Right detailed column */}
             <div className="description-text">
               <p className="font-sans text-[1rem] leading-[1.8] tracking-[0.02em] text-secondary-foreground">
-                We are a creative collective that connects creators and artists with various specialties in Japan and abroad, and we are engaged in projects that transcend the boundaries of technology, design, science, and creativity to &quot;shift&quot; things. We will continue to work on projects and research to &quot;shift&quot; different things around the world.
+                We are an AI-powered platform that connects energy grids, battery stations, and vehicles with intelligent decision engines. We transcend the boundaries of physical infrastructure and digital intelligence to optimize the flow of energy. We will continue to build the future of smart transportation and sustainable cities.
               </p>
             </div>
           </div>

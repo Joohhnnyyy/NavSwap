@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { GripHorizontal } from "lucide-react";
 import { useTheme } from "next-themes";
 import React, { useCallback, useEffect, useState } from "react";
+import { flushSync } from "react-dom";
 
 import { cn } from "@/lib/utils";
 
@@ -501,7 +502,11 @@ export const useThemeToggle = ({
       return;
     }
 
-    document.startViewTransition(switchTheme);
+    document.startViewTransition(() => {
+      flushSync(() => {
+        switchTheme();
+      });
+    });
   }, [
     theme,
     setTheme,
@@ -532,7 +537,11 @@ export const useThemeToggle = ({
       return;
     }
 
-    document.startViewTransition(switchTheme);
+    document.startViewTransition(() => {
+      flushSync(() => {
+        switchTheme();
+      });
+    });
   }, [setTheme, variant, start, blur, gifUrl, updateStyles, setIsDark]);
 
   const setCrazyDarkTheme = useCallback(() => {
@@ -553,7 +562,11 @@ export const useThemeToggle = ({
       return;
     }
 
-    document.startViewTransition(switchTheme);
+    document.startViewTransition(() => {
+      flushSync(() => {
+        switchTheme();
+      });
+    });
   }, [setTheme, variant, start, blur, gifUrl, updateStyles, setIsDark]);
 
   const setCrazySystemTheme = useCallback(() => {
@@ -578,7 +591,11 @@ export const useThemeToggle = ({
       return;
     }
 
-    document.startViewTransition(switchTheme);
+    document.startViewTransition(() => {
+      flushSync(() => {
+        switchTheme();
+      });
+    });
   }, [setTheme, variant, start, blur, gifUrl, updateStyles, setIsDark]);
 
   return {
