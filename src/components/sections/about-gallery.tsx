@@ -11,11 +11,11 @@ const AboutGallery = () => {
   }[] = [];
 
   return (
-    <section className="section section-gallery py-[15vh] bg-secondary text-secondary-foreground" data-scroll-section>
+    <section className="section section-gallery py-[15vh] bg-secondary dark:bg-[#050505] text-secondary-foreground dark:text-white" data-scroll-section>
       <div className="container">
         {/* Section Header */}
         <div className="mb-12">
-          <div className="flex justify-between items-end border-b border-foreground pb-4">
+          <div className="flex justify-between items-end border-b border-foreground dark:border-white pb-4">
             <h2 className="text-[1.5rem] font-bold tracking-[0.1em] uppercase font-sans">
               GALLERY
             </h2>
@@ -51,7 +51,7 @@ const AboutGallery = () => {
         {/* Additional Grid Context */}
         <div className="mt-20 grid grid-cols-12 gap-8 items-start">
           <div className="col-span-12 md:col-span-4">
-            <div className="h-[1px] w-full bg-foreground mb-8" />
+            <div className="h-[1px] w-full bg-foreground dark:bg-white mb-8" />
             <p className="text-[10px] uppercase tracking-widest font-medium opacity-60">
               NavSwap Infrastructure Portfolio
             </p>

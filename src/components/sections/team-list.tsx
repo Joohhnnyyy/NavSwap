@@ -11,53 +11,35 @@ interface TeamMember {
 
 const teamMembers: TeamMember[] = [
   {
-    name: "Toshiyuki Hashimoto",
-    role: "Creative Producer / Director",
-    bio: "Founder of the creative studio \"aircord\". Launched \"NavSwap\" in 2020, blurring the boundaries between technology, design, science, and creativity. Has won numerous awards, including Cannes Lions, iF Design, D&AD, and One Show. Has worked on a range of projects, such as opening event of Japan’s New National Stadium ”ONE RACE”, Nissan's concept car, the \"NISSAN IMx Demonstrator Experience\", the NYC MoMA \"Talk to Me\". Lives in Tokyo."
+    name: "Ansh Johnson",
+    role: "Frontend Designer",
+    bio: "B.Tech Computer Science & Engineering student with strong hands-on experience in AI, machine learning, and full-stack web development. Focused on building real-world, production-ready products and crafting high-quality frontends with smooth, intuitive UI/UX. Deeply drawn to product engineering where technology, design, and user needs intersect."
   },
   {
-    name: "Jiyu Park",
-    role: "Creative Junior / Art Director",
-    bio: "Joined NavSwap in 2020 and studied Lifestyle Transformation Design at Willem de Kooning Academy in the Netherlands. Focuses on creating concepts of projects as well as translating the concept into a visualization through various mediums. Has participated in exhibitions in Natuurhistorisch Museum Rotterdam and Het Nieuwe Instituut as well as designing NavSwap Branding. Lives in Busan, Korea."
+    name: "Nandika Gupta",
+    role: "Agentic AI Developer & Architecture",
+    bio: "B.Tech student in Artificial Intelligence, passionate about using technology to enhance well-being and build accessible, human-centered digital experiences. Focused on exploring meaningful applications of AI that improve everyday life and make interactions with technology more intuitive and trustworthy."
   },
   {
-    name: "Mika Hirata",
-    role: "Junior Designer",
-    bio: "Joined NavSwap in 2021 and is a graduate of OCAD University in Toronto. Primarily focuses in the research and 3D modeling/animation. Constantly trying to evolve visual design skills and integrate them with technical methods of problem solving and understanding. Has worked with Maple Leafs Sports and Entertainment as a Jr.Designer and C(group as a graphic design intern. Lives in Toronto.",
-    website: "https://www.mikahirata.com/"
+    name: "Akshat Arya",
+    role: "Agentic AI Developer & Architecture",
+    bio: "B.Tech Computer Science & Engineering student passionate for AI, ML, Generative AI, Agentic AI, and Cybersecurity. Co-developed Galaxy PowerAI – a proactive on-device AI guardian for Android – recognized as a Top 5 Finalist at the Samsung EnnovateX 2025 AI Challenge. Aims to build secure, robust, and human-centric AI solutions."
   },
   {
-    name: "YIFAN ZHUANG",
-    role: "Interaction Designer / Researcher",
-    bio: "Joined NavSwap in 2022. Received her Master’s degree in Human-Computer Interaction(HCI) at the Graduate School of Media Design, Keio University. With intense curiosity about Existentialism and digital physics, she started her journey of exploring the boundaries between what is Real and Virtual as an interaction designer and HCI researcher. Her wearable emotive device — Emolleia was accepted by the international conference TEI 2022. Lives in Tokyo.",
-    website: "https://yifanzhuang.com/"
+    name: "Madhur Prakash",
+    role: "Backend & DevOps",
+    bio: "Backend engineer expanded into full-stack development, designing functional, scalable, user-friendly, and secure applications. Experienced in system architecture, data modeling, and authentication systems. Focuses on building resilient, future-ready solutions that ensure both performance and data integrity."
   },
   {
-    name: "Shoya Dozono",
-    role: "Interaction Designer / Researcher",
-    bio: "Joined NavSwap in 2022. IAMAS Graduate. Working in cross-disciplinary design and research using data, algorithms, and machine learning. Recent projects include video design for Ms. Lauryn Hill concerts, a project with Hiromasa Fukaji called 4D DRAWING, and Quasicrystal, an R&D project with Kyoto-based textile company HOSOO. Recipient of numerous awards including those from Ars Electronica and the Japan Media Arts Festival. Lives in Tokyo.",
-    website: "https://shoyadozono.com/"
-  },
-  {
-    name: "Maho Ishizaka",
-    role: "Composer",
-    bio: "Studied at Tokyo University of the Arts, received her bachelor's and master's degrees in composition. As part of the process of composition and sound production, she explores the possibility of using AI to assist humans and expand their capabilities. Her goal is to create sounds that harmonize with the images of visuals and other content. In addition to composing and arranging music, she also performs and teaches music. 2018-20: Teaching and Research Assistant, Department of Composition, Faculty of Music, Tokyo University of the Arts. Lives in São Paulo."
-  },
-  {
-    name: "Kai Couts",
-    role: "Intern",
-    bio: "Studied design at Chiba University. Joined NavSwap in 2023 as an intern. Assisting in various creative research and production tasks while exploring the intersection of traditional craftsmanship and digital workflows."
-  },
-  {
-    name: "Giulia Principe",
-    role: "Interaction Designer",
-    bio: "Giulia Principe, born in Naples, lived in the UK to study Filmmaking, then moved to Amsterdam where she graduated Game Design at SAE Institute. Currently working as a VFX and post production lecturer at United POP Academy, as a freelance designer and VR Operator at EYE Filmmuseum. Giulia’s work explores the relationship between analog and digital graphics, from photography to interactive animation, coding and 3D printing. Co-founder of Xposed Lab Studio at NDSM Treehouse. Collaborated with NavSwap in BorderLESS"
+    name: "Nidhi Singh",
+    role: "App Developer",
+    bio: "App Developer of NavSwap, focused on making electric mobility faster and more accessible. Builds intuitive mobile experiences using Flutter, translating complex systems into smooth, user-friendly applications. Passionate about creating impactful tech solutions at the intersection of AI, mobility, and real-world problem solving."
   }
 ];
 
 const TeamList = () => {
   return (
-    <section className="bg-secondary text-secondary-foreground pb-24 lg:pb-40 px-[5vw]">
+    <section className="bg-secondary dark:bg-[#050505] text-secondary-foreground dark:text-white pb-24 lg:pb-40 px-[5vw]">
       <div className="container mx-auto">
         {/* Title Spacing */}
         <div className="h-[15vh]"></div>
@@ -71,7 +53,7 @@ const TeamList = () => {
 
         {/* Section Divider with (04) label style as per design patterns */}
         <div className="relative w-full mb-12 lg:mb-20">
-          <div className="h-[1px] w-full bg-foreground"></div>
+          <div className="h-[1px] w-full bg-foreground/20 dark:bg-white/20"></div>
           <div className="absolute top-2 right-0 font-sans text-[10px] flex items-center">
             <span className="opacity-40">(</span>
             <span className="px-0.5 font-bold">04</span>
@@ -83,7 +65,7 @@ const TeamList = () => {
         <div className="w-full">
           <ul className="flex flex-col">
             {teamMembers.map((member, index) => (
-              <li key={index} className="group border-b border-foreground">
+              <li key={index} className="group border-b border-foreground/20 dark:border-white/20">
                 <div className="grid grid-cols-1 lg:grid-cols-12 py-10 lg:py-16 gap-y-6 lg:gap-y-0">
                   {/* Left Column: Name */}
                   <div className="lg:col-span-4">
@@ -100,7 +82,7 @@ const TeamList = () => {
                     </div>
 
                     {/* Bio */}
-                    <div className="text-[15px] lg:text-[16px] font-sans leading-relaxed text-black/90 font-normal">
+                    <div className="text-[15px] lg:text-[16px] font-sans leading-relaxed text-foreground/90 dark:text-white/90 font-normal">
                       <p>
                         {member.bio}
                         {member.website && (
@@ -108,7 +90,7 @@ const TeamList = () => {
                             href={member.website} 
                             target="_blank" 
                             rel="noopener noreferrer" 
-                            className="inline-flex items-center ml-2 border-b border-black hover:opacity-50 transition-opacity"
+                            className="inline-flex items-center ml-2 border-b border-foreground dark:border-white hover:opacity-50 transition-opacity"
                           >
                             →Website
                           </a>
