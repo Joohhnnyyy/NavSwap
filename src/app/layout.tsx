@@ -36,6 +36,7 @@ export const metadata: Metadata = {
 
 import { ThemeProvider } from "@/components/theme-provider";
 import StairsPreloader from "@/components/preloader/stairs-preloader";
+import { Toaster } from "sonner";
 
 export default function RootLayout({
   children,
@@ -52,6 +53,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <StairsPreloader />
+          <Toaster position="bottom-right" theme="dark" />
         <Script
           id="orchids-browser-logs"
           src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/scripts/orchids-browser-logs.js"

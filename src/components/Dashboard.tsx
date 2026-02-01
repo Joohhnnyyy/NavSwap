@@ -23,6 +23,7 @@ import {
   submitRecommendationRequest, selectRecommendation, feedbackRecommendation
 } from '@/lib/api';
 import { getDashboardInsights, getAnalysisAndRecommendations } from '@/lib/map/geminiService';
+import { toast } from 'sonner';
 
 // Reuse data for chart
 const MOCK_DATA = [
@@ -115,7 +116,9 @@ export default function Dashboard() {
     setActionLoading(true);
     try {
       await alertDelivery({ stationId: 'demo-station-1', driverCount: 3 });
-      alert("Delivery Alert Broadcasted!");
+      toast.success("Delivery Alert Broadcasted!", {
+        description: "All nearby stations have been notified.",
+      });
     } catch (e) {
       console.error("Failed to alert delivery", e);
     } finally {
@@ -136,7 +139,9 @@ export default function Dashboard() {
         status: 'open'
       };
       setTickets(prev => [newTicket, ...prev]);
-      alert("Fault Reported (Mock)");
+      toast.error("Fault Reported", {
+        description: "Maintenance team has been dispatched.",
+      });
     } catch (e) {
       console.error("Failed to report fault", e);
     } finally {
@@ -157,7 +162,9 @@ export default function Dashboard() {
         status: 'open'
       };
       setTickets(prev => [newTicket, ...prev]);
-      alert("Ticket created (Mock)");
+      toast.success("Ticket Created", {
+        description: "Support ticket has been generated.",
+      });
     } catch (e) {
       console.error("Failed to create ticket", e);
       // Fallback for demo/error
@@ -169,7 +176,9 @@ export default function Dashboard() {
         status: 'open'
       };
       setTickets(prev => [newTicket, ...prev]);
-      alert("Ticket created (Demo Mode - Backend Unreachable)");
+      toast.success("Ticket Created (Demo)", {
+        description: "Backend unreachable, running in demo mode.",
+      });
     } finally {
       setActionLoading(false);
     }
@@ -193,11 +202,15 @@ export default function Dashboard() {
         message: 'Reroute instruction: Proceed to Sector 7 for load balancing',
         priority: 'high' 
       });
-      alert("Reroute command broadcasted to 12 active drivers.");
+      toast.info("Route Optimization Complete", {
+        description: "Reroute command broadcasted to 12 active drivers.",
+      });
     } catch (e) {
       console.error("Failed to reroute drivers", e);
       // Fallback for demo
-      alert("Reroute command broadcasted to 12 active drivers (Demo).");
+      toast.info("Route Optimization Complete (Demo)", {
+        description: "Reroute command broadcasted to 12 active drivers.",
+      });
     } finally {
       setActionLoading(false);
     }
@@ -230,7 +243,9 @@ export default function Dashboard() {
           setRecommendations(result.recommendations);
         }
         
-        alert("AI Analysis Complete: New Insights & Recommendations Generated");
+        toast.success("AI Analysis Complete", {
+          description: "New insights & recommendations have been generated.",
+        });
       }
     } catch (e) {
       console.error("Analysis failed", e);
@@ -239,7 +254,9 @@ export default function Dashboard() {
         const shuffled = [...prev].sort(() => Math.random() - 0.5);
         return shuffled;
       });
-      alert("Analysis Updated (Fallback Mode)");
+      toast.warning("Analysis Updated (Fallback Mode)", {
+        description: "Unable to connect to AI service. Displaying cached insights.",
+      });
     } finally {
        setActionLoading(false);
      }
@@ -250,22 +267,30 @@ export default function Dashboard() {
       // Mock station selection since recommendation object doesn't carry stationId explicitly
       await selectRecommendation(id, 'station-04');
       setRecommendations(prev => prev.filter(r => r.id !== id));
-      alert("Recommendation Accepted & Applied");
+      toast.success("Recommendation Applied", {
+        description: "System parameters have been updated.",
+      });
     } catch (e) {
       console.error("Failed to select recommendation", e);
       // Fallback
       setRecommendations(prev => prev.filter(r => r.id !== id));
-      alert("Recommendation Accepted (Demo)");
+      toast.success("Recommendation Applied (Demo)", {
+        description: "System parameters have been updated.",
+      });
     }
   };
 
   const handleFeedbackRecommendation = async (id: string, type: 'modify' | 'escalate') => {
     try {
       await feedbackRecommendation(id, { type, comment: "User feedback from dashboard" });
-      alert(`Feedback Recorded: ${type.toUpperCase()}`);
+      toast.success("Feedback Recorded", {
+        description: `You marked this as ${type}.`,
+      });
     } catch (e) {
       console.error("Failed to submit feedback", e);
-       alert(`Feedback Recorded: ${type.toUpperCase()} (Demo)`);
+      toast.success("Feedback Recorded (Demo)", {
+        description: `You marked this as ${type}.`,
+      });
     }
   };
  
