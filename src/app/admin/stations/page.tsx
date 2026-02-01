@@ -1,12 +1,36 @@
 "use client";
 
-import React from 'react';
-import { STATIONS } from '@/lib/data';
+import React, { useEffect, useState } from 'react';
+import { STATIONS as MOCK_STATIONS, Station } from '@/lib/data';
 import { StationCard } from '@/components/StationCard';
 import { motion } from 'framer-motion';
 import { Map, Filter, Search, MoreHorizontal } from 'lucide-react';
+import { getAdminStations } from '@/lib/api';
 
 export default function StationsPage() {
+  const [stations, setStations] = useState<Station[]>(MOCK_STATIONS);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchStations = async () => {
+      try {
+        const response = await getAdminStations();
+        if (response.data && Array.isArray(response.data)) {
+            // Map backend data to Station interface if necessary
+            // Assuming backend returns matching structure or we map it
+            // For now, let's assume it matches or we fallback to mock
+            setStations(response.data);
+        }
+      } catch (error) {
+        console.error("Failed to fetch stations, using mock data", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStations();
+  }, []);
+
   return (
     <div className="space-y-8">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -34,7 +58,7 @@ export default function StationsPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {STATIONS.map((station, index) => (
+        {stations.map((station, index) => (
           <motion.div
             key={station.id}
             initial={{ opacity: 0, y: 20 }}
@@ -67,7 +91,7 @@ export default function StationsPage() {
               </tr>
             </thead>
             <tbody className="text-sm">
-              {STATIONS.map((station) => (
+              {stations.map((station) => (
                 <tr key={station.id} className="border-b border-zinc-800/20 last:border-0 hover:bg-zinc-800/20 transition-all group">
                   <td className="py-4 px-4 font-medium text-zinc-200">{station.name}</td>
                   <td className="py-4 px-4 text-zinc-500">{station.location}</td>

@@ -30,6 +30,18 @@ const nextConfig: NextConfig = {
   //     }
   //   }
   // }
+  async rewrites() {
+    return [
+      {
+        source: '/api/proxy/gateway/:path*',
+        destination: 'http://ec2-52-89-235-59.us-west-2.compute.amazonaws.com:3000/:path*',
+      },
+      {
+        source: '/api/proxy/recommendation/:path*',
+        destination: 'http://ec2-52-89-235-59.us-west-2.compute.amazonaws.com:3002/:path*',
+      },
+    ];
+  },
 };
 
 export default nextConfig;

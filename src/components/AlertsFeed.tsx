@@ -6,12 +6,14 @@
  import { motion, AnimatePresence } from 'framer-motion'; 
  
  interface AlertsFeedProps { 
-   recommendations: Recommendation[]; 
- } 
- 
- export const AlertsFeed = ({ recommendations }: AlertsFeedProps) => { 
-   return ( 
-     <div className="space-y-4"> 
+  recommendations: Recommendation[];
+  onSelect?: (id: string) => void;
+  onFeedback?: (id: string, type: 'modify' | 'escalate') => void;
+} 
+
+export const AlertsFeed = ({ recommendations, onSelect, onFeedback }: AlertsFeedProps) => { 
+  return ( 
+    <div className="space-y-4"> 
        <div className="flex items-center justify-between mb-2"> 
          <h2 className="text-lg font-bold text-white tracking-tight">AI Recommendation Feed</h2> 
          <span className="px-2 py-0.5 bg-blue-500/10 text-blue-500 text-[10px] font-bold rounded-full border border-blue-500/20">LIVE</span> 
@@ -57,16 +59,22 @@
                </div> 
  
                <div className="grid grid-cols-3 gap-2"> 
-                 <button className="py-2 px-3 bg-blue-600 hover:bg-blue-500 text-white text-[10px] font-bold rounded-lg transition-all shadow-lg shadow-blue-600/10"> 
-                   ACCEPT 
-                 </button> 
-                 <button className="py-2 px-3 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-[10px] font-bold rounded-lg transition-all border border-zinc-700/50"> 
-                   MODIFY 
-                 </button> 
-                 <button className="py-2 px-3 bg-zinc-800 hover:bg-zinc-700 text-red-400 text-[10px] font-bold rounded-lg transition-all border border-zinc-700/50"> 
-                   ESCALATE 
-                 </button> 
-               </div> 
+                <button 
+                  onClick={() => onSelect?.(rec.id)}
+                  className="py-2 px-3 bg-blue-600 hover:bg-blue-500 text-white text-[10px] font-bold rounded-lg transition-all shadow-lg shadow-blue-600/10"> 
+                  ACCEPT 
+                </button> 
+                <button 
+                  onClick={() => onFeedback?.(rec.id, 'modify')}
+                  className="py-2 px-3 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-[10px] font-bold rounded-lg transition-all border border-zinc-700/50"> 
+                  MODIFY 
+                </button> 
+                <button 
+                  onClick={() => onFeedback?.(rec.id, 'escalate')}
+                  className="py-2 px-3 bg-zinc-800 hover:bg-zinc-700 text-red-400 text-[10px] font-bold rounded-lg transition-all border border-zinc-700/50"> 
+                  ESCALATE 
+                </button> 
+              </div> 
              </motion.div> 
            ))} 
          </AnimatePresence> 

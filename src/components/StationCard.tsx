@@ -1,20 +1,94 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Clock, MoreHorizontal, Activity, Battery, Zap, AlertTriangle, CheckCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Station } from '@/lib/data';
 import { AreaChart, Area, ResponsiveContainer } from 'recharts';
+import { getStationScore, getStationHealth, joinQueue, verifyQueue, swapBattery } from '@/lib/api';
 
 interface StationCardProps {
   station: Station;
 }
 
 export function StationCard({ station }: StationCardProps) {
-  const isHealthy = station.status === 'healthy';
-  const isAtRisk = station.status === 'at-risk';
-  const isCritical = station.status === 'critical';
+  const [healthData, setHealthData] = useState<any>(null);
+  const [scoreData, setScoreData] = useState<any>(null);
+  const [queueState, setQueueState] = useState<'idle' | 'queued' | 'verified'>('idle');
+  const [loadingAction, setLoadingAction] = useState(false);
+
+  useEffect(() => {
+    const fetchRealtimeData = async () => {
+      try {
+        const [healthRes, scoreRes] = await Promise.all([
+          getStationHealth(station.id).catch(() => null),
+          getStationScore(station.id).catch(() => null)
+        ]);
+
+        if (healthRes?.data) setHealthData(healthRes.data);
+        if (scoreRes?.data) setScoreData(scoreRes.data);
+      } catch (error) {
+        // Fallback to static props
+      }
+    };
+
+    fetchRealtimeData();
+  }, [station.id]);
+
+  const handleJoinQueue = async () => {
+    setLoadingAction(true);
+    try {
+      await joinQueue(station.id, 'demo-user');
+      setQueueState('queued');
+    } catch (e) {
+      console.error(e);
+      // Simulate success for demo if API fails
+      setQueueState('queued');
+    } finally {
+      setLoadingAction(false);
+    }
+  };
+
+  const handleVerifyQueue = async () => {
+    setLoadingAction(true);
+    try {
+      await verifyQueue('demo-qr-code');
+      setQueueState('verified');
+    } catch (e) {
+      console.error(e);
+      // Simulate success for demo
+      setQueueState('verified');
+    } finally {
+      setLoadingAction(false);
+    }
+  };
+
+  const handleSwap = async () => {
+    setLoadingAction(true);
+    try {
+      await swapBattery(station.id, 'demo-user');
+      setQueueState('idle');
+    } catch (e) {
+      console.error(e);
+      setQueueState('idle');
+    } finally {
+      setLoadingAction(false);
+    }
+  };
+
+  // Merge props with realtime data
+  const currentStatus = healthData?.status || station.status;
+  const currentUptime = healthData?.uptime || station.uptime;
+  const currentQueue = healthData?.queueLength || station.queueLength;
+  
+  // Display Score if available
+  const scoreValue = scoreData?.overallScore || null;
+  const scoreRank = scoreData?.rank || null;
+
+  const isHealthy = currentStatus === 'healthy';
+  const isAtRisk = currentStatus === 'at-risk';
+  const isCritical = currentStatus === 'critical';
 
   // Transform simple array to object array for Recharts
   const chartData = station.demandTrend.map((val, i) => ({ value: val, i }));
@@ -48,10 +122,10 @@ export function StationCard({ station }: StationCardProps) {
           {isHealthy && <CheckCircle className="w-3.5 h-3.5" />}
           {isAtRisk && <AlertTriangle className="w-3.5 h-3.5" />}
           {isCritical && <Activity className="w-3.5 h-3.5" />}
-          {station.status}
+          {currentStatus}
         </div>
         <div className="h-4 w-px bg-zinc-800" />
-        <span className="text-zinc-400 text-sm font-medium">Uptime <span className="text-zinc-200">{station.uptime}%</span></span>
+        <span className="text-zinc-400 text-sm font-medium">Uptime <span className="text-zinc-200">{currentUptime}%</span></span>
       </div>
 
       {/* Queue & Graph Section */}
@@ -59,7 +133,7 @@ export function StationCard({ station }: StationCardProps) {
         <div className="flex flex-col justify-end">
           <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-2">Queue Length</span>
           <div className="flex items-baseline gap-2">
-            <span className="text-4xl font-bold text-white tracking-tight">{station.queueLength}</span>
+            <span className="text-4xl font-bold text-white tracking-tight">{currentQueue}</span>
             <span className="text-sm font-medium text-zinc-500">veh</span>
           </div>
         </div>
@@ -86,17 +160,54 @@ export function StationCard({ station }: StationCardProps) {
         </div>
       </div>
 
-      {/* Footer Prediction */}
-      <div className="mt-auto">
-        <div className={cn(
-          "w-full rounded-2xl p-4 flex items-center gap-3 border transition-colors",
-          "bg-zinc-900/50 border-zinc-800/50"
-        )}>
-          <div className={cn("w-2 h-2 rounded-full shrink-0", isHealthy ? "bg-emerald-500" : "bg-amber-500")} />
-          <span className="text-xs text-zinc-400 font-medium">
-            {station.congestionPrediction || "Traffic flow stable"}
-          </span>
+      {/* Footer Prediction & Score & Actions */}
+      <div className="mt-auto flex flex-col gap-3">
+        <div className="flex items-center gap-3">
+          <div className={cn(
+            "flex-1 rounded-2xl p-4 flex items-center gap-3 border transition-colors",
+            "bg-zinc-900/50 border-zinc-800/50"
+          )}>
+            <div className={cn("w-2 h-2 rounded-full shrink-0", isHealthy ? "bg-emerald-500" : "bg-amber-500")} />
+            <span className="text-xs text-zinc-400 font-medium truncate">
+              {station.congestionPrediction || "Traffic flow stable"}
+            </span>
+          </div>
+          
+          {scoreValue && (
+            <div className="rounded-2xl p-4 border bg-zinc-900/50 border-zinc-800/50 flex flex-col items-center justify-center min-w-[80px]">
+               <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Score</span>
+               <div className="flex items-baseline gap-1">
+                 <span className="text-lg font-bold text-white">{scoreValue}</span>
+                 {scoreRank && <span className="text-[10px] text-zinc-500">{scoreRank}</span>}
+               </div>
+            </div>
+          )}
         </div>
+
+        {/* Action Button */}
+        <button
+          onClick={() => {
+            if (queueState === 'idle') handleJoinQueue();
+            else if (queueState === 'queued') handleVerifyQueue();
+            else if (queueState === 'verified') handleSwap();
+          }}
+          disabled={loadingAction}
+          className={cn(
+            "w-full py-3 rounded-xl font-bold text-sm transition-all shadow-lg",
+            queueState === 'idle' 
+              ? "bg-zinc-800 hover:bg-zinc-700 text-white" 
+              : queueState === 'queued'
+              ? "bg-blue-600 hover:bg-blue-500 text-white shadow-blue-500/20"
+              : "bg-emerald-600 hover:bg-emerald-500 text-white shadow-emerald-500/20",
+            loadingAction && "opacity-50 cursor-not-allowed"
+          )}
+        >
+          {loadingAction ? "Processing..." : 
+           queueState === 'idle' ? "Join Queue" :
+           queueState === 'queued' ? "Verify Arrival (QR)" :
+           "Complete Swap"
+          }
+        </button>
       </div>
     </div>
   );

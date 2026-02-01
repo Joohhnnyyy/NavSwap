@@ -16,44 +16,58 @@ const projects: Project[] = [
   {
     id: "01",
     title: "IPSA AQUA PLAY ART",
-    videoSrc: "https://d17292ff19wl6v.cloudfront.net/v2/wp/wp-content/uploads/2022/07/23125244/rainbow-2.mp4",
+    videoSrc: "http://ec2-52-89-235-59.us-west-2.compute.amazonaws.com:8004/stream/video1.mp4",
     posterSrc: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6bc7a0c9-6ab9-43bc-bc40-41f533897bdc-theshift-tokyo/assets/images/ipsa_aqua_play_art-home-slider-3x5_jpg-1.webp",
     url: "/project/ipsa_aqua_play_art/",
   },
   {
     id: "02",
     title: "BBF Gate System Video",
-    videoSrc: "https://d17292ff19wl6v.cloudfront.net/v2/wp/wp-content/uploads/2024/02/19164149/BBF-Instagram-post-4_1.mp4",
+    videoSrc: "http://ec2-52-89-235-59.us-west-2.compute.amazonaws.com:8004/stream/video2.mp4",
     posterSrc: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6bc7a0c9-6ab9-43bc-bc40-41f533897bdc-theshift-tokyo/assets/images/BBF-gate-design-5x3_jpg-2.webp",
     url: "/project/bbf-gate-system-vid/",
   },
   {
     id: "03",
     title: "Level of Distance",
-    videoSrc: "https://d17292ff19wl6v.cloudfront.net/v2/wp/wp-content/uploads/2022/07/23125244/rainbow-2.mp4",
+    videoSrc: "http://ec2-52-89-235-59.us-west-2.compute.amazonaws.com:8004/stream/video3.mp4",
     posterSrc: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6bc7a0c9-6ab9-43bc-bc40-41f533897bdc-theshift-tokyo/assets/images/level-of-distance-home-slider-5x3_jpg-3.webp",
     url: "/project/level-of-distance/",
   },
   {
     id: "04",
     title: "SHIFT LINK",
-    videoSrc: "https://d17292ff19wl6v.cloudfront.net/v2/wp/wp-content/uploads/2022/05/19141516/Untitled.mp4",
+    videoSrc: "http://ec2-52-89-235-59.us-west-2.compute.amazonaws.com:8004/stream/video4.mp4",
     posterSrc: "", 
     url: "/project/shift_link/",
   },
   {
     id: "05",
     title: "kolor PARIS Collection",
-    videoSrc: "https://d17292ff19wl6v.cloudfront.net/v2/wp/wp-content/uploads/2017/07/24102412/kolor.mp4",
+    videoSrc: "http://ec2-52-89-235-59.us-west-2.compute.amazonaws.com:8004/stream/video5.mp4",
     posterSrc: "",
     url: "/project/kolor-paris-collection/",
   },
   {
     id: "06",
     title: "Coca-Cola coke vision",
-    videoSrc: "https://d17292ff19wl6v.cloudfront.net/v2/wp/wp-content/uploads/2019/07/06141426/coca-cola.mp4",
+    videoSrc: "http://ec2-52-89-235-59.us-west-2.compute.amazonaws.com:8004/stream/video6.mp4",
     posterSrc: "",
     url: "/project/co-ca-cola-coke-vision/",
+  },
+  {
+    id: "07",
+    title: "Project 7",
+    videoSrc: "http://ec2-52-89-235-59.us-west-2.compute.amazonaws.com:8004/stream/video7.mp4",
+    posterSrc: "",
+    url: "/project/project-7/",
+  },
+  {
+    id: "08",
+    title: "Project 8",
+    videoSrc: "http://ec2-52-89-235-59.us-west-2.compute.amazonaws.com:8004/stream/video8.mov",
+    posterSrc: "",
+    url: "/project/project-8/",
   },
 ];
 
@@ -66,29 +80,31 @@ const HeroSection: React.FC = () => {
   const autoplayTimerRef = useRef<NodeJS.Timeout | null>(null);
   const DURATION = 5000; // 5 seconds per slide
 
-  const nextSlide = () => {
+  const nextSlide = React.useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % projects.length);
     setProgress(0);
-  };
+  }, []);
 
   useEffect(() => {
-    const interval = 50; 
+    // Autoplay Timer
+    const interval = 200; 
     const step = (interval / DURATION) * 100;
 
-    autoplayTimerRef.current = setInterval(() => {
+    const timer = setInterval(() => {
       setProgress((prev) => {
-        if (prev >= 100) {
-          nextSlide();
-          return 0;
-        }
+        if (prev >= 100) return 100; // Cap at 100
         return prev + step;
       });
     }, interval);
 
-    return () => {
-      if (autoplayTimerRef.current) clearInterval(autoplayTimerRef.current);
-    };
-  }, [currentIndex]);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    if (progress >= 100) {
+      nextSlide();
+    }
+  }, [progress, nextSlide]);
 
   const radius = 48; // Scaled down for Hero? Or keep same? Original was 48 (96px diameter). My hero button is w-14 (56px).
   // I should adjust the radius to match the hero button size. 
@@ -231,7 +247,7 @@ const HeroSection: React.FC = () => {
                             <div
                                 key={project.id}
                                 className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                                    index === currentIndex ? "opacity-100" : "opacity-0"
+                                    index === currentIndex ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
                                 }`}
                             >
                                 <video
@@ -240,6 +256,7 @@ const HeroSection: React.FC = () => {
                                     muted
                                     loop
                                     playsInline
+                                    crossOrigin="anonymous"
                                     className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-[2s] opacity-80 group-hover:opacity-100"
                                 />
                             </div>
