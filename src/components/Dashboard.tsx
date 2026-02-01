@@ -524,8 +524,26 @@ export default function Dashboard() {
                   <RechartsTooltip 
                     contentStyle={{ backgroundColor: '#09090b', border: '1px solid #27272a', borderRadius: '12px' }}
                   />
-                  <Area type="monotone" dataKey="swaps" stroke="#3b82f6" strokeWidth={2} fillOpacity={1} fill="url(#colorSwaps)" />
-                  <Area type="monotone" dataKey="demand" stroke="#a855f7" strokeWidth={2} fillOpacity={1} fill="url(#colorDemand)" />
+                  <Area 
+                    type="monotone" 
+                    dataKey="swaps" 
+                    stroke="#3b82f6" 
+                    strokeWidth={2} 
+                    fillOpacity={1} 
+                    fill="url(#colorSwaps)" 
+                    animationDuration={2000}
+                    animationEasing="ease-in-out"
+                  />
+                  <Area 
+                    type="monotone" 
+                    dataKey="demand" 
+                    stroke="#a855f7" 
+                    strokeWidth={2} 
+                    fillOpacity={1} 
+                    fill="url(#colorDemand)" 
+                    animationDuration={2000}
+                    animationEasing="ease-in-out"
+                  />
                 </AreaChart>
               </ResponsiveContainer>
             ) : (
