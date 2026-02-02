@@ -55,7 +55,10 @@ const VideoSlide = ({ project, isActive }: { project: Project; isActive: boolean
       const playPromise = video.play();
       if (playPromise !== undefined) {
         playPromise.catch((error) => {
-          console.error("Video play failed:", error);
+          // Ignore AbortError which happens when video is paused by browser or interrupted
+          if (error.name !== 'AbortError') {
+            console.error("Video play failed:", error);
+          }
         });
       }
     } else {
