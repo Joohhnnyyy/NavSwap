@@ -26,7 +26,7 @@ export default function TerritoryFooter() {
   return (
     <div className="w-full bg-[#FAFAFA] dark:bg-[#080808] text-secondary-foreground">
       {/* OUR TERRITORY AND FIELDS Section */}
-      <section className="container py-[15vh] px-[4vw]">
+      <section className="w-full max-w-7xl mx-auto py-[15vh] px-[4vw]">
         <div className="flex flex-col w-full items-center">
           <div className="w-full mb-24 text-center">
             <h2 className="text-[12px] font-medium leading-[1.4] tracking-[0.1em] uppercase font-sans">
@@ -41,25 +41,35 @@ export default function TerritoryFooter() {
 
           <div className="w-full overflow-hidden">
              <div className="flex flex-col gap-1">
-               <Marquee gradient={false} speed={50} direction="left" autoFill>
-                 {row1.map((item, index) => (
-                   <div key={index} className="flex items-center gap-6 mx-12">
-                     <span className="text-[6vw] leading-none font-custom tracking-tight whitespace-nowrap uppercase">
-                       {item}
-                     </span>
-                   </div>
-                 ))}
-               </Marquee>
+              <Marquee gradient={false} speed={50} direction="left" autoFill>
+                <div className="flex items-center">
+                  {row1.map((item, index) => (
+                    <React.Fragment key={index}>
+                      <span className="text-[6vw] leading-none font-custom tracking-tight whitespace-nowrap uppercase mx-12">
+                        {item}
+                      </span>
+                      {index < row1.length - 1 && (
+                        <span className="w-[1.4vw] h-[1.4vw] rounded-full bg-red-500 mx-6 inline-block" />
+                      )}
+                    </React.Fragment>
+                  ))}
+                </div>
+              </Marquee>
                
-               <Marquee gradient={false} speed={50} direction="right" autoFill>
-                 {row2.map((item, index) => (
-                   <div key={index} className="flex items-center gap-6 mx-12">
-                     <span className="text-[6vw] leading-none font-custom tracking-tight whitespace-nowrap uppercase">
-                       {item}
-                     </span>
-                   </div>
-                 ))}
-               </Marquee>
+              <Marquee gradient={false} speed={50} direction="right" autoFill>
+                <div className="flex items-center">
+                  {row2.map((item, index) => (
+                    <React.Fragment key={index}>
+                      <span className="text-[6vw] leading-none font-custom tracking-tight whitespace-nowrap uppercase mx-12">
+                        {item}
+                      </span>
+                      {index < row2.length - 1 && (
+                        <span className="w-[1.4vw] h-[1.4vw] rounded-full bg-white border border-border mx-6 inline-block" />
+                      )}
+                    </React.Fragment>
+                  ))}
+                </div>
+              </Marquee>
              </div>
           </div>
         </div>

@@ -2,20 +2,15 @@
 
 import React from 'react';
 import { 
-  Users, 
   AlertCircle, 
-  CheckCircle2, 
   Map as MapIcon, 
-  Activity,
   Timer,
   ShieldCheck,
   BarChart3,
-  Shield,
-  Zap
 } from 'lucide-react';
 import { NETWORK_KPIS, STATIONS } from '@/lib/data';
+import type { Station } from '@/lib/data';
 import { motion } from 'framer-motion';
-import { RadarVisualization, RadialVisualization } from './AdvancedVisualizations';
 import dynamic from 'next/dynamic';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -26,8 +21,8 @@ const CityMap = dynamic(() => import('./map/CityMap'), {
 
 export const ControlCenterView = () => {
   const rankedStations = [...STATIONS].sort((a, b) => {
-    const priority = { critical: 0, 'at-risk': 1, healthy: 2 };
-    return priority[a.status] - priority[b.status];
+    const order: Record<Station['status'], number> = { critical: 0, 'at-risk': 1, maintenance: 2, healthy: 3, offline: 4 };
+    return order[a.status] - order[b.status];
   });
 
   const reviewQueue = [
