@@ -74,7 +74,7 @@ export default function TerritoryFooter() {
           {/* Left: JA Button */}
           <div className="order-2 md:order-1">
             <button className="border border-muted-foreground rounded-full px-4 py-1 text-[12px] hover:bg-foreground hover:text-background transition-colors uppercase tracking-widest">
-              JA
+              EN
             </button>
           </div>
 

@@ -63,10 +63,17 @@ const TeamList = () => {
 
         {/* Team List */}
         <div className="w-full">
-          <ul className="flex flex-col">
+          <ul className="flex flex-col group/list">
             {teamMembers.map((member, index) => (
-              <li key={index} className="group border-b border-foreground/20 dark:border-white/20">
-                <div className="grid grid-cols-1 lg:grid-cols-12 py-10 lg:py-16 gap-y-6 lg:gap-y-0">
+              <li
+                key={index}
+                className="group relative border-b border-foreground/20 dark:border-white/20 transition-all duration-500 group-hover/list:blur-sm hover:!blur-none focus-within:!blur-none"
+              >
+                <div
+                  className="relative block w-full outline-none transition-all duration-500"
+                  tabIndex={0}
+                >
+                  <div className="grid grid-cols-1 lg:grid-cols-12 py-10 lg:py-16 gap-y-6 lg:gap-y-0">
                   {/* Left Column: Name */}
                   <div className="lg:col-span-4">
                     <h3 className="text-[24px] lg:text-[28px] font-sans font-bold uppercase tracking-tight leading-tight">
@@ -98,6 +105,8 @@ const TeamList = () => {
                       </p>
                     </div>
                   </div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 w-full h-[1px] bg-foreground scale-x-0 origin-left transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100 group-focus-within:scale-x-100"></div>
                 </div>
               </li>
             ))}

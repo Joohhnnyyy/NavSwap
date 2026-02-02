@@ -90,7 +90,7 @@ const Navigation = () => {
                   href="/research/" 
                   className="text-[12px] font-medium tracking-widest opacity-40 hover:opacity-100 transition-opacity"
                 >
-                  JA
+                  
                 </a>
               </li>
             </ul>

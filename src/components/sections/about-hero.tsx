@@ -23,8 +23,7 @@ const AboutHero: React.FC = () => {
             <div className="ui-btn-link text-[10px] font-medium tracking-[0.1em] uppercase">
               <div className="overflow-hidden h-[1.2em]">
                 <div className="transition-transform duration-500 hover:-translate-y-full">
-                  <div className="h-[1.2em]">JA</div>
-                  <div className="h-[1.2em]">JA</div>
+
                 </div>
               </div>
             </div>
@@ -39,26 +38,26 @@ const AboutHero: React.FC = () => {
             {/* "ABOUT" - Serif Typography */}
             <div className="font-serif text-[clamp(4rem,12vw,200px)] font-normal flex">
               <div className="flex overflow-hidden">
-                <span className="block animate-in slide-in-from-bottom duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[0ms]">A</span>
-                <span className="block animate-in slide-in-from-bottom duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[30ms]">B</span>
-                <span className="block animate-in slide-in-from-bottom duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[60ms]">O</span>
-                <span className="block animate-in slide-in-from-bottom duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[90ms]">U</span>
-                <span className="block animate-in slide-in-from-bottom duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[120ms]">T</span>
+                <span className="block">A</span>
+                <span className="block">B</span>
+                <span className="block">O</span>
+                <span className="block">U</span>
+                <span className="block">T</span>
               </div>
             </div>
 
             {/* "NAV SWAP" - Sans-Serif Typography */}
             <div className="font-sans font-bold text-[clamp(3rem,10vw,140px)] leading-[1.0] tracking-[-0.02em] whitespace-nowrap flex overflow-hidden">
               <div className="flex mr-[0.2em]">
-                <span className="block animate-in slide-in-from-bottom duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[150ms]">N</span>
-                <span className="block animate-in slide-in-from-bottom duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[180ms]">A</span>
-                <span className="block animate-in slide-in-from-bottom duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[210ms]">V</span>
+                <span className="block">N</span>
+                <span className="block">A</span>
+                <span className="block">V</span>
               </div>
               <div className="flex">
-                <span className="block animate-in slide-in-from-bottom duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[240ms]">S</span>
-                <span className="block animate-in slide-in-from-bottom duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[270ms]">W</span>
-                <span className="block animate-in slide-in-from-bottom duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[300ms]">A</span>
-                <span className="block animate-in slide-in-from-bottom duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[330ms]">P</span>
+                <span className="block">S</span>
+                <span className="block">W</span>
+                <span className="block">A</span>
+                <span className="block">P</span>
               </div>
             </div>
           </h1>
@@ -66,15 +65,15 @@ const AboutHero: React.FC = () => {
           {/* Supporting Sub-text */}
           <div className="page-title-support font-sans text-[10px] sm:text-[12px] font-medium tracking-[0.05em] uppercase text-center mt-6 flex flex-col gap-1 items-center overflow-hidden">
             <div className="overflow-hidden flex gap-x-2 flex-wrap justify-center">
-              <span className="block animate-in slide-in-from-bottom duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[400ms]">THE</span>
-              <span className="block animate-in slide-in-from-bottom duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[430ms]">OPERATING</span>
-              <span className="block animate-in slide-in-from-bottom duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[460ms]">SYSTEM</span>
+              <span className="block">THE</span>
+              <span className="block">OPERATING</span>
+              <span className="block">SYSTEM</span>
             </div>
             <div className="overflow-hidden flex gap-x-2 flex-wrap justify-center">
-              <span className="block animate-in slide-in-from-bottom duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[500ms]">FOR</span>
-              <span className="block animate-in slide-in-from-bottom duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[530ms]">BATTERY</span>
-              <span className="block animate-in slide-in-from-bottom duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[560ms]">SWAPPING</span>
-              <span className="block animate-in slide-in-from-bottom duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[590ms]">INFRASTRUCTURE</span>
+              <span className="block">FOR</span>
+              <span className="block">BATTERY</span>
+              <span className="block">SWAPPING</span>
+              <span className="block">INFRASTRUCTURE</span>
             </div>
           </div>
         </div>
@@ -82,7 +81,7 @@ const AboutHero: React.FC = () => {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 overflow-hidden py-1">
-        <div className="animate-in slide-in-from-bottom duration-700 delay-[1200ms] ease-out">
+        <div>
           <div className="flex items-center text-[10px] font-medium tracking-[0.1em] text-foreground uppercase">
             <span className="mr-0.5">(</span>
             <span className="relative">SCROLL</span>

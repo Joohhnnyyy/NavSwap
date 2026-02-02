@@ -38,19 +38,19 @@ const ResearchHero: React.FC = () => {
             {/* "NAV" - Serif Typography */}
             <div className="font-serif text-[clamp(4rem,12vw,200px)] font-normal flex">
               <div className="flex overflow-hidden">
-                <span className="block animate-in slide-in-from-bottom duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[0ms]">N</span>
-                <span className="block animate-in slide-in-from-bottom duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[50ms]">A</span>
-                <span className="block animate-in slide-in-from-bottom duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[100ms]">V</span>
+                <span className="block">N</span>
+                <span className="block">A</span>
+                <span className="block">V</span>
               </div>
             </div>
 
             {/* "SWAP" - Sans-Serif Typography (Matching About Hero's second line style) */}
             <div className="font-sans font-bold text-[clamp(3rem,10vw,140px)] leading-[1.0] tracking-[-0.02em] whitespace-nowrap flex overflow-hidden">
               <div className="flex">
-                <span className="block animate-in slide-in-from-bottom duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[200ms]">S</span>
-                <span className="block animate-in slide-in-from-bottom duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[250ms]">W</span>
-                <span className="block animate-in slide-in-from-bottom duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[300ms]">A</span>
-                <span className="block animate-in slide-in-from-bottom duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[350ms]">P</span>
+                <span className="block">S</span>
+                <span className="block">W</span>
+                <span className="block">A</span>
+                <span className="block">P</span>
               </div>
             </div>
           </h1>
@@ -58,14 +58,14 @@ const ResearchHero: React.FC = () => {
           {/* Supporting Sub-text */}
           <div className="page-title-support font-sans text-[10px] sm:text-[12px] font-medium tracking-[0.05em] uppercase text-center mt-6 flex flex-col gap-1 items-center overflow-hidden">
             <div className="overflow-hidden flex gap-x-2 flex-wrap justify-center">
-              <span className="block animate-in slide-in-from-bottom duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[500ms]">THE</span>
-              <span className="block animate-in slide-in-from-bottom duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[550ms]">OPERATING</span>
-              <span className="block animate-in slide-in-from-bottom duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[600ms]">SYSTEM</span>
+              <span className="block">THE</span>
+              <span className="block">OPERATING</span>
+              <span className="block">SYSTEM</span>
             </div>
             <div className="overflow-hidden flex gap-x-2 flex-wrap justify-center">
-              <span className="block animate-in slide-in-from-bottom duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[700ms]">FOR</span>
-              <span className="block animate-in slide-in-from-bottom duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[750ms]">BATTERY</span>
-              <span className="block animate-in slide-in-from-bottom duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[800ms]">SWAPPING</span>
+              <span className="block">FOR</span>
+              <span className="block">BATTERY</span>
+              <span className="block">SWAPPING</span>
             </div>
           </div>
         </div>
@@ -73,7 +73,7 @@ const ResearchHero: React.FC = () => {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 overflow-hidden py-1">
-        <div className="animate-in slide-in-from-bottom duration-1000 delay-[1000ms] ease-out">
+        <div>
           <div className="flex items-center text-[10px] font-medium tracking-[0.1em] text-foreground uppercase">
             <span className="mr-0.5">(</span>
             <span className="relative">SCROLL</span>
