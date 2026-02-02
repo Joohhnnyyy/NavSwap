@@ -26,7 +26,7 @@ export default function TerritoryFooter() {
   return (
     <div className="w-full bg-[#FAFAFA] dark:bg-[#080808] text-secondary-foreground">
       {/* OUR TERRITORY AND FIELDS Section */}
-      <section className="w-full max-w-7xl mx-auto py-[15vh] px-[4vw]">
+      <section className="w-full max-w-7xl mx-auto pt-[15vh] px-[4vw]">
         <div className="flex flex-col w-full items-center">
           <div className="w-full mb-24 text-center">
             <h2 className="text-[12px] font-medium leading-[1.4] tracking-[0.1em] uppercase font-sans">
@@ -38,33 +38,35 @@ export default function TerritoryFooter() {
             
             <div className="w-full h-[1px] bg-border my-12" />
           </div>
+        </div>
+      </section>
 
-          <div className="w-full overflow-hidden">
-             <div className="flex flex-col gap-1">
-              <Marquee gradient={false} speed={50} direction="left" autoFill>
-                <div className="flex items-center">
+      <div className="w-full overflow-hidden pb-[15vh]">
+         <div className="flex flex-col gap-1">
+          <Marquee gradient={false} speed={50} direction="left" autoFill className="overflow-hidden">
+                <div className="flex items-center overflow-hidden">
                   {row1.map((item, index) => (
                     <React.Fragment key={index}>
                       <span className="text-[6vw] leading-none font-custom tracking-tight whitespace-nowrap uppercase mx-12">
                         {item}
                       </span>
                       {index < row1.length - 1 && (
-                        <span className="w-[1.4vw] h-[1.4vw] rounded-full bg-red-500 mx-6 inline-block" />
+                        <span className="w-[1.4vw] h-[1.4vw] rounded-full bg-red-500 mx-6 inline-block shrink-0" />
                       )}
                     </React.Fragment>
                   ))}
                 </div>
               </Marquee>
                
-              <Marquee gradient={false} speed={50} direction="right" autoFill>
-                <div className="flex items-center">
+              <Marquee gradient={false} speed={50} direction="right" autoFill className="overflow-hidden">
+                <div className="flex items-center overflow-hidden">
                   {row2.map((item, index) => (
                     <React.Fragment key={index}>
                       <span className="text-[6vw] leading-none font-custom tracking-tight whitespace-nowrap uppercase mx-12">
                         {item}
                       </span>
                       {index < row2.length - 1 && (
-                        <span className="w-[1.4vw] h-[1.4vw] rounded-full bg-white border border-border mx-6 inline-block" />
+                        <span className="w-[1.4vw] h-[1.4vw] rounded-full bg-white border border-border mx-6 inline-block shrink-0" />
                       )}
                     </React.Fragment>
                   ))}
@@ -72,8 +74,6 @@ export default function TerritoryFooter() {
               </Marquee>
              </div>
           </div>
-        </div>
-      </section>
 
       {/* Minimalist Footer */}
       <footer className="w-full bg-background text-foreground px-[4vw] pb-[10vh]">

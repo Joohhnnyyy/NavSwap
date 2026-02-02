@@ -37,6 +37,7 @@ export const metadata: Metadata = {
 import { ThemeProvider } from "@/components/theme-provider";
 import StairsPreloader from "@/components/preloader/stairs-preloader";
 import { Toaster } from "sonner";
+import GlobalHeader from "@/components/GlobalHeader";
 
 export default function RootLayout({
   children,
@@ -71,6 +72,7 @@ export default function RootLayout({
           data-debug="true"
           data-custom-data='{"appName": "YourApp", "version": "1.0.0", "greeting": "hi"}'
         />
+        <GlobalHeader />
           {children}
           <VisualEditsMessenger />
         </ThemeProvider>

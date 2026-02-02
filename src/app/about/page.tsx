@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Header from "@/components/sections/header";
 import AboutHero from "@/components/sections/about-hero";
 import AboutConcept from "@/components/sections/about-concept";
 import DynamicLogoSection from "@/components/sections/dynamic-logo";
@@ -15,7 +14,6 @@ import { FadeInSection } from "@/components/ui/fade-in-section";
 export default function AboutPage() {
   return (
     <main className="bg-secondary min-h-screen">
-      <Header />
       <AboutHero />
       <FadeInSection>
         <AboutConcept />
