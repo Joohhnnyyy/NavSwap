@@ -11,14 +11,14 @@ import React from 'react';
 const WhatWeDo: React.FC = () => {
   return (
     <section 
-      className="section section-what-we-do bg-[#FAFAFA] dark:bg-[#080808] text-secondary-foreground relative z-0"
+      className="section section-what-we-do bg-[#FAFAFA] dark:bg-[#080808] text-secondary-foreground relative z-0 w-full flex justify-center"
       style={{
         paddingTop: '40vh',
         paddingBottom: '15vh',
       }}
     >
-      <div className="container px-[4vw]">
-        <div className="flex flex-col items-center">
+      <div className="w-full max-w-7xl mx-auto px-[4vw] flex flex-col items-center justify-center min-h-[50vh]">
+        <div className="w-full flex flex-col items-center">
           
           {/* Section Title */}
           <div className="w-full mb-[10vh]">
@@ -37,7 +37,7 @@ const WhatWeDo: React.FC = () => {
           </div>
 
           {/* Body Content */}
-          <div className="w-full max-w-[900px] text-center lg:text-left mx-auto">
+          <div className="w-full max-w-[900px] text-center mx-auto">
             {/* The Shift Description */}
             <div className="section-lead mb-[12vh]">
               <p className="text-[20px] md:text-[24px] lg:text-[28px] leading-[1.8] font-light tracking-tight text-center">
