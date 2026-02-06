@@ -60,7 +60,7 @@ export default function Logo3D({ className, onClick }: Logo3DProps) {
           <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
             <Model />
           </Float>
-          <Environment preset="city" />
+          <Environment files="/potsdamer_platz_1k.hdr" />
         </Suspense>
       </Canvas>
     </div>
