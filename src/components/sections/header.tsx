@@ -45,7 +45,7 @@ export default function Header() {
     { label: "Home", href: "/" },
     { label: "Platform", href: "/#projects" },
     { label: "Solutions", href: "/research" },
-    { label: "Contact", href: "/about" },
+    { label: "About Us", href: "/about" },
   ];
 
   return (

@@ -137,7 +137,7 @@ export default function TerritoryFooter() {
             <a href="#" className="hover:opacity-60 transition-opacity">Home</a>
             <a href="#" className="hover:opacity-60 transition-opacity">Platform</a>
             <a href="#" className="hover:opacity-60 transition-opacity">Solutions</a>
-            <a href="#" className="hover:opacity-60 transition-opacity">Contact</a>
+            <a href="#" className="hover:opacity-60 transition-opacity">About Us</a>
           </div>
         </div>
 
