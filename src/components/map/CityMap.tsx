@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { 
@@ -10,6 +10,7 @@ import {
   Popup, 
   Polyline, 
   Circle, 
+  Tooltip, 
   useMap 
 } from 'react-leaflet';
 import { 
@@ -27,9 +28,7 @@ import {
 } from './constants';
 import { getRoute } from './services/routingService';
 import { getEventNarration } from './services/geminiService';
-import SimulationControls from './components/SimulationControls';
-import EventLog from './components/EventLog';
-import { Fuel, Moon, Sun, Pause, Play, RotateCw, Maximize, Minimize } from 'lucide-react';
+import { Moon, Sun, Pause, Play, RotateCw, Maximize, Minimize } from 'lucide-react';
 
 // MapUpdater component to handle map interactions
 const MapUpdater = ({ center }: { center: LatLng }) => {
@@ -117,6 +116,38 @@ const CityMap: React.FC = () => {
       document.exitFullscreen();
     }
   };
+
+  // Compute an augmented list of stations to render more visible regions,
+  // memoized and defined before any conditional returns to respect hook order.
+  const visibleStations = useMemo(() => {
+    const extras = stations.flatMap((s) => {
+      const delta = 0.01;
+      return [
+        {
+          id: `${s.id}-a`,
+          name: `${s.name} A`,
+          location: [s.location[0] + delta, s.location[1] + delta] as [number, number],
+          status: s.status,
+          occupancy: s.occupancy,
+        },
+        {
+          id: `${s.id}-b`,
+          name: `${s.name} B`,
+          location: [s.location[0] - delta, s.location[1] - delta] as [number, number],
+          status: s.status,
+          occupancy: s.occupancy,
+        },
+        {
+          id: `${s.id}-c`,
+          name: `${s.name} C`,
+          location: [s.location[0] + delta, s.location[1] - delta] as [number, number],
+          status: s.status,
+          occupancy: s.occupancy,
+        },
+      ];
+    });
+    return [...stations, ...extras];
+  }, [stations]);
 
   const addLog = useCallback(async (message: string, type: LogEntry['type'] = 'info', useAi: boolean = false) => {
     let narration = undefined;
@@ -306,7 +337,7 @@ const CityMap: React.FC = () => {
         />
         <MapUpdater center={state.carPosition} />
         {/* Draw regions and station markers */}
-        {stations.map((station) => {
+        {visibleStations.map((station) => {
           // Get shops for this station
           const shops = SHOPS.filter(shop => shop.stationId === station.id);
           // Compute region center (station) and radius to cover all shops (max distance)
@@ -334,7 +365,11 @@ const CityMap: React.FC = () => {
                   weight: 2,
                   dashArray: '6 8',
                 }}
-              />
+              >
+                <Tooltip permanent direction="top" offset={[0, -8]} className={theme === 'tactical' ? 'bg-transparent text-[#FFD60A] font-black uppercase tracking-[0.2em] text-[10px]' : 'bg-transparent text-[#34C759] font-black uppercase tracking-[0.2em] text-[10px]'}>
+                  STATION REGION
+                </Tooltip>
+              </Circle>
               <Marker position={station.location} icon={stationIcon(station.status, theme)}>
                 <Popup>
                   <div className="font-bold text-sm text-slate-800 tracking-tight">{station.name}</div>
@@ -353,6 +388,28 @@ const CityMap: React.FC = () => {
                   </Popup>
                 </Marker>
               ))}
+              {[0, 120, 240].map((deg, idx) => {
+                const latRad = station.location[0] * Math.PI / 180;
+                const metersPerDegLat = 111320;
+                const metersPerDegLon = 111320 * Math.cos(latRad);
+                const radial = Math.max(40, Math.min(regionRadius - 20, 80));
+                const dx = radial * Math.cos((deg * Math.PI) / 180);
+                const dy = radial * Math.sin((deg * Math.PI) / 180);
+                const lat = station.location[0] + dy / metersPerDegLat;
+                const lon = station.location[1] + dx / metersPerDegLon;
+                return (
+                  <Marker
+                    key={`${station.id}-extra-${idx}`}
+                    position={[lat, lon]}
+                    icon={L.divIcon({
+                      html: `<div class='bg-white/90 border border-green-400 rounded-full w-5 h-5 flex items-center justify-center shadow-md'><svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='#34C759' stroke-width='2.2' viewBox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round'><rect width='16' height='20' x='4' y='2' rx='2' ry='2'/><path d='M9 22v-4h6v4'/><path d='M8 6h.01'/><path d='M16 6h.01'/><path d='M12 6h.01'/><path d='M12 10h.01'/><path d='M12 14h.01'/><path d='M16 10h.01'/><path d='M16 14h.01'/><path d='M8 10h.01'/><path d='M8 14h.01'/></svg></div>`,
+                      className: '',
+                      iconSize: [20, 20],
+                      iconAnchor: [10, 10],
+                    })}
+                  />
+                );
+              })}
             </React.Fragment>
           );
         })}
@@ -369,42 +426,7 @@ const CityMap: React.FC = () => {
         )}
       </MapContainer>
 
-      <SimulationControls 
-        onStartScenario={startScenario} 
-        onReset={handleReset} 
-        activeScenario={state.currentScenario}
-        isSimulating={state.isSimulating}
-        theme={theme}
-      />
       
-      <EventLog 
-        logs={state.logs} 
-        theme={theme} 
-        isSimulating={state.isSimulating} 
-        className="center bottom-30  right-3"
-      />
-
-      <div className="absolute bottom-4 left-4 z-[500] w-64 pointer-events-none">
-        <div className={`
-          frosted-glass p-4 rounded-3xl transition-all duration-700 border pointer-events-auto
-          ${theme === 'modern' ? 'text-slate-900 border-white shadow-xl bg-white/40' : 'text-white border-white/10 bg-black/40 backdrop-blur-md'}
-        `}>
-          <div className="flex items-center gap-4">
-             <div className={`w-10 h-10 rounded-full flex items-center justify-center ${theme === 'tactical' ? 'bg-white/5 text-[#0A84FF]' : 'bg-blue-50 text-[#007AFF] shadow-inner shadow-blue-100/50'}`}>
-                <Fuel className="w-5 h-5" strokeWidth={3} />
-             </div>
-             <div className="flex-1 overflow-hidden">
-                <p className={`text-[9px] font-black uppercase tracking-[0.4em] ${theme === 'modern' ? 'text-blue-600/50' : 'opacity-40'} mb-0.5`}>DESTINATION</p>
-                <p className="text-xs font-bold truncate uppercase tracking-tight">
-                  {state.targetStationId ? stations.find(s => s.id === state.targetStationId)?.name : 'IDLE - STANDBY'}
-                </p>
-                <div className={`w-full h-1.5 rounded-full mt-2 ${theme === 'modern' ? 'bg-blue-100/30 ring-1 ring-white' : 'bg-black/40 ring-1 ring-white/5'} overflow-hidden`}>
-                  <div className={`h-full rounded-full transition-all duration-1000 ${theme === 'tactical' ? 'bg-[#0A84FF] shadow-[0_0_10px_#0A84FF]' : 'bg-[#007AFF] shadow-[0_0_15px_rgba(0,122,255,0.4)]'}`} style={{ width: `${state.progress}%` }} />
-                </div>
-             </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

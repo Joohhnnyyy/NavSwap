@@ -1,9 +1,6 @@
 
 import { GoogleGenAI } from "@google/genai";
 
-// Initialize GoogleGenAI using the environment variable directly as per guidelines
-const ai = new GoogleGenAI({ apiKey: process.env.NEXT_PUBLIC_GEMINI_API_KEY || process.env.API_KEY });
-
 // Circuit breaker to avoid spamming API if quota is exhausted
 let apiDisabledUntil = 0;
 
@@ -14,6 +11,15 @@ export async function getEventNarration(event: string, context: string): Promise
   }
 
   try {
+    const key = process.env.NEXT_PUBLIC_GEMINI_API_KEY || process.env.API_KEY;
+    if (!key) {
+      if (event.includes('reached')) return "Destination reached. Initiating automated battery swap sequence.";
+      if (event.includes('congested')) return "Traffic density increasing. Recalculating route for peak efficiency.";
+      if (event.includes('fault')) return "Hub technical failure detected. Diverting to nearest backup terminal.";
+      return "Optimizing navigation path based on real-time grid feedback.";
+    }
+
+    const ai = new GoogleGenAI({ apiKey: key as string });
     const response = await ai.models.generateContent({
       model: 'gemini-2.0-flash', // Updated to latest available model or fallback
       contents: `You are a Smart EV Navigation AI. Context: ${context}. Provide a short, professional voice-over style update (max 15 words) for this event: "${event}".`,
